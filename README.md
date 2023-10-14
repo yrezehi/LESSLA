@@ -1,2 +1,7 @@
 # LESSLA
-SEQ Adapter I use to reduce noises 
+
+<h1 align="center">
+  <br>
+  <img src="banner.png" width="800">
+  <br>
+</h1>
