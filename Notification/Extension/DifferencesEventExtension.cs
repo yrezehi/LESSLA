@@ -1,4 +1,5 @@
-﻿using SeqNotification.Models;
+﻿using SEQ.Models;
+using SeqNotification.Models;
 using SeqNotification.Services;
 
 namespace Notification.Extension

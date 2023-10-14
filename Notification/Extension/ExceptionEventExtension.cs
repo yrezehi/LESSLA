@@ -1,4 +1,4 @@
-﻿using SeqNotification.Models;
+﻿using SEQ.Models;
 
 namespace Notification.Extension
 {

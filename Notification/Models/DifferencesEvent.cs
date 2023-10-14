@@ -1,4 +1,6 @@
-﻿namespace SeqNotification.Models
+﻿using SEQ.Models;
+
+namespace SeqNotification.Models
 {
     public class DifferencesEvent
     {

@@ -1,7 +1,7 @@
 ﻿namespace SEQ
 {
-    public class Class1
+    public static class Configuration
     {
-
+        public static string SERVER_ADDRESS = "";
     }
 }

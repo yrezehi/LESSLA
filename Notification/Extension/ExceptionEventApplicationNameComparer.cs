@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using SeqNotification.Models;
+using SEQ.Models;
 
 namespace Notification.Extension
 {

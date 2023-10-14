@@ -1,4 +1,4 @@
-﻿namespace SeqNotification.Models
+﻿namespace SEQ.Models
 {
     public class ExceptionEvent
     {

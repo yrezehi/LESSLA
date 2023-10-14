@@ -1,8 +1,8 @@
 ﻿using Seq.Api;
 using Seq.Api.Model.Events;
-using SeqNotification.Models;
+using SEQ.Models;
 
-namespace SeqNotification.Services
+namespace SEQ
 {
     public class SeqClient
     {
@@ -15,7 +15,8 @@ namespace SeqNotification.Services
         public List<ExceptionEvent> EventEntityToExceptionEventList(List<EventEntity> events)
         {
             return events.Where(@event => @event.Properties.Any(property => property.Name.Equals(APPLICATION_NAME)))
-                .Select(@event => new ExceptionEvent {
+                .Select(@event => new ExceptionEvent
+                {
                     Id = @event.Id,
                     Exception = @event.Exception.Substring(0, Math.Min(EXCEPTION_LIMIT, @event.Exception.Length)),
                     ApplicationName = @event.Properties?.FirstOrDefault(property => property.Name.Equals(APPLICATION_NAME))?.Value?.ToString()

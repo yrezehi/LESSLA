@@ -43,6 +43,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Seq.Api": {
+              "target": "Package",
+              "version": "[2023.4.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

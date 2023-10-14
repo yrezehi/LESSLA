@@ -1,4 +1,4 @@
-﻿using SeqNotification.Models;
+﻿using SEQ.Models;
 using SeqNotification.Services;
 using System.Diagnostics.CodeAnalysis;
 

@@ -304,6 +304,19 @@
         "runtime": {
           "lib/netstandard2.0/Tavis.UriTemplates.dll": {}
         }
+      },
+      "SEQ/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Seq.Api": "2023.4.0"
+        },
+        "compile": {
+          "bin/placeholder/SEQ.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SEQ.dll": {}
+        }
       }
     }
   },
@@ -709,11 +722,17 @@
         "tavis.uritemplates.2.0.0.nupkg.sha512",
         "tavis.uritemplates.nuspec"
       ]
+    },
+    "SEQ/1.0.0": {
+      "type": "project",
+      "path": "../SEQ/SEQ.csproj",
+      "msbuildProject": "../SEQ/SEQ.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "F23.StringSimilarity >= 5.1.0",
+      "SEQ >= 1.0.0",
       "Seq.Api >= 2023.4.0",
       "System.DirectoryServices.AccountManagement >= 7.0.1"
     ]
@@ -749,7 +768,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Administrator\\Documents\\Projects\\LESSLA\\SEQ\\SEQ.csproj": {
+              "projectPath": "C:\\Users\\Administrator\\Documents\\Projects\\LESSLA\\SEQ\\SEQ.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
