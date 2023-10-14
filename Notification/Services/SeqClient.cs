@@ -1,14 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
-using Seq.Api;
+﻿using Seq.Api;
 using Seq.Api.Model.Events;
 using SeqNotification.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using SeqNotification.Models.Extension;
 
 namespace SeqNotification.Services
 {
