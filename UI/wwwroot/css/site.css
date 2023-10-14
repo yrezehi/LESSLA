@@ -1,4 +1,11 @@
+@font-face {
+    src: url('../fonts/AROneSans.ttf') format('truetype');
+    font-family: 'AROneSans';
+    font-display: swap;
+}
+
 * {
+    font-family: 'AROneSans';
     line-height: normal !important;
 }
 
