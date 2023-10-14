@@ -6,20 +6,17 @@ namespace SEQ
 {
     public class SeqClient
     {
-        public readonly int EXCEPTION_LIMIT = 120;
-        public readonly string APPLICATION_NAME = "ApplicationName";
-
         public async Task<List<EventEntity>> GetLastDayLogs() =>
             await GetLogsByDate(DateTime.Now.AddDays(-1), DateTime.Now);
 
         public List<ExceptionEvent> EventEntityToExceptionEventList(List<EventEntity> events)
         {
-            return events.Where(@event => @event.Properties.Any(property => property.Name.Equals(APPLICATION_NAME)))
+            return events.Where(@event => @event.Properties.Any(property => property.Name.Equals(Configuration.APPLICATION_NAME)))
                 .Select(@event => new ExceptionEvent
                 {
                     Id = @event.Id,
-                    Exception = @event.Exception.Substring(0, Math.Min(EXCEPTION_LIMIT, @event.Exception.Length)),
-                    ApplicationName = @event.Properties?.FirstOrDefault(property => property.Name.Equals(APPLICATION_NAME))?.Value?.ToString()
+                    Exception = @event.Exception.Substring(0, Math.Min(Configuration.EXCEPTION_LIMIT, @event.Exception.Length)),
+                    ApplicationName = @event.Properties?.FirstOrDefault(property => property.Name.Equals(Configuration.APPLICATION_NAME))?.Value?.ToString()
                 }).ToList();
         }
 
@@ -28,7 +25,7 @@ namespace SEQ
 
         private async Task<SeqConnection> GetConnection()
         {
-            SeqConnection connection = new SeqConnection("http://localhost:80");
+            SeqConnection connection = new SeqConnection("");
             await connection.Users.LoginAsync("admin", "password");
 
             return connection;

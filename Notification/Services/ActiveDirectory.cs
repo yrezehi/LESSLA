@@ -30,9 +30,8 @@ namespace SeqNotification.Services
             return emails;
         }
 
-        private PrincipalContext CreatePrincipalContext()
-        {
-            return new PrincipalContext(ContextType.Domain, "domainName");
-        }
+        private PrincipalContext CreatePrincipalContext() =>
+            new PrincipalContext(ContextType.Domain, "domainName");
+        
     }
 }
