@@ -4,7 +4,6 @@ namespace SeqNotification.Services
 {
     public class EmailSender
     {
-
         private static readonly string EMAIL_SUBJECT = "Daily Error Report";
 
         public async void SendEmails(List<string> toEmails, string htmlContent) =>

@@ -1,10 +1,10 @@
-﻿using SeqNotification.Models;
+﻿using Notification.Services.HTMLBuilder;
+using SeqNotification.Models;
 
 namespace SeqNotification.Services
 {
     public class ReportGenerator
     {
-
         public readonly SeqClient _seqClient;
         public readonly ExceptionDifferences _exceptionDifferences;
         public readonly EmailSender _emailSender;
@@ -31,10 +31,10 @@ namespace SeqNotification.Services
 
         public string GenerateHTMLTable(List<DifferencesEvent> events)
         {
-            using (HtmlBuilder.HTMLTable table = new HtmlBuilder.HTMLTable())
+            using (HTMLTable table = new HTMLTable())
             {
 
-                using (HtmlBuilder.HTMLRow row = table.AddRow())
+                using (HTMLRow row = table.AddRow())
                 {
                     row.AddCell("System");
                     row.AddCell("Exception");
@@ -43,7 +43,7 @@ namespace SeqNotification.Services
 
                 foreach (DifferencesEvent @event in events)
                 {
-                    using (HtmlBuilder.HTMLRow row = table.AddRow())
+                    using (HTMLRow row = table.AddRow())
                     {
                         row.AddCell(@event.ApplicationName);
                         row.AddCell(@event.ExceptionEvents.FirstOrDefault().Exception + "...");

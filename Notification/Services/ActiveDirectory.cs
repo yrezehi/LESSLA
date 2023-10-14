@@ -4,7 +4,6 @@ namespace SeqNotification.Services
 {
     public class ActiveDirectory
     {
-
         public List<string> TargetEmails(params string[] groupNames)
         {
             List<string> emails = new List<string>();

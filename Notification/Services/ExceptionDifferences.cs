@@ -1,6 +1,6 @@
 ﻿using F23.StringSimilarity;
+using Notification.Extension;
 using SeqNotification.Models;
-using SeqNotification.Models.Extension;
 
 namespace SeqNotification.Services
 {
