@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator\\Documents\\Projects\\LESSLA\\LESSLA\\LESSLA.csproj",
-      "projectName": "LESSLA",
-      "projectPath": "C:\\Users\\Administrator\\Documents\\Projects\\LESSLA\\LESSLA\\LESSLA.csproj",
+      "projectUniqueName": "C:\\Users\\Administrator\\Documents\\Projects\\LESSLA\\Notification\\Notification.csproj",
+      "projectName": "Notification",
+      "projectPath": "C:\\Users\\Administrator\\Documents\\Projects\\LESSLA\\Notification\\Notification.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator\\Documents\\Projects\\LESSLA\\LESSLA\\obj\\",
+      "outputPath": "C:\\Users\\Administrator\\Documents\\Projects\\LESSLA\\Notification\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
