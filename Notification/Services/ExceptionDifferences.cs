@@ -10,10 +10,8 @@ namespace SeqNotification.Services
 
         public static readonly double SIMILARITY_THRESHOLD = 0.80;
 
-        public static bool IsSimilar(string firstException, string secondException)
-        {
-            return DifferanceCalculator.Similarity(firstException, secondException) > SIMILARITY_THRESHOLD;
-        }
+        public static bool IsSimilar(string firstException, string secondException) =>
+            DifferanceCalculator.Similarity(firstException, secondException) > SIMILARITY_THRESHOLD;
 
         public List<DifferencesEvent> GetDifferences(List<ExceptionEvent> events)
         {

@@ -1,12 +1,13 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using SeqNotification.Models;
 
-namespace SeqNotification.Models.Extension
+namespace Notification.Extension
 {
     public class ExceptionEventApplicationNameComparer : IEqualityComparer<ExceptionEvent>
     {
         public bool Equals(ExceptionEvent firstEvent, ExceptionEvent secondEvent)
         {
-            if (object.ReferenceEquals(firstEvent, secondEvent))
+            if (ReferenceEquals(firstEvent, secondEvent))
                 return true;
 
             if (firstEvent == null || secondEvent == null)

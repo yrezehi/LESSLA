@@ -1,13 +1,14 @@
-﻿using SeqNotification.Services;
+﻿using SeqNotification.Models;
+using SeqNotification.Services;
 using System.Diagnostics.CodeAnalysis;
 
-namespace SeqNotification.Models.Extension
+namespace Notification.Extension
 {
     public class ExceptionEventComparer : IEqualityComparer<ExceptionEvent>
     {
         public bool Equals(ExceptionEvent firstEvent, ExceptionEvent secondEvent)
         {
-            if (object.ReferenceEquals(firstEvent, secondEvent))
+            if (ReferenceEquals(firstEvent, secondEvent))
                 return true;
 
             if (firstEvent == null || secondEvent == null)

@@ -9,10 +9,8 @@ namespace SeqNotification.Services
         public readonly int EXCEPTION_LIMIT = 120;
         public readonly string APPLICATION_NAME = "ApplicationName";
 
-        public async Task<List<EventEntity>> GetLastDayLogs()
-        {
-            return await GetLogsByDate(DateTime.Now.AddDays(-1), DateTime.Now);
-        }
+        public async Task<List<EventEntity>> GetLastDayLogs() =>
+            await GetLogsByDate(DateTime.Now.AddDays(-1), DateTime.Now);
 
         public List<ExceptionEvent> EventEntityToExceptionEventList(List<EventEntity> events)
         {
@@ -24,10 +22,8 @@ namespace SeqNotification.Services
                 }).ToList();
         }
 
-        private async Task<List<EventEntity>> GetLogsByDate(DateTime from, DateTime to)
-        {
-            return await (await GetConnection()).Events.ListAsync(fromDateUtc: from, toDateUtc: to);
-        }
+        private async Task<List<EventEntity>> GetLogsByDate(DateTime from, DateTime to) =>
+            await (await GetConnection()).Events.ListAsync(fromDateUtc: from, toDateUtc: to);
 
         private async Task<SeqConnection> GetConnection()
         {

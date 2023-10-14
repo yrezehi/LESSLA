@@ -7,10 +7,8 @@ namespace SeqNotification.Services
 
         private static readonly string EMAIL_SUBJECT = "Daily Error Report";
 
-        public async void SendEmails(List<string> toEmails, string htmlContent)
-        {
+        public async void SendEmails(List<string> toEmails, string htmlContent) =>
             await CreateSMTPClientInstance().SendMailAsync(CreateMailMessage(toEmails, htmlContent));
-        }
 
         private MailMessage CreateMailMessage(List<string> toEmails, string htmlContent)
         {
@@ -28,9 +26,7 @@ namespace SeqNotification.Services
             return message;
         }
 
-        private SmtpClient CreateSMTPClientInstance()
-        {
-            return new SmtpClient();
-        }
+        private SmtpClient CreateSMTPClientInstance() =>
+            new SmtpClient();
     }
 }

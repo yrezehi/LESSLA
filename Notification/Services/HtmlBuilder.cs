@@ -14,35 +14,24 @@ namespace SeqNotification.Services
                 HTMLStringBuilder.Append($"<table>");
             }
 
-            public void Dispose()
-            {
+            public void Dispose() =>
                 HTMLStringBuilder.Append("</table>");
-            }
 
-            public HTMLRow AddRow()
-            {
-                return new HTMLRow(HTMLStringBuilder);
-            }
+            public HTMLRow AddRow() =>
+                new HTMLRow(HTMLStringBuilder);
+            
 
-            public HTMLRow AddHeaderRow()
-            {
-                return new HTMLRow(HTMLStringBuilder, true);
-            }
+            public HTMLRow AddHeaderRow() => 
+                new HTMLRow(HTMLStringBuilder, true);
 
-            public void StartTableBody()
-            {
+            public void StartTableBody() => 
                 HTMLStringBuilder.Append("<tbody>");
-            }
 
-            public void EndTableBody()
-            {
+            public void EndTableBody() =>
                 HTMLStringBuilder.Append("</tbody>");
-            }
 
-            public string RenderTable()
-            {
-                return HTMLStringBuilder.ToString();
-            }
+            public string RenderTable() =>
+                HTMLStringBuilder.ToString();
         }
 
         public class HTMLRow : IDisposable
@@ -80,10 +69,8 @@ namespace SeqNotification.Services
 
         public class HTMLParagraph
         {
-            public static string RenderParagraph(string paragraph)
-            {
-                return $"<p>{paragraph}</p>";
-            }
+            public static string RenderParagraph(string paragraph) =>
+                $"<p>{paragraph}</p>";
         }
     }
 }
