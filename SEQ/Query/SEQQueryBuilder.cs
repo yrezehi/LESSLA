@@ -1,4 +1,4 @@
-﻿namespace SEQ
+﻿namespace SEQ.Query
 {
     public class SEQQueryBuilder
     {
