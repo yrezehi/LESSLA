@@ -6,7 +6,7 @@ namespace UI.Controllers
     public class LogsController : Controller
     {
         [HttpGet("[action]")]
-        public async Task<IActionResult> Index() =>
+        public IActionResult Index() =>
             Ok();
     }
 }
