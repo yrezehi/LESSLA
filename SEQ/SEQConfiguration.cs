@@ -8,5 +8,7 @@
 
         public readonly static string SEQ_LOGIN_USERNAME = "username";
         public readonly static string SEQ_LOGIN_PASSWORD = "password";
+
+        public readonly static string SEQ_API_KEY = "API-KEY-HERE";
     }
 }

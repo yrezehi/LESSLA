@@ -1,6 +1,7 @@
 ﻿namespace SEQ
 {
-    internal class SeqQueryBuilder
+    public static class SEQQueryBuilder
     {
+
     }
 }

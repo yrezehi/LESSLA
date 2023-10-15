@@ -1,20 +1,26 @@
 ﻿using Seq.Api;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SEQ
 {
     public static class SEQConnection
     {
-        public static SeqConnection Connection = new SeqConnection(SEQConfiguration.SEQ_SERVER_ADDRESS);
+        private static SeqConnection Connection;
 
-        public static async Task Initlize() =>
+        public static async Task Initlize()
+        {
+            Connection = new SeqConnection(SEQConfiguration.SEQ_SERVER_ADDRESS);
+
             await Connection.Users.LoginAsync(SEQConfiguration.SEQ_LOGIN_USERNAME, SEQConfiguration.SEQ_LOGIN_PASSWORD);
+        }
 
-        public static SeqConnection GetInstance() =>
-            Connection;
+        public async static Task<SeqConnection> GetInstance()
+        {
+            if(Connection == null)
+            {
+                await Initlize();
+            }
+
+            return Connection!;
+        }
     }
 }
