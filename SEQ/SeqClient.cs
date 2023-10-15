@@ -11,25 +11,17 @@ namespace SEQ
 
         public List<ExceptionEvent> EventEntityToExceptionEventList(List<EventEntity> events)
         {
-            return events.Where(@event => @event.Properties.Any(property => property.Name.Equals(Configuration.APPLICATION_NAME)))
+            return events.Where(@event => @event.Properties.Any(property => property.Name.Equals(SEQConfiguration.SEQ_APPLICATION_NAME)))
                 .Select(@event => new ExceptionEvent
                 {
                     Id = @event.Id,
-                    Exception = @event.Exception.Substring(0, Math.Min(Configuration.EXCEPTION_LIMIT, @event.Exception.Length)),
-                    ApplicationName = @event.Properties?.FirstOrDefault(property => property.Name.Equals(Configuration.APPLICATION_NAME))?.Value?.ToString()
+                    Exception = @event.Exception.Substring(0, Math.Min(SEQConfiguration.SEQ_EXCEPTION_LIMIT, @event.Exception.Length)),
+                    ApplicationName = @event.Properties?.FirstOrDefault(property => property.Name.Equals(SEQConfiguration.SEQ_APPLICATION_NAME))?.Value?.ToString()
                 }).ToList();
         }
 
         private async Task<List<EventEntity>> GetLogsByDate(DateTime from, DateTime to) =>
-            await (await GetConnection()).Events.ListAsync(fromDateUtc: from, toDateUtc: to);
-
-        private async Task<SeqConnection> GetConnection()
-        {
-            SeqConnection connection = new SeqConnection("");
-            await connection.Users.LoginAsync("admin", "password");
-
-            return connection;
-        }
+            await (await SEQConnection.GetInstance()).Events.ListAsync(fromDateUtc: from, toDateUtc: to);
 
     }
 }
