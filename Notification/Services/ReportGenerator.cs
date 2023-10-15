@@ -2,7 +2,6 @@
 using SEQ;
 using SEQ.Models;
 using SeqNotification.Models;
-using System.Net;
 
 namespace SeqNotification.Services
 {

@@ -1,4 +1,5 @@
 ﻿using Seq.Api;
+using SEQ.Query;
 
 namespace SEQ
 {
@@ -12,10 +13,10 @@ namespace SEQ
         public static async Task<SEQContext> Instance() =>
             new (await SEQConnection.GetInstance());
 
-        public async Task StreamTailEvents() =>
-            await SeqConnection.Events.StreamAsync<dynamic>();
+        public async Task StreamTailEvents(SEQQueryBuilder query) =>
+            await SeqConnection.Events.StreamAsync<dynamic>(filter: query.Build());
 
-        public async Task Events() =>
-            await SeqConnection.Events.ListAsync();
+        public async Task Events(SEQQueryBuilder query) =>
+            await SeqConnection.Events.ListAsync(filter: query.Build());
     }
 }

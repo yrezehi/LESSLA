@@ -1,5 +1,4 @@
-﻿using Seq.Api;
-using Seq.Api.Model.Events;
+﻿using Seq.Api.Model.Events;
 using SEQ.Models;
 
 namespace SEQ

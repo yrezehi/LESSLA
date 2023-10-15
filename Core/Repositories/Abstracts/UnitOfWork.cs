@@ -1,6 +1,5 @@
 ﻿using Core.Repositories.Abstracts.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Static.Repositories.Abstracts;
 
 namespace Core.Repositories.Abstracts
 {
