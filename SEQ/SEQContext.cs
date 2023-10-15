@@ -2,14 +2,14 @@
 
 namespace SEQ
 {
-    public class SEQContextBuilder
+    public class SEQContext
     {
         public SeqConnection SeqConnection { get; set; }
 
-        public SEQContextBuilder(SeqConnection connection) =>
+        public SEQContext(SeqConnection connection) =>
             SeqConnection = connection;
 
-        public static async Task<SEQContextBuilder> Build() =>
+        public static async Task<SEQContext> Instance() =>
             new (await SEQConnection.GetInstance());
 
         public async Task StreamTailEvents() =>
