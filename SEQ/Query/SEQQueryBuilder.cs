@@ -25,6 +25,9 @@
             return this;
         }
 
+        public string Build() =>
+            string.Join(" or ", Query);
+
         private string QueryTemplate(string key, string value) =>
             $"{key} = {value}";
     }
