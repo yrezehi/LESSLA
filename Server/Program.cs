@@ -7,7 +7,4 @@ var app = builder.Build();
 
 app.RegisterControllers();
 
-// Configure the HTTP request pipeline.
-app.UseHttpsRedirection();
-
 app.Run("http://+:1111");
