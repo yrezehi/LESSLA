@@ -5,7 +5,7 @@ namespace Sample.Extensions
 {
     public static class ConfigurationExtensions
     {
-        public static void RegisterConfiguration(WebApplicationBuilder builder)
+        public static void RegisterConfiguration(this WebApplicationBuilder builder)
         {
             builder.RegisterLogger();
             builder.InstateLogger();
