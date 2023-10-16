@@ -1,5 +1,5 @@
+using Sample.Controllers;
 using Sample.Extensions;
-using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,4 +7,6 @@ builder.RegisterConfiguration();
 
 var app = builder.Build();
 
-app.Run();
+app.RegisterControllers();
+
+app.Run("http://+:1112");

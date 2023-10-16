@@ -10,4 +10,4 @@ app.RegisterControllers();
 // Configure the HTTP request pipeline.
 app.UseHttpsRedirection();
 
-app.Run();
+app.Run("http://+:1111");
