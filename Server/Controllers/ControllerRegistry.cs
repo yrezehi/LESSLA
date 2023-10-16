@@ -13,7 +13,7 @@ namespace Server.Controllers
                 events.ToList().ForEach(@event =>
                 {
                     Console.WriteLine(@event);
-                }
+                })
             );
     }
 }
