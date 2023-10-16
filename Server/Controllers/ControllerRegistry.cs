@@ -1,4 +1,7 @@
-﻿namespace Server.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+using Server.Models;
+
+namespace Server.Controllers
 {
     public static class ControllerRegistry
     {
@@ -6,6 +9,11 @@
             application.Index();
 
         private static void Index(this WebApplication application) =>
-            application.MapGet("/", () => "");
+            application.MapPost("/log-events", ([FromBody] Event[] events) =>
+                events.ToList().ForEach(@event =>
+                {
+                    Console.WriteLine(@event);
+                }
+            );
     }
 }
