@@ -8,9 +8,6 @@
         {
             if (!context.HttpContext.Request.Query.TryGetValue(API_KEY_QUERY_PARAMETER, out var apiKeys) && apiKeys.Any())
                 return Results.Unauthorized();
-
-
-
             return await next(context);
         }
     }

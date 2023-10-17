@@ -13,10 +13,8 @@ namespace Server.Authentication
             Cache.Set(key, value, TimeSpan.FromSeconds(ExpirationInSeconds));
         public bool ContainsKey(string key) =>
             Cache.TryGetValue(key, out var value);
-
         public T? GetValue<T>(string key) =>
             Cache.TryGetValue(key, out T value) ? value : default;
-
         public void RemoveValue(string key) => 
             Cache.Remove(key);
     }
