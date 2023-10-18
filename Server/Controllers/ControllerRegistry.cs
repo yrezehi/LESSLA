@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Core.Models;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
-using Server.Models;
 
 namespace Server.Controllers
 {

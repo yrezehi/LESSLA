@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using Serilog;
 
-namespace Sample.Extensions
+namespace Server.Extensions
 {
     public static class ConfigurationExtensions
     {

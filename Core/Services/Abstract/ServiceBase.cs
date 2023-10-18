@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using Core.Services.Abstract.Interfaces;
 using Core.Repositories.Abstracts.Interfaces;
+using Core.Models.Abstracts.Interfaces;
 
 namespace Core.Services.Abstract
 {

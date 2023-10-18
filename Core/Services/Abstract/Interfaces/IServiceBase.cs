@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using Core.Models.Abstracts.DTO;
+using System.Linq.Expressions;
 
 namespace Core.Services.Abstract.Interfaces
 {

@@ -2,7 +2,7 @@
 using System.Net;
 using System.Text.Json;
 
-namespace Static.Exceptions
+namespace Sample.Exceptions
 {
     public class GlobalErrorHandler
     {
@@ -22,7 +22,7 @@ namespace Static.Exceptions
             dynamic loggingErrorObject = new { };
 
             string traceId = context.TraceIdentifier.ToString();
-            int statusCode = (int) HttpStatusCode.InternalServerError;
+            int statusCode = (int)HttpStatusCode.InternalServerError;
 
             string? exceptionMessage = "Internal Server Error";
 
@@ -35,7 +35,7 @@ namespace Static.Exceptions
 
             string serializedErrorObject = JsonSerializer.Serialize(loggingErrorObject);
             Log.Error(serializedErrorObject);
-     
+
             context.Response.StatusCode = statusCode;
 
             await context.Response.WriteAsync(JsonSerializer.Serialize(new
@@ -44,7 +44,7 @@ namespace Static.Exceptions
                 Message = exceptionMessage,
                 TraceId = traceId
             }));
-       
+
         }
     }
 }

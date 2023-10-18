@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
-using Sample.Extensions;
 using Server.Controllers;
+using Server.Extensions;
 using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);

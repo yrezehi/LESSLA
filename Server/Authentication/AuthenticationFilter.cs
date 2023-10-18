@@ -1,4 +1,4 @@
-﻿namespace Server.Middlewares
+﻿namespace Server.Authentication
 {
     public class AuthenticationFilter : IEndpointFilter
     {
