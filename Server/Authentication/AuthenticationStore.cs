@@ -9,7 +9,7 @@ namespace Server.Authentication
         public AuthenticationStore(IMemoryCache cache) =>        
             Cache = cache;
         
-        public void SetValue(string key, T value, int ExpirationInSeconds) =>
+        public void SetValue<T>(string key, T value, int ExpirationInSeconds) =>
             Cache.Set(key, value, TimeSpan.FromSeconds(ExpirationInSeconds));
         public bool ContainsKey(string key) =>
             Cache.TryGetValue(key, out var value);
