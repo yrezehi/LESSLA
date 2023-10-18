@@ -1,9 +1,9 @@
-﻿using Notification.Services.HTMLBuilder;
+﻿using Notification.Models;
+using Notification.Services.HTMLBuilder;
 using SEQ;
 using SEQ.Models;
-using SeqNotification.Models;
 
-namespace SeqNotification.Services
+namespace Notification.Services
 {
     public class ReportGenerator
     {
@@ -24,7 +24,7 @@ namespace SeqNotification.Services
         {
             List<ExceptionEvent> events = _seqClient.EventEntityToExceptionEventList(await _seqClient.GetLastDayLogs());
 
-            if(events.Count > 0)
+            if (events.Count > 0)
             {
                 //_emailSender.SendEmails(_activeDirectory.TargetEmails("GROUPNAMEHERE"), GenerateHTMLTable(_exceptionDifferences.GetDifferences(events).ToList()));
                 var x = GenerateHTMLTable(_exceptionDifferences.GetDifferences(events));

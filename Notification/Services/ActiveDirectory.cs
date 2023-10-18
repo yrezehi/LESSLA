@@ -1,6 +1,6 @@
 ﻿using System.DirectoryServices.AccountManagement;
 
-namespace SeqNotification.Services
+namespace Notification.Services
 {
     public class ActiveDirectory
     {
@@ -10,7 +10,7 @@ namespace SeqNotification.Services
 
             using (var context = CreatePrincipalContext())
             {
-                foreach(string groupName in groupNames)
+                foreach (string groupName in groupNames)
                 {
                     using (var group = GroupPrincipal.FindByIdentity(context, groupName))
                     {
@@ -32,6 +32,6 @@ namespace SeqNotification.Services
 
         private PrincipalContext CreatePrincipalContext() =>
             new PrincipalContext(ContextType.Domain, "domainName");
-        
+
     }
 }

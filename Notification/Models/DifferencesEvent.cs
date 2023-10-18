@@ -1,6 +1,6 @@
 ﻿using SEQ.Models;
 
-namespace SeqNotification.Models
+namespace Notification.Models
 {
     public class DifferencesEvent
     {

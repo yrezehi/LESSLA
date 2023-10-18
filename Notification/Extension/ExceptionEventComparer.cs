@@ -1,5 +1,5 @@
-﻿using SEQ.Models;
-using SeqNotification.Services;
+﻿using Notification.Services;
+using SEQ.Models;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Notification.Extension

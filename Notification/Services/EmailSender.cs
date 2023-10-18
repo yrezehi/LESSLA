@@ -1,6 +1,6 @@
 ﻿using System.Net.Mail;
 
-namespace SeqNotification.Services
+namespace Notification.Services
 {
     public class EmailSender
     {
@@ -14,7 +14,7 @@ namespace SeqNotification.Services
             MailMessage message = new MailMessage();
             message.Subject = EMAIL_SUBJECT;
 
-            foreach(string email in toEmails)
+            foreach (string email in toEmails)
             {
                 message.To.Add(email);
             }

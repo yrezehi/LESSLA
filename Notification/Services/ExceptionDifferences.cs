@@ -1,9 +1,9 @@
 ﻿using F23.StringSimilarity;
 using Notification.Extension;
+using Notification.Models;
 using SEQ.Models;
-using SeqNotification.Models;
 
-namespace SeqNotification.Services
+namespace Notification.Services
 {
     public class ExceptionDifferences
     {
@@ -23,7 +23,7 @@ namespace SeqNotification.Services
             {
                 foreach (ExceptionEvent targetEvent in events.ExceptThis(@event).WithSameApplicationName(@event))
                 {
-                    if(IsSimilar(targetEvent.Exception, @event.Exception))
+                    if (IsSimilar(targetEvent.Exception, @event.Exception))
                     {
                         exceptions.AppendExceptionEvent(targetEvent);
                         //exceptionOccurrences[@event.Exception] = exceptionOccurrences.ContainsKey(@event.Exception) ? exceptionOccurrences[@event.Exception] + 1 : 1;
@@ -31,7 +31,7 @@ namespace SeqNotification.Services
                     }
                 }
             }
-             
+
             return exceptions;
         }
 
