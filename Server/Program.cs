@@ -1,10 +1,11 @@
+using Microsoft.Extensions.Configuration;
 using Sample.Extensions;
 using Server.Controllers;
 using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
-Serilog.Debugging.SelfLog.Enable(TextWriter.Synchronized(File.CreateText("C:\\Users\\Administrator\\Documents\\Projects\\LESSLA\\logs.txt")));
+Serilog.Debugging.SelfLog.Enable(TextWriter.Synchronized(File.CreateText(builder.Configuration.GetValue<string>("SelfLog")!)));
 
 builder.RegisterConfiguration();
 

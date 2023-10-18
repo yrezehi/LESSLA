@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using Server.Models;
 
 namespace Server.Controllers
@@ -11,7 +12,7 @@ namespace Server.Controllers
         private static void Index(this WebApplication application) =>
             application.MapPost("/log-events", ([FromBody] Event[] events) =>
                 Parallel.ForEach(events, @event =>
-                    Console.WriteLine(@event)
+                    Log.Error(@event.RenderedMessage)
                 )
             );
     }
