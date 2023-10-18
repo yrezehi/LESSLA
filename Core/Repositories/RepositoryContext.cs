@@ -1,9 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Repositories
 {
     public class RepositoryContext : DbContext
     {
         public RepositoryContext(DbContextOptions options) : base(options) { }
+
+        public virtual DbSet<EventLog> EventLogs { get; set; }
+        public virtual DbSet<Application> Applications { get; set; }
     }
 }
