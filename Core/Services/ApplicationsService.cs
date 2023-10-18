@@ -1,12 +1,11 @@
 ﻿using Core.Models;
+using Core.Repositories.Abstracts.Interfaces;
+using Core.Services.Abstract;
 
 namespace Core.Services
 {
-    public class ApplicationsService
+    public class ApplicationsService : ServiceBase<Application>
     {
-        public void Register(Application application)
-        {
-
-        }
+        public ApplicationsService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
     }
 }

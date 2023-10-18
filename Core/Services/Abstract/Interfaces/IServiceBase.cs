@@ -1,9 +1,8 @@
-﻿using OwnerGPT.Models.Abstracts.DTO;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
 namespace Core.Services.Abstract.Interfaces
 {
-    public interface IRDBMSServiceBase<T> where T : class
+    public interface IServiceBase<T> where T : class
     {
         IEnumerable<T> Find(Expression<Func<T, bool>> expression);
 

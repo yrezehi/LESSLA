@@ -1,6 +1,6 @@
 ﻿namespace Core.Services
 {
-    public class LogsService
+    public class EventLogsService
     {
         public IEnumerable<dynamic> Latest() => 
             new List<dynamic>();

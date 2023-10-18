@@ -2,34 +2,35 @@
 using System.Linq.Expressions;
 using System.Reflection;
 using Core.Services.Abstract.Interfaces;
+using Core.Repositories.Abstracts.Interfaces;
 
 namespace Core.Services.Abstract
 {
     public class ServiceBase<T> : IServiceBase<T> where T : class
     {
-        public ServiceBase(IRDBMSUnitOfWork unitOfWork) =>
+        public ServiceBase(IUnitOfWork unitOfWork) =>
             (DBSet, UnitOfWork) = (unitOfWork.Repository<T>().DBSet, unitOfWork);
 
-        protected internal IRDBMSUnitOfWork UnitOfWork { get; set; }
+        protected internal IUnitOfWork UnitOfWork { get; set; }
         protected DbSet<T> DBSet { get; set; }
 
         private static int DEFAULT_PAGE_SIZE = 10;
 
         public virtual IEnumerable<T> Find(Expression<Func<T, bool>> expression) =>
-            DBSet.Where(expression).IncludeSurface();
+            DBSet.Where(expression);
 
         public virtual bool Any(Expression<Func<T, bool>> expression) =>
             DBSet.Any(expression);
 
         public virtual IQueryable<T> OrderBy<TValue>(Expression<Func<T, TValue>> orderByExpression) =>
-            DBSet.OrderBy(orderByExpression).IncludeSurface();
+            DBSet.OrderBy(orderByExpression);
 
         public virtual async Task<IEnumerable<T>> GetAll(int? page = null) =>
-            page == null ? await DBSet.IncludeSurface().ToListAsync() : await DBSet.PaginateQuerable(page.Value, DEFAULT_PAGE_SIZE).IncludeSurface().ToListAsync();
+            page == null ? await DBSet.ToListAsync() : await DBSet.PaginateQuerable(page.Value, DEFAULT_PAGE_SIZE).ToListAsync();
 
         public virtual async Task<PaginateDTO<T>> Paginate(int currentPage, Expression<Func<T, bool>>? expression)
         {
-            var items = DBSet.ConditionalWhere(expression != null, expression!).Skip(currentPage * 10).IncludeSurface();
+            var items = DBSet.ConditionalWhere(expression != null, expression!).Skip(currentPage * 10);
             var itemsCount = await DBSet.ConditionalCount(expression!);
 
             return new PaginateDTO<T>()
@@ -47,7 +48,7 @@ namespace Core.Services.Abstract
             // TODO: nah, fix you laz..
             if (value is string && string.IsNullOrEmpty(value as string))
             {
-                return page == null ? await DBSet.IncludeSurface().ToListAsync() : await DBSet.IncludeSurface().PaginateQuerable(page.Value, DEFAULT_PAGE_SIZE).ToListAsync();
+                return page == null ? await DBSet.ToListAsync() : await DBSet.PaginateQuerable(page.Value, DEFAULT_PAGE_SIZE).ToListAsync();
             }
 
             IEntity enetityInstance = (IEntity)Activator.CreateInstance(typeof(T))!;
@@ -67,7 +68,7 @@ namespace Core.Services.Abstract
 
             var predicate = Expression.Lambda<Func<T, bool>>(expression, parameter);
 
-            IEnumerable<T> enetities = page == null ? await DBSet.IncludeSurface().Where(predicate).IncludeSurface().ToListAsync() : await DBSet.IncludeSurface().Where(predicate).IncludeSurface().PaginateQuerable(page.Value, DEFAULT_PAGE_SIZE).ToListAsync();
+            IEnumerable<T> enetities = page == null ? await DBSet.Where(predicate).ToListAsync() : await DBSet.Where(predicate).PaginateQuerable(page.Value, DEFAULT_PAGE_SIZE).ToListAsync();
 
             return enetities;
         }
@@ -76,7 +77,7 @@ namespace Core.Services.Abstract
         {
             var predicate = Expression.Lambda<Func<T, bool>>(Expression.Equal(selector.Body, Expression.Constant(value, typeof(TValue))), selector.Parameters);
 
-            T? entity = await DBSet.IncludeSurface().FirstOrDefaultAsync(predicate);
+            T? entity = await DBSet.FirstOrDefaultAsync(predicate);
 
             if (entity == null)
                 throw new Exception($"Find by property was not found!");
@@ -88,7 +89,7 @@ namespace Core.Services.Abstract
         {
             var predicate = Expression.Lambda<Func<T, bool>>(Expression.Equal(selector.Body, Expression.Constant(value, typeof(TValue))), selector.Parameters);
 
-            IEnumerable<T> entites = await DBSet.Where(predicate).IncludeSurface().ToListAsync();
+            IEnumerable<T> entites = await DBSet.Where(predicate).ToListAsync();
 
             if (!entites.Any())
                 throw new ArgumentException($"Find all by property was not found!");
