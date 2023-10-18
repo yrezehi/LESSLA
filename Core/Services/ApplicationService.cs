@@ -1,23 +1,16 @@
-﻿using Core.Services.Abstract;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Http;
-using OwnerGPT.Core.Authentication;
-using OwnerGPT.Core.Extensions;
-using OwnerGPT.Core.Services.Compositions;
-using OwnerGPT.Models;
-using OwnerGPT.Models.Abstracts.DTO;
+﻿using Core.Models;
+using Core.Services.Abstract;
 using System.Security.Claims;
 
 namespace Core.Services
 {
-    public class AccountService : CompositionBaseService<Account>
+    public class ApplicationService : ServiceBase<Application>
     {
         // Interface it with generic authentiucation as provider...
         private readonly ADAuthentication ADAuthentication;
         private readonly IHttpContextAccessor HttpContextAccessor;
 
-        public AccountService(IHttpContextAccessor httpContextAccessor, ADAuthentication adAuthentication, ServiceBase<Account> RDBMSServiceBase, PGVServiceBase<VectorEmbedding> PGVServiceBase)
+        public ApplicationService(IHttpContextAccessor httpContextAccessor, ADAuthentication adAuthentication, ServiceBase<Account> RDBMSServiceBase, PGVServiceBase<VectorEmbedding> PGVServiceBase)
             : base(RDBMSServiceBase, PGVServiceBase) =>
             (ADAuthentication, HttpContextAccessor) = (adAuthentication, httpContextAccessor);
 
