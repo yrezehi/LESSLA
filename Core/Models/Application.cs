@@ -1,5 +1,8 @@
-﻿namespace Core.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Core.Models
 {
+    [Table("application")]
     public class Application
     {
         public int Id { get; set; }

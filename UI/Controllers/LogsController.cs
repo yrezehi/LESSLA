@@ -15,8 +15,8 @@ namespace UI.Controllers
         public LogsController(EventLogsService Service, SSEProvider sseProvider) : base(Service) => 
             SSEProvider = sseProvider;
 
-        public IActionResult Index(int page = 0) =>
-            View(Service.History(page));
+        public async Task<IActionResult> Index(int page = 0) =>
+            View(await Service.History(page));
 
         [HttpGet("[action]")]
         public IActionResult Live() =>

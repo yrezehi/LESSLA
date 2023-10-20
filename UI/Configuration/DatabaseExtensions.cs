@@ -18,7 +18,7 @@ namespace UI.Configuration
 
         private static void RegisterContext(this WebApplicationBuilder builder) =>
             builder.Services.AddDbContext<RepositoryContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString"))
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
             );
 
         private static void RegisterUnitOfWork(this WebApplicationBuilder builder) =>
