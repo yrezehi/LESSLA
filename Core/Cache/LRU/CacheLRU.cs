@@ -77,7 +77,7 @@ namespace Core.Cache.LRU
         public T? Get(E key) =>
             CacheInstance.TryGetValue(key!, out T? value) ? value : default;
 
-        private void Remove(E key) =>
+        public void Remove(E key) =>
             CacheInstance.Remove(key!);
     }
 }

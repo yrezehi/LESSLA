@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 
 namespace Core.Cache.Providers
 {
@@ -11,7 +12,7 @@ namespace Core.Cache.Providers
         public CacheProvider() =>
             Caches = new();
 
-        private IMemoryCache CreateMemeoryCacheInstance() =>
+        private MemoryCache CreateMemeoryCacheInstance() =>
             new MemoryCache(new MemoryCacheOptions());
 
         public IMemoryCache GetCache(string name)

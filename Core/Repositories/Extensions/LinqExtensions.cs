@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Utils;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using OwnerGPT.Models.Abstracts.Interfaces;
 
 namespace Core.Repositories.Extensions
 {
