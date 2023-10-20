@@ -1,11 +1,17 @@
-﻿namespace Core.Services
-{
-    public class EventLogsService
-    {
-        public IEnumerable<dynamic> Latest() => 
-            new List<dynamic>();
+﻿using Core.Models;
+using Core.Repositories.Abstracts.Interfaces;
+using Core.Services.Abstract;
 
-        public IEnumerable<dynamic> Search() => 
-            new List<dynamic>();
+namespace Core.Services
+{
+    public class EventLogsService : ServiceBase<EventLog>
+    {
+        public EventLogsService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+
+        public IEnumerable<EventLog> Live() => 
+            new List<EventLog>();
+
+        public IEnumerable<EventLog> History(int page) => 
+            this.Paginate(page);
     }
 }

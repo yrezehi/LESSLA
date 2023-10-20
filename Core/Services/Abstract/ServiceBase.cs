@@ -4,6 +4,7 @@ using System.Reflection;
 using Core.Services.Abstract.Interfaces;
 using Core.Repositories.Abstracts.Interfaces;
 using Core.Models.Abstracts.Interfaces;
+using Core.Models.Abstracts.DTO;
 
 namespace Core.Services.Abstract
 {
@@ -29,7 +30,7 @@ namespace Core.Services.Abstract
         public virtual async Task<IEnumerable<T>> GetAll(int? page = null) =>
             page == null ? await DBSet.ToListAsync() : await DBSet.PaginateQuerable(page.Value, DEFAULT_PAGE_SIZE).ToListAsync();
 
-        public virtual async Task<PaginateDTO<T>> Paginate(int currentPage, Expression<Func<T, bool>>? expression)
+        public virtual async Task<PaginateDTO<T>> Paginate(int currentPage, Expression<Func<T, bool>>? expression = null)
         {
             var items = DBSet.ConditionalWhere(expression != null, expression!).Skip(currentPage * 10);
             var itemsCount = await DBSet.ConditionalCount(expression!);
