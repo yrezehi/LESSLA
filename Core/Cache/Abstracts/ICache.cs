@@ -11,7 +11,6 @@ namespace Core.Cache.Abstracts
         void Set(string key, T value);
         T? Get(string key);
         void Remove(string key);
-        int Increment(string key);
         bool Contains(string key);
     }
 }
