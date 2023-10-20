@@ -5,6 +5,7 @@ using Core.Services.Abstract.Interfaces;
 using Core.Repositories.Abstracts.Interfaces;
 using Core.Models.Abstracts.Interfaces;
 using Core.Models.Abstracts.DTO;
+using Core.Repositories.Extensions;
 
 namespace Core.Services.Abstract
 {
