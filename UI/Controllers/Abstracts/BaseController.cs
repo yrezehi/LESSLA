@@ -7,25 +7,19 @@ namespace UI.Controllers.Abstracts
     {
         public IService Service { get; set; }
 
-        public BaseController(IService service) => Service = service;
+        public BaseController(IService service) =>
+            Service = service;
 
         [HttpGet("api/{id}")]
-        public virtual async Task<IActionResult> Id(int id)
-        {
-            return Ok(await Service.FindById(id));
-        }
+        public virtual async Task<IActionResult> Id(int id) =>
+            Ok(await Service.FindById(id));
 
         [HttpGet("api")]
-        public virtual async Task<IActionResult> GetAll(int? page)
-        {
-            return Ok(await Service.GetAll(page));
-        }
+        public virtual async Task<IActionResult> GetAll(int? page) =>
+            Ok(await Service.GetAll(page));
 
         [HttpGet("api/[action]")]
-        public virtual async Task<IActionResult> Search(string property, string value, int? page)
-        {
-            return Ok(await Service.RDBMSServiceBase.SearchByProperty<string>(property, value, page));
-        }
-
+        public virtual async Task<IActionResult> Search(string property, string value, int? page) =>
+            Ok(await Service.SearchByProperty<string>(property, value, page));
     }
 }
