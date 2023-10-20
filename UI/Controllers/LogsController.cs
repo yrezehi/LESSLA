@@ -16,7 +16,7 @@ namespace UI.Controllers
             SSEProvider = sseProvider;
 
         public IActionResult Index(int page = 0) =>
-            View(Service.GetAll(page));
+            View(Service.History(page));
 
         [HttpGet("[action]")]
         public IActionResult Live() =>
