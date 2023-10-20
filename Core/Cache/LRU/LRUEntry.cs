@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace Core.Cache.LRU
 {
-    public class LRUEntry<T> where T : class
+    public class LRUEntry<E, T> where T : class
     {
-        private int Key { get; set; }
+        private E Key { get; set; }
         private T Previous { get; set; }
         private T Next { get; set; }
         private T Entry { get; set; }
 
-        public LRUEntry(int key, T entry) =>
+        private LRUEntry(E key, T entry) =>
             (Key, Entry) = (key, entry);
 
-        public static Of(int key, T entry) =>
-            new LRUEntry<T>(key, entry);
+        public static LRUEntry<T, E> Of(E key, T entry) =>
+            new LRUEntry<E, T>(key, entry);
 
-        public LRUEntry<T> WithPrevious(T previous)
+        public LRUEntry<E, T> WithPrevious(T previous)
         {
             Previous = previous;
             return this;
         }
 
-        public LRUEntry<T> WithNext(T next)
+        public LRUEntry<E, T> WithNext(T next)
         {
             Next = next;
             return this;

@@ -7,11 +7,25 @@ namespace Core.Cache.LRU
     {
         private readonly IMemoryCache CacheInstance;
 
+        private int Length { get; set; }
+
+        public T Head;
+        public T Tail;
+
+        private readonly static int LRU_CAPACITY = 25;
+
         public CacheLRU(IMemoryCache cache) =>
             CacheInstance = cache;
 
-        public void Set(string key, T value) =>
+        public void Set(string key, T value)
+        {
+            if(Length < LRU_CAPACITY)
+            {
+                LRUEntry<T> entry = LRUEntry<T>.Of(key, value);
+            }
+          
             CacheInstance.Set(key, value);
+        }
 
         public bool Contains(string key) =>
             CacheInstance.TryGetValue(key, out var value);
