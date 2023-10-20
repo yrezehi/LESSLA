@@ -41,7 +41,7 @@ namespace Core.Services.Abstract
                 Items = items,
                 Page = currentPage,
                 Total = itemsCount,
-                Pages = (int)Math.Ceiling((double)itemsCount / 10),
+                Pages = (int) Math.Ceiling((double) itemsCount / 10),
             };
         }
 
