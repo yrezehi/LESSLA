@@ -7,5 +7,9 @@ namespace UI.Controllers
     {
         public IActionResult Index() =>
             View();
+
+        [HttpGet("[action]")]
+        public IActionResult Live() =>
+            View();
     }
 }
