@@ -25,3 +25,4 @@ namespace UI.Configuration
             builder.Services.AddTransient<IUnitOfWork, UnitOfWork<RepositoryContext>>();
     }
 }
+ 
