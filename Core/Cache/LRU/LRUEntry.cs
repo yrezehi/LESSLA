@@ -8,9 +8,9 @@ namespace Core.Cache.LRU
 {
     public class LRUEntry<E, T> where T : class
     {
-        private E Key { get; set; }
-        private T Previous { get; set; }
-        private T Next { get; set; }
+        public E Key { get; set; }
+        public LRUEntry<E, T> Previous { get; set; }
+        public LRUEntry<E, T>  Next { get; set; }
         private T Entry { get; set; }
 
         private LRUEntry(E key, T entry) =>
@@ -19,16 +19,22 @@ namespace Core.Cache.LRU
         public static LRUEntry<E, T> Of(E key, T entry) =>
             new LRUEntry<E, T>(key, entry);
 
-        public LRUEntry<E, T> WithPrevious(T previous)
+        public LRUEntry<E, T> WithPrevious(LRUEntry<E, T> previous)
         {
             Previous = previous;
             return this;
         }
 
-        public LRUEntry<E, T> WithNext(T next)
+        public LRUEntry<E, T> WithNext(LRUEntry<E, T> next)
         {
             Next = next;
             return this;
         }
+
+        public void SetPrevious(LRUEntry<E, T> previous) =>
+            Previous = previous;
+
+        public void SetNext(LRUEntry<E, T> next) =>
+            Next = next;
     }
 }

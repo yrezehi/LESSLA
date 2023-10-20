@@ -9,8 +9,8 @@ namespace Core.Cache.LRU
 
         private int Length { get; set; }
 
-        public T Head;
-        public T Tail;
+        public LRUEntry<E, T> Head;
+        public LRUEntry<E, T> Tail;
 
         private readonly static int LRU_CAPACITY = 25;
 
@@ -19,12 +19,56 @@ namespace Core.Cache.LRU
 
         public void Set(E key, T value)
         {
-            if(Length < LRU_CAPACITY)
+            LRUEntry<E, T> entry = LRUEntry<E, T>.Of(key, value);
+
+            if (Length < LRU_CAPACITY)
             {
-                LRUEntry<E, T> entry = LRUEntry<E, T>.Of(key, value);
+                Length++;
             }
-          
+            else
+            {
+                this.Remove(Tail.Key);
+
+                if (Tail.Previous == null)
+                {
+                    Head = Tail.Next;
+                }
+                else
+                {
+                    Tail.Previous.SetNext(Tail.Next);
+                }
+
+                if (Tail.Next == null)
+                {
+                    if (Tail.Previous != null)
+                    {
+                        Tail = Tail.Previous;
+                    }
+                } else
+                {
+                    if (Tail.Previous != null)
+                    {
+                        Tail.Next.SetPrevious(Tail.Previous);
+                    }
+                }
+            }
+
+            SetAsHead(ref entry);
             CacheInstance.Set(key!, value);
+        }
+
+        private void SetAsHead(ref LRUEntry<E, T> entry)
+        {
+            if(Head == null)
+            {
+                Head = entry;
+                Tail = entry;
+            } else
+            {
+                Head.SetPrevious(entry);
+                entry.SetNext(Head);
+                Head = entry;
+            }
         }
 
         public bool Contains(E key) =>
