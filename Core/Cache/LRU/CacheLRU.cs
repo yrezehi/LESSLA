@@ -1,7 +1,7 @@
 ﻿using Core.Cache.Abstracts;
 using Microsoft.Extensions.Caching.Memory;
 
-namespace Core.Cache
+namespace Core.Cache.LRU
 {
     public class CacheLRU<T> : ICache<T> where T : class
     {
@@ -17,8 +17,8 @@ namespace Core.Cache
             CacheInstance.TryGetValue(key, out var value);
 
         public T? Get(string key) =>
-            (CacheInstance.TryGetValue(key, out T? value)) ? value : default; 
-  
+            CacheInstance.TryGetValue(key, out T? value) ? value : default;
+
         public void Remove(string key) =>
             CacheInstance.Remove(key);
     }
