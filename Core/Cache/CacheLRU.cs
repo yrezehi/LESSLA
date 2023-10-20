@@ -1,10 +1,5 @@
 ﻿using Core.Cache.Abstracts;
 using Microsoft.Extensions.Caching.Memory;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Cache
 {
@@ -18,24 +13,13 @@ namespace Core.Cache
         public void Set(string key, T value) =>
             CacheInstance.Set(key, value);
 
-        public bool Contains(string key)
-        {
-            if (CacheInstance.TryGetValue(key, out var value))
-                return true;
-            return false;
-        }
+        public bool Contains(string key) =>
+            CacheInstance.TryGetValue(key, out var value);
 
-        public T? Get(string key)
-        {
-            if (CacheInstance.TryGetValue(key, out T? value))
-                return value;
-
-            return default;
-        }
-
-        public void Remove(string key)
-        {
+        public T? Get(string key) =>
+            (CacheInstance.TryGetValue(key, out T? value)) ? value : default; 
+  
+        public void Remove(string key) =>
             CacheInstance.Remove(key);
-        }
     }
 }
