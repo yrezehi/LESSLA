@@ -12,7 +12,7 @@ namespace Core.Cache.LRU
         public LRUEntry<E, T> Head;
         public LRUEntry<E, T> Tail;
 
-        private readonly static int LRU_CAPACITY = 25;
+        private readonly static int LRU_CAPACITY = 50;
 
         public CacheLRU(IMemoryCache cache) =>
             CacheInstance = cache;
@@ -77,7 +77,7 @@ namespace Core.Cache.LRU
         public T? Get(E key) =>
             CacheInstance.TryGetValue(key!, out T? value) ? value : default;
 
-        public void Remove(E key) =>
+        private void Remove(E key) =>
             CacheInstance.Remove(key!);
     }
 }
