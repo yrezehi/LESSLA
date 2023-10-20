@@ -6,19 +6,21 @@ namespace Core.SSE
 {
     public class SSEProvider
     {
-        public readonly ConcurrentBag<HttpResponse> Clients;
+        public readonly ConcurrentBag<SSEClient> Clients;
 
         public SSEProvider() =>
-            Clients = new ConcurrentBag<HttpResponse>();
-        
-        public void Brodcast(string @event)
-        {
+            Clients = new ConcurrentBag<SSEClient>();
+
+        private ParallelOptions ParallelOptions => 
+            new () { MaxDegreeOfParallelism = 5 };
+
+        public void Brodcast(string @event) =>
             Parallel.ForEach(Clients, ParallelOptions, client =>
             {
-                client.SendSEEEvent(@event).Wait();
+                client.Response.SendSEEEvent(@event).Wait();
             });
-        }
 
-        private ParallelOptions ParallelOptions => new ParallelOptions() { MaxDegreeOfParallelism = 5 };
+        public void Register(HttpContext context) =>
+            Clients.Add(SSEClient.New(context.Response));
     }
 }
