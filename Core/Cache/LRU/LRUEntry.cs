@@ -16,7 +16,7 @@ namespace Core.Cache.LRU
         private LRUEntry(E key, T entry) =>
             (Key, Entry) = (key, entry);
 
-        public static LRUEntry<T, E> Of(E key, T entry) =>
+        public static LRUEntry<E, T> Of(E key, T entry) =>
             new LRUEntry<E, T>(key, entry);
 
         public LRUEntry<E, T> WithPrevious(T previous)

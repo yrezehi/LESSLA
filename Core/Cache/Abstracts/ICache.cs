@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Core.Cache.Abstracts
 {
-    public interface ICache<T> where T : class
+    public interface ICache<in E, T> where T : class
     {
-        void Set(string key, T value);
-        T? Get(string key);
-        void Remove(string key);
-        bool Contains(string key);
+        void Set(E key, T value);
+        T? Get(E key);
+        void Remove(E key);
+        bool Contains(E key);
     }
 }
