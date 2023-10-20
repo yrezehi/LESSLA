@@ -8,7 +8,7 @@ namespace Core.Cache.Abstracts
 {
     public interface ICache<T> where T : class
     {
-        void Set(T value);
+        void Set(string key, T value);
         T? Get(string key);
         void Remove(string key);
         int Increment(string key);
