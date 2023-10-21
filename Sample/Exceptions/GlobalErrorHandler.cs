@@ -14,10 +14,10 @@ namespace Sample.Exceptions
         public async Task Invoke(HttpContext context)
         {
             try { await RequestDelegate(context); }
-            catch (Exception _) { await HandleException(context); }
+            catch (Exception exception) { await HandleException(context, exception); }
         }
 
-        private static async Task HandleException(HttpContext context)
+        private static async Task HandleException(HttpContext context, Exception exception)
         {
             dynamic loggingErrorObject = new { };
 
@@ -34,7 +34,7 @@ namespace Sample.Exceptions
             };
 
             string serializedErrorObject = JsonSerializer.Serialize(loggingErrorObject);
-            Log.Error(serializedErrorObject);
+            Log.Error(exception, serializedErrorObject);
 
             context.Response.StatusCode = statusCode;
 

@@ -10,7 +10,7 @@ namespace Server.Controllers
             application.Index();
 
         private static void Index(this WebApplication application) =>
-            application.MapPost("/log-events", ([FromBody] Event[] events) =>
+            application.MapPost("/", ([FromBody] Event[] events) =>
                 Parallel.ForEach(events, @event =>
                     Log.Error(@event.RenderedMessage)
                 )
