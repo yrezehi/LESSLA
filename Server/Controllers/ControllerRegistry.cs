@@ -16,12 +16,18 @@ namespace Server.Controllers
                 Parallel.ForEach(events, @event => {
                     var instanceLogContext = Log.ForContext("Server", "ip");
 
-                    if(@event.Properties.TryGetValue("Application", out var applicationName))
+                    if(@event.Properties.TryGetValue("Application", out var application))
                     {
-                        instanceLogContext = instanceLogContext.ForContext("Application", applicationName);
+                        instanceLogContext = instanceLogContext.ForContext("Application", application);
                     }
 
-                    instanceLogContext.Error(@event.RenderedMessage);
+                    if (@event.Exception != null)
+                    {
+                        instanceLogContext = instanceLogContext.ForContext("Exception", @event.Exception);
+
+                        instanceLogContext.Error(@event.RenderedMessage, @event.Exception);
+                    }
+
                 });
             });
     }
