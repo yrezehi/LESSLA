@@ -78,16 +78,6 @@ And put below in `appsettings.json`
 
 <br/>
 
-## Architecture
-
-<h1 align="center">
-  <br>
-  <img src="architecture.png" width="600">
-  <br>
-</h1>
-
-<br/>
-
 # Road Map
 
 - [ ] Durable logger on client and server sides
