@@ -17,6 +17,14 @@
 
 <br/>
 
+## Database Permission
+
+On SSMS Server run
+
+```bash
+ALTER DATABASE lessla SET ENABLE_BROKER
+```
+
 ## Hooking up with the server
 
 To be able to integerate with the server, install below `Nuget` packages
