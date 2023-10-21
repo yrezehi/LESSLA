@@ -14,5 +14,8 @@ namespace Core.Services
 
         public async Task<PaginateDTO<EventLog>> History(int page) => 
             await this.Paginate(page);
+
+        public async Task<BriefDTO> Brief() =>
+            new(errorCount: await this.Count(log => log.Level.Equals("Error")));
     }
 }

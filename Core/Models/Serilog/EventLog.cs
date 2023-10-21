@@ -12,7 +12,7 @@ namespace Core.Models.Serilog
     {
         public int Id { get; set; }
         public string? Message { get; set; }
-        public string? Level { get; set; }
+        public string Level { get; set; } = "Error";
         public DateTime TimeStamp { get; set; }
         public string? Application { get; set; }
         public string? Details { get; set; }

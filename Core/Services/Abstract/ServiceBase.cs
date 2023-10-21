@@ -26,6 +26,9 @@ namespace Core.Services.Abstract
         public virtual bool Any(Expression<Func<T, bool>> expression) =>
             DBSet.Any(expression);
 
+        public virtual async Task<int> Count(Expression<Func<T, bool>>? expression = null) =>
+            await (expression != null ? DBSet.CountAsync(expression) : DBSet.CountAsync());
+
         public virtual IQueryable<T> OrderBy<TValue>(Expression<Func<T, TValue>> orderByExpression) =>
             DBSet.OrderBy(orderByExpression);
 
