@@ -1,4 +1,5 @@
 ﻿using Core.Models;
+using Core.Models.Serilog;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Repositories

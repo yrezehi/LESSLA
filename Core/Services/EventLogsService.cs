@@ -1,5 +1,5 @@
-﻿using Core.Models;
-using Core.Models.Abstracts.DTO;
+﻿using Core.Models.Abstracts.DTO;
+using Core.Models.Serilog;
 using Core.Repositories.Abstracts.Interfaces;
 using Core.Services.Abstract;
 

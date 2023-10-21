@@ -1,4 +1,4 @@
-﻿using Core.Models;
+﻿using Core.Models.Serilog;
 using Core.Services;
 using Core.SSE;
 using Microsoft.AspNetCore.Mvc;
