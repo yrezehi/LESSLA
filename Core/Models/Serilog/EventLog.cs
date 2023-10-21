@@ -12,10 +12,12 @@ namespace Core.Models.Serilog
     {
         public int Id { get; set; }
         public string? Message { get; set; }
-        public string? MessageTemplate { get; set; }
         public string? Level { get; set; }
         public DateTime TimeStamp { get; set; }
-        public string? Exception { get; set; }
         public string? Application { get; set; }
+        public string? Details { get; set; }
+        public string? RequestId { get; set; }
+        public string? RequestPath { get; set; }
+        public string? ConnectionId { get; set; }
     }
 }

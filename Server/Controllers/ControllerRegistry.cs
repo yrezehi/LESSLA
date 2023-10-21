@@ -21,9 +21,24 @@ namespace Server.Controllers
                         instanceLogContext = instanceLogContext.ForContext("Application", application);
                     }
 
+                    if (@event.Properties.TryGetValue("RequestId", out var requestId))
+                    {
+                        instanceLogContext = instanceLogContext.ForContext("RequestId", requestId);
+                    }
+
+                    if (@event.Properties.TryGetValue("RequestPath", out var requestPath))
+                    {
+                        instanceLogContext = instanceLogContext.ForContext("RequestPath", requestPath);
+                    }
+
+                    if (@event.Properties.TryGetValue("ConnectionId", out var connectionId))
+                    {
+                        instanceLogContext = instanceLogContext.ForContext("ConnectionId", connectionId);
+                    }
+
                     if (@event.Exception != null)
                     {
-                        instanceLogContext = instanceLogContext.ForContext("Exception", @event.Exception);
+                        instanceLogContext = instanceLogContext.ForContext("Details", @event.Exception);
 
                         instanceLogContext.Error(@event.RenderedMessage, @event.Exception);
                     }
