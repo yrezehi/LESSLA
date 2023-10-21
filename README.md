@@ -10,6 +10,13 @@
 
 <br/>
 
+## Deployment Checklist
+
+- Deploy Server Instance
+- Deploy UI Instance
+
+<br/>
+
 ## Hooking up with the server
 
 To be able to integerate with the server, install below `Nuget` packages
@@ -61,3 +68,22 @@ And put below in `appsettings.json`
     }
   }
 ```
+
+<br/>
+
+## Deployment Requirements
+
+- SSMS Server
+- .NET 7
+
+<br/>
+
+# Road Map
+
+- [ ] Durable logger on client and server sides
+- [ ] Notification center
+- [ ] Logger insights for dashboard
+- [ ] Health check center
+- [ ] LLama integration
+
+<br/>
