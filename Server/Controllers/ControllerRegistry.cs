@@ -14,16 +14,9 @@ namespace Server.Controllers
         private static void Index(this WebApplication application) =>
             application.MapPost("/", ([FromBody] LogEventRequest[] events) => {
                 var instanceLogContext = Log.ForContext("Server", "ip");
-
                 Parallel.ForEach(events, @event => {
-                    @event.Properties.ToList().ForEach(property =>
-                    {
-                        instanceLogContext = instanceLogContext.ForContext(property.Key, property.Value);
-                    });
-
                     instanceLogContext.Error(@event.RenderedMessage);
                 });
-               
             });
     }
 }
