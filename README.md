@@ -95,3 +95,5 @@ And put below in `appsettings.json`
 - [ ] LLama integration
 
 <br/>
+
+> :warning: **Project was tested on .NET 7 projects**
