@@ -1,12 +1,9 @@
 ﻿var animation = function () {
 
-    function toggleHeight(selector) {
+    function toggleHeight(onClickSelector, selector) {
         var element = document.querySelector(selector);
 
-        if (!element)
-            notification.error(`Could not find element ${selector} to animate!`);
-
-        binding.clickToTrigger(element, function () {
+        binding.clickToTrigger(document.querySelector(onClickSelector), function () {
             if (element.style.maxHeight === "0") {
                 element.style.maxHeight = element.scrollHeight;
                 element.style.overflow = "visible";
@@ -19,8 +16,8 @@
 
     return function () {
         return {
-            toggleHeight: function (selector) {
-                toggleHeight(selector);
+            toggleHeight: function (onClickSelector, selector) {
+                toggleHeight(onClickSelector, selector);
             }
         };
     }();

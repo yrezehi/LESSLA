@@ -66,7 +66,7 @@
                                     @item.TimeStamp.ToString("dd.MM.yyyy")
                                     <div class="text-gray-400 text-xs">@item.TimeStamp.ToString("h:mm tt")</div>
                                 </div>
-                                <button class="w-8 h-8 inline-flex items-center justify-center text-gray-400 ml-auto">
+                                <button data-animation-button="toggle-logs-details" class="w-8 h-8 inline-flex items-center justify-center text-gray-400 ml-auto">
                                     <svg class="w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1" />
                                     </svg>
@@ -80,7 +80,7 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <div class="max-h-0 overflow-hidden	">
+                                            <div data-animation="toggle-logs-details" class="max-h-0 overflow-hidden">
                                                 <div class="flex align-center">
                                                     <div class="flex-auto w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                                         Request ID
@@ -125,3 +125,9 @@
         </table>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        animation.toggleHeight("[data-animation-button=\"toggle-logs-details\"]", "[data-animation=\"toggle-logs-details\"]");
+    </script>
+}
