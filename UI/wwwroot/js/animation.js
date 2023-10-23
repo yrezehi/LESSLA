@@ -9,21 +9,22 @@
         binding.clickToTrigger(element, function () {
             if (show) {
                 element.style.maxHeight = element.scrollHeight;
-                element.s
+                element.style.overflow = "visible";
             } else {
-
+                element.style.maxHeight = "0";
+                element.style.overflow = "hidden";
             }
         });
     }
 
-    function show(selector) {
-
-    }
-
     return function () {
         return {
-            hideViaHeight: hide,
-            showViaHeight: show
+            hideViaHeight: function (element) {
+                toggle(element, true);
+            },
+            showViaHeight: function (element) {
+                toggle(element, false);
+            }
         };
     }();
 }();
