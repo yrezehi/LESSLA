@@ -1,0 +1,127 @@
+﻿@model PaginateDTO<EventLog>
+
+@{
+    ViewData["Title"] = "Logs Page";
+}
+
+<div class="w-[100%] h-[100%] bg-white p-8">
+    <h2 class="text-2xl font-bold mb-4">Logs History</h2>
+    <hr class="my-6">
+    <div class="sm:p-7 p-4">
+        <div class="flex w-full items-center mb-7">
+            <button class="cursor-not-allowed inline-flex items-center h-8 pl-2.5 pr-2 rounded-md shadow text-gray-700 border border-gray-200 leading-none py-0">
+                Filter by
+                <svg viewBox="0 0 24 24" class="w-4 ml-1.5 text-gray-400" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </button>
+            <div class="ml-auto text-gray-500 text-xs sm:inline-flex hidden items-center">
+                <span class="mr-3">Page @(Model.Page + 1) of @Model.Pages</span>
+                <a href="@(Model.Page - 1 > 0 ? @Url.Action("Index", "Logs", new { page = Model.Page - 1 }) : "javascript:void(0)" )" class="@(Model.Page - 1 > 0 ? "" : "cursor-not-allowed") mr-2 inline-flex items-center h-8 w-8 justify-center text-gray-400 rounded-md shadow border border-gray-200 leading-none py-0">
+                    <svg class="w-4" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </a>
+                <a href="@(Model.Page + 1 < Model.Pages ? @Url.Action("Index", "Logs", new { page = Model.Page + 1 }) : "javascript:void(0)" )" class="@(Model.Page + 1 < 0 ? "" : "cursor-not-allowed") inline-flex items-center h-8 w-8 justify-center text-gray-400 rounded-md shadow border border-gray-200 leading-none py-0">
+                    <svg class="w-4" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <table class="w-full text-left">
+            <thead>
+                <tr class="text-gray-400">
+                    <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200">Level</th>
+                    <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200">Application</th>
+                    <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200">Message</th>
+                    <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 hidden md:table-cell">Time</th>
+                </tr>
+            </thead>
+            <tbody class="text-gray-600">
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
+                            <div class="flex items-center">
+                                <span class="mr-5 bg-red-400 rounded-md roun text-white py-1 px-2">
+                                    @item.Level
+                                </span>
+                            </div>
+                        </td>
+                        <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
+                            @if (item.Application != null)
+                            {
+                                @item.Application
+                            }
+                        </td>
+                        <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
+                            <div class="flex items-center">
+                                @item.Message?.Substring(0, item.Message.Length < 50 ? item.Message.Length : 50).PadRight(55, '.')
+                            </div>
+                        </td>
+                        <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
+                            <div class="flex items-center">
+                                <div class="sm:flex hidden flex-col mr-2">
+                                    @item.TimeStamp.ToString("dd.MM.yyyy")
+                                    <div class="text-gray-400 text-xs">@item.TimeStamp.ToString("h:mm tt")</div>
+                                </div>
+                                <button class="w-8 h-8 inline-flex items-center justify-center text-gray-400 ml-auto">
+                                    <svg class="w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="relative max-h-0 overflow-hidden">
+                        <td class="sm:p-3 py-2 px-1" colspan="100%">
+                            <table class="w-full text-sm text-left text-gray-500">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <div class="flex align-center">
+                                                    <div class="flex-auto w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                                        Request ID
+                                                    </div>
+                                                    <div class="flex-auto w-5/6 px-6 py-4">
+                                                        @item.RequestId
+                                                    </div>
+                                                </div>
+                                                <div class="flex align-center">
+                                                    <div class="flex-auto w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                                        Endpoint
+                                                    </div>
+                                                    <div class="flex-auto w-5/6 px-6 py-4">
+                                                        @item.RequestPath
+                                                    </div>
+                                                </div>
+                                                <div class="flex align-center">
+                                                    <div class="flex-auto w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                                        Connection ID
+                                                    </div>
+                                                    <div class="flex-auto w-5/6 px-6 py-4">
+                                                        @item.ConnectionId
+                                                    </div>
+                                                </div>
+                                                <div class="flex align-center">
+                                                    <div class="flex-auto w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                                        Details
+                                                    </div>
+                                                    <div class="flex-auto w-5/6 px-6 py-4">
+                                                        @item.Details
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
