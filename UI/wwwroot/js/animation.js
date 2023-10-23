@@ -1,16 +1,16 @@
 ﻿var animation = function () {
 
-    function toggleHeight(onClickSelector, selector) {
-        var element = document.querySelector(selector);
-
-        binding.clickToTrigger(document.querySelector(onClickSelector), function () {
-            if (element.style.maxHeight === "0px") {
-                element.style.transition = "max-height 0.6s linear";
-                element.style.maxHeight = `${element.scrollHeight}px`;
-            } else {
-                element.style.maxHeight = "0";
-                element.style.overflow = "hidden";
-            }
+    function toggleHeight(clickableSelector, selector) {
+        document.querySelectorAll(clickableSelector).forEach(function (clickableElement) {
+            binding.clickToTrigger(clickableElement.closest(selector), function (event) {
+                if (event.target.style.maxHeight === "0px") {
+                    event.target.style.transition = "max-height 0.25s linear";
+                    event.target.style.maxHeight = `${event.target.scrollHeight}px`;
+                } else {
+                    event.target.style.maxHeight = "0";
+                    event.target.style.overflow = "hidden";
+                }
+            });
         });
     }
 
