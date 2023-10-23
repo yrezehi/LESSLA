@@ -24,6 +24,8 @@
     <!-- Note: File below is Tilwind's playground CDN -->
     <script src="~/lib/Tailwind/tailwind.js" asp-append-version="true"></script>
     <link rel="stylesheet" src="~/lib/Normalize/normalize.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/Polipop/polipop.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/Polipop/polipop.theme.min.css" asp-append-version="true" />
 
     <!-- Boilerplates -->
     <link rel="stylesheet" src="~/boilerplate/css/boilerplate-main.css" asp-append-version="true" />
@@ -82,7 +84,7 @@
             </div>
         </aside>
 
-        <main role="main" class="ml-40 max-h-screen overflow-auto">
+        <main role="main" class="ml-40 max-h-screen">
             @RenderBody()
         </main>
     </div>

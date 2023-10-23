@@ -1,23 +1,22 @@
 ﻿var animation = function () {
 
-    function toggleHeight(clickableSelector, selector) {
-        document.querySelectorAll(clickableSelector).forEach(function (clickableElement) {
-            binding.clickToTrigger(clickableElement.closest(selector), function (event) {
-                if (event.target.style.maxHeight === "0px") {
-                    event.target.style.transition = "max-height 0.25s linear";
-                    event.target.style.maxHeight = `${event.target.scrollHeight}px`;
-                } else {
-                    event.target.style.maxHeight = "0";
-                    event.target.style.overflow = "hidden";
-                }
-            });
+    function toggleHeight(clickableSelector, triggerSelector) {
+        binding.clickToTrigger(document.querySelector(clickableSelector), function (_) {
+            var triggerSelector = document.querySelector(triggerSelector);
+            if (triggerSelector.style.maxHeight === "0px") {
+                triggerSelector.style.transition = "max-height 0.25s linear";
+                triggerSelector.style.maxHeight = `${triggerSelector.scrollHeight}px`;
+            } else {
+                triggerSelector.style.maxHeight = "0";
+                triggerSelector.style.overflow = "hidden";
+            }
         });
     }
 
     return function () {
         return {
-            toggleHeight: function (onClickSelector, selector) {
-                toggleHeight(onClickSelector, selector);
+            toggleHeight: function (clickableSelector, triggerSelector) {
+                toggleHeight(clickableSelector, triggerSelector);
             }
         };
     }();
