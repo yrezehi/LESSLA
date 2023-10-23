@@ -66,7 +66,7 @@
                                     @item.TimeStamp.ToString("dd.MM.yyyy")
                                     <div class="text-gray-400 text-xs">@item.TimeStamp.ToString("h:mm tt")</div>
                                 </div>
-                                <button data-animation-button="toggle-logs-details" class="w-8 h-8 inline-flex items-center justify-center text-gray-400 ml-auto">
+                                <button data-animation-button="@item.Id" class="w-8 h-8 inline-flex items-center justify-center text-gray-400 ml-auto">
                                     <svg class="w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1" />
                                     </svg>
@@ -74,13 +74,13 @@
                             </div>
                         </td>
                     </tr>
-                    <tr class="">
-                        <td class="sm:p-3 py-2 px-1" colspan="100%">
+                    <tr>
+                        <td class="px-1" colspan="100%">
                             <table class="w-full text-sm text-left text-gray-500">
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <div data-animation="toggle-logs-details" class="relative max-h-0 overflow-hidden">
+                                            <div data-animation-context="@item.Id" class="relative" style="max-height: 0; overflow: hidden;">
                                                 <div class="flex align-center">
                                                     <div class="flex-auto w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                                         Request ID
@@ -128,6 +128,8 @@
 
 @section Scripts {
     <script>
-        animation.toggleHeight("[data-animation-button=\"toggle-logs-details\"]", "[data-animation=\"toggle-logs-details\"]");
+        document.querySelectorAll("[data-animation-button]").forEach(function (element){
+            animation.toggleHeight(`[data-animation-button=\"${element.dataset.animationButton}\"]`, `[data-animation-context=\"${element.dataset.animationButton}\"]`);
+        });
     </script>
 }
