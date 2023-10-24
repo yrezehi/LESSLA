@@ -2,6 +2,7 @@
 using Core.Models.Serilog;
 using Core.Repositories.Abstracts.Interfaces;
 using Core.Services.Abstract;
+using Core.Utils.Extenstions;
 
 namespace Core.Services
 {
@@ -29,10 +30,10 @@ namespace Core.Services
                 {
                     if (briefDTO.ErrorCount > lastWeekErrorsCount)
                     {
-                        briefDTO.ErrorBrief = $"";
+                        briefDTO.ErrorBrief = $"{MathExtenstions.PercentageBetween(briefDTO.ErrorCount, lastWeekErrorsCount)}% More errors than the week before!";
                     } else
                     {
-
+                        briefDTO.ErrorBrief = $"{MathExtenstions.PercentageBetween(briefDTO.ErrorCount, lastWeekErrorsCount)}% Less errors than a week before!";
                     }
                 }
             }
