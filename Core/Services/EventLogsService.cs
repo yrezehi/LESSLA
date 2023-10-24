@@ -15,7 +15,27 @@ namespace Core.Services
         public async Task<PaginateDTO<EventLog>> History(int page) => 
             await this.Paginate(page);
 
-        public async Task<BriefDTO> Brief() =>
-            new(errorCount: await this.Count(log => log.Level.Equals("Error")));
+        public async Task<BriefDTO> Brief()
+        {
+            BriefDTO briefDTO = new(
+                errorCount: await this.Count(log => log.Level.Equals("Error"))
+            );
+
+            if(briefDTO.ErrorCount > 0)
+            {
+                int lastWeekErrorsCount = await this.Count(log => log.TimeStamp <= DateTime.Now.AddDays(-7) && log.TimeStamp >= DateTime.Now.AddDays(-14));
+
+                if(lastWeekErrorsCount > 0)
+                {
+                    if (briefDTO.ErrorCount > lastWeekErrorsCount)
+                    {
+                        briefDTO.ErrorBrief = $"";
+                    } else
+                    {
+
+                    }
+                }
+            }
+        }
     }
 }
