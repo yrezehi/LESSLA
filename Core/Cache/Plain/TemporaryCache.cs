@@ -1,10 +1,12 @@
-﻿using Microsoft.Extensions.Caching.Memory;
+﻿using Core.Cache.Configuration;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Core.Cache.Plain
 {
     public class TemporaryCache
     {
-        public IMemoryCache Cache { get; set; }
+        private IMemoryCache Cache { get; set; }
+        private CacheConfiguration Configuration { get; set; }
 
         public TemporaryCache(IMemoryCache cache) =>
             Cache = cache;
@@ -23,6 +25,7 @@ namespace Core.Cache.Plain
 
         public int Increment(string key)
         {
+            Cache.CreateEntry(key);
             if (this.Contains(key))
             {
                 int previousValue = this.Get<int>(key);

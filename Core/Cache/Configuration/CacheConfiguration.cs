@@ -1,13 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Caching.Memory;
 
 namespace Core.Cache.Configuration
 {
     public class CacheConfiguration
     {
-        public string EntryExpiration { get; set; }
+        public MemoryCacheOptions Configuration { get; set; }
+
+        public CacheConfiguration() =>
+            Configuration = new MemoryCacheOptions();
+
+        public MemoryCacheOptions Default => new()
+        {
+            SizeLimit = -1,
+            TrackLinkedCacheEntries = false,
+            TrackStatistics = false,
+        };
+
     }
 }
