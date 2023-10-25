@@ -1,8 +1,8 @@
 ﻿namespace Core.Services
 {
-    public class HealthcheckService
+    public class HealthService
     {
-        public HealthcheckService()
+        public HealthService()
         {
 
         }

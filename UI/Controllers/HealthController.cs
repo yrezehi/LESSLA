@@ -13,5 +13,9 @@ namespace UI.Controllers
 
         public HealthController(HealthService service) =>
             Service = service;
+
+        [HttpGet("[action]")]
+        public IActionResult Index() =>
+            View();
     }
 }

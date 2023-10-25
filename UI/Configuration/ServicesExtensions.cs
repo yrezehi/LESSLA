@@ -9,6 +9,7 @@ namespace UI.Configuration
         {
             builder.Services.AddTransient(typeof(ApplicationsService), typeof(ApplicationsService));
             builder.Services.AddTransient(typeof(EventLogsService), typeof(EventLogsService));
+            builder.Services.AddTransient(typeof(HealthService), typeof(HealthService));
         }
     }
 }
