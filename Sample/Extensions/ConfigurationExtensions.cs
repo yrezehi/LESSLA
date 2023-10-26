@@ -1,20 +1,19 @@
-﻿using Microsoft.Extensions.Options;
-using Serilog;
+﻿using Serilog;
 
 namespace Sample.Extensions
 {
     public static class ConfigurationExtensions
     {
-        public static void RegisterConfiguration(this WebApplicationBuilder builder)
+        public static void RegisterLogger(this WebApplicationBuilder builder)
         {
-            builder.RegisterLogger();
-            builder.InstateLogger();
+            builder.RegisterSerilog();
+            builder.InstateSerilog();
         }
 
-        private static void RegisterLogger(this WebApplicationBuilder builder) =>
+        private static void RegisterSerilog(this WebApplicationBuilder builder) =>
             builder.Host.UseSerilog();
 
-        private static void InstateLogger(this WebApplicationBuilder builder) =>
+        private static void InstateSerilog(this WebApplicationBuilder builder) =>
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(
                 new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())

@@ -4,7 +4,7 @@ using Sample.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.RegisterConfiguration();
+builder.RegisterLogger();
 
 var app = builder.Build();
 
