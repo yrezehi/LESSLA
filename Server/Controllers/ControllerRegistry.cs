@@ -1,8 +1,6 @@
 ﻿using Core.Models.Serilog;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Serilog;
-using System;
 
 namespace Server.Controllers
 {

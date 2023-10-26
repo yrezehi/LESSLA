@@ -25,6 +25,16 @@ namespace Sample.Lessla
             return HealthCheckResult.Healthy();
         }
 
+        private async Task<bool> AnyUnreachableDatabase()
+        {
+            return false;
+        }
+
+        private async Task<bool> IsDatabaseReachable(string connectionString)
+        {
+            return false;
+        }
+
         private async Task<bool> AnyUnreachableRequest(IEnumerable<Task<bool>> concurrentResponses)
         {
             var responses = await Task.WhenAll(concurrentResponses);
