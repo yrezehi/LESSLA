@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.DirectoryServices.AccountManagement;
 
 namespace Core.Authentication.LDAP.Configuration
 {
-    public class LDAPConfiguration
+    public static class LDAPConfiguration
     {
-        public readonly string 
+        public static string LDAP_DOMAIN = "DOMAIN";
+        public static ContextType CONTEXT_TYPE = ContextType.Domain;
+
+        public static string SERVICE_ACCOUNT_USERNAME = "USERNAME";
+        public static string SERVICE_ACCOUNT_PASSWORD = "PASSWORD";
     }
 }
