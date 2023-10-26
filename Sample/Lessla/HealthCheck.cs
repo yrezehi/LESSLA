@@ -6,14 +6,10 @@ namespace Sample.Lessla
     {
         private readonly HttpClient HttpClient;
 
-        public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
         {
             IList<string> services = new List<string>();
+            IList<string> connections = new List<string>();
 
             IEnumerable<Task<bool>> concurrentResponses = services.Select(IsHeadRequestReachable);
 
@@ -22,12 +18,21 @@ namespace Sample.Lessla
                 return HealthCheckResult.Unhealthy();
             }
 
+            IEnumerable<Task<bool>> concurrentConnections = connections.Select(IsDatabaseReachable);
+
+            if (await AnyUnreachableDatabase(concurrentConnections))
+            {
+                return HealthCheckResult.Unhealthy();
+            }
+
             return HealthCheckResult.Healthy();
         }
 
-        private async Task<bool> AnyUnreachableDatabase()
+        private async Task<bool> AnyUnreachableDatabase(IEnumerable<Task<bool>> concurrentResponses)
         {
-            return false;
+            var responses = await Task.WhenAll(concurrentResponses);
+
+            return responses.ToList().Exists(response => !response);
         }
 
         private async Task<bool> IsDatabaseReachable(string connectionString)
