@@ -1,6 +1,5 @@
 ﻿using Core.Cache.LRU;
 using Core.Cache.Providers;
-using Core.SSE;
 
 namespace UI.Configuration
 {

@@ -1,5 +1,4 @@
 ﻿using Core.Services;
-using Core.SSE;
 
 namespace UI.Configuration
 {

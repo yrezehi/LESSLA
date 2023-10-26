@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Cache.Abstracts
+﻿namespace Core.Cache.Abstracts
 {
     public interface ICache<in E, T> where T : class
     {

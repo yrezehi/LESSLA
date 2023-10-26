@@ -1,8 +1,5 @@
-﻿using Core.Models.Serilog;
-using Core.Services;
-using Core.SSE;
+﻿using Core.Services;
 using Microsoft.AspNetCore.Mvc;
-using UI.Controllers.Abstracts;
 
 namespace UI.Controllers
 {

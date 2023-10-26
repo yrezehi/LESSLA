@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Cache.LRU
+﻿namespace Core.Cache.LRU
 {
     public class LRUEntry<E, T> where T : class
     {
