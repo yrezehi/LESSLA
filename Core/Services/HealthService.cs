@@ -1,10 +1,11 @@
-﻿namespace Core.Services
-{
-    public class HealthService
-    {
-        public HealthService()
-        {
+﻿using Core.Models;
+using Core.Repositories.Abstracts.Interfaces;
+using Core.Services.Abstract;
 
-        }
+namespace Core.Services
+{
+    public class HealthService : ServiceBase<HealthCheckRegistry>
+    {
+        public HealthService(IUnitOfWork unitOfWork) : base(unitOfWork)
     }
 }
