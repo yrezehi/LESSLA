@@ -1,6 +1,6 @@
 ﻿namespace Core.Models
 {
-    public class Chicken
+    public class User
     {
         public int Id { get; set; }
         public string Username { get; set; }
@@ -8,8 +8,8 @@
 
         public virtual ICollection<Application> Applications { get; set; }
         
-        public Chicken(string username) =>
-            (Username, Email) = (username, Chicken.StripUsername(username));
+        public User(string username) =>
+            (Username, Email) = (username, User.StripUsername(username));
 
         private static string StripUsername(string email) =>
             email.Split('@')[0];

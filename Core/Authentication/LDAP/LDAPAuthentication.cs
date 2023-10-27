@@ -13,7 +13,7 @@ namespace Core.Authentication.LDAP
     {
         private PrincipalContext Context { get; set; }
 
-        private LDAPAuthentication()
+        public LDAPAuthentication()
         {
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
