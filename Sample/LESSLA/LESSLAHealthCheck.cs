@@ -2,7 +2,7 @@
 
 namespace Sample.Lessla
 {
-    public class HealthCheck : IHealthCheck
+    public class LESSLAHealthCheck : IHealthCheck
     {
         private readonly HttpClient HttpClient;
 

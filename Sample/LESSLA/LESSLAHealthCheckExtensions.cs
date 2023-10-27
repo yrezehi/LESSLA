@@ -1,6 +1,6 @@
 ﻿namespace Sample.Lessla
 {
-    public static class HealthCheckExtensions
+    public static class LESSLAHealthCheckExtensions
     {
         private static string CONFIGURATION_ROOT_HEALTH_CHECK_PATH = "Lessla.HealthCheck";
 
@@ -11,7 +11,7 @@
         {
             if (builder.Configuration.GetSection(CONFIGURATION_ROOT_HEALTH_CHECK_PATH).Exists())
             {
-
+                builder.Services.AddHealthChecks().AddCheck<LESSLAHealthCheck>("LESSLA");
             }
         }
     }
