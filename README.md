@@ -88,7 +88,7 @@ And put below in `appsettings.json`
 
 # Road Map
 
-- [ ] Durable logger on client and server sides
+- [x] Durable logger on client and server sides
 - [ ] Notification center
 - [ ] Logger insights for dashboard
 - [ ] Health check center
