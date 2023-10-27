@@ -7,6 +7,11 @@ namespace Sample.Lessla
     {
         private readonly HttpClient HttpClient;
 
+        public LESSLAHealthCheck()
+        {
+            HttpClient = new HttpClient();
+        }
+
         public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
         {
             IList<string> services = new List<string>();
