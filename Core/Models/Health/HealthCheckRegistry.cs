@@ -1,4 +1,4 @@
-﻿namespace Core.Models
+﻿namespace Core.Models.Health
 {
     public class HealthCheckRegistry
     {

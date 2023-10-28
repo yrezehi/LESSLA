@@ -1,6 +1,4 @@
-﻿using Core.Models.Health.Request;
-
-namespace Core.Models.Health
+﻿namespace Core.Models.Health.Request
 {
     internal class HealthCheckRequest
     {

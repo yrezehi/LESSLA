@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.Data.SqlClient;
 
-namespace Sample.Lessla
+namespace Library.LESSLA
 {
     public class LESSLAHealthCheck : IHealthCheck
     {
@@ -44,10 +44,11 @@ namespace Sample.Lessla
         private async Task<bool> IsDatabaseReachable(string connectionString)
         {
             try
-            { 
+            {
                 using var Connection = new SqlConnection(connectionString).OpenAsync();
                 return true;
-            } catch (Exception _) { return false; }
+            }
+            catch (Exception _) { return false; }
         }
 
         private async Task<bool> AnyUnreachableRequest(IEnumerable<Task<bool>> concurrentResponses)

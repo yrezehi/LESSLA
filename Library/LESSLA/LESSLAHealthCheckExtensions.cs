@@ -3,7 +3,7 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Sample.Lessla
+namespace Library.LESSLA
 {
     public static class LESSLAHealthCheckExtensions
     {
@@ -44,15 +44,16 @@ namespace Sample.Lessla
         {
             context.Response.ContentType = "application/json; charset=utf-8";
 
-            return context.Response.WriteAsJsonAsync(JsonSerializer.Serialize(new {
+            return context.Response.WriteAsJsonAsync(JsonSerializer.Serialize(new
+            {
                 Status = report.Status.ToString(),
                 Report = report.Entries.Select(entery => new
                 {
                     Status = entery.Value.Status.ToString(),
                     Exception = entery.Value.Exception?.Message ?? "No Exception Message Was Provided",
                     Duration = entery.Value.Duration.ToString(),
-                    Description = entery.Value.Description,
-                    Data = entery.Value.Data
+                    entery.Value.Description,
+                    entery.Value.Data
                 })
             }, JsonSettings));
         }
