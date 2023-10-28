@@ -1,5 +1,8 @@
-﻿namespace Core.Models.Health
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Core.Models.Health
 {
+    [Table("health_logs")]
     public class HealthCheckLog
     {
         public int Id { get; set; }
