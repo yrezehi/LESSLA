@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Sample.Lessla
@@ -17,6 +19,11 @@ namespace Sample.Lessla
             DefaultIgnoreCondition = JsonIgnoreCondition.Never
         };
 
+        private static HealthCheckOptions HealthSettings => new()
+        {
+            ResponseWriter = HealthResponse
+        };
+
         public static void RegisterLESSLA(this WebApplicationBuilder builder)
         {
             if (builder.Configuration.GetSection(CONFIGURATION_ROOT_HEALTH_CHECK_PATH).Exists())
@@ -28,15 +35,25 @@ namespace Sample.Lessla
 
         public static void MapLESSLA(this WebApplication app)
         {
-            app.MapHealthChecks(DEFAULT_HEALTH_CHECK_ENDPOINT)
+            app.MapHealthChecks(DEFAULT_HEALTH_CHECK_ENDPOINT, HealthSettings)
                 .RequireHost(WHITELISTED_HOST)
                 .RequireAuthorization();
         }
 
-        public static Task HealthResponse(this HttpContext httpContext)
+        public static Task HealthResponse(HttpContext context, HealthReport report)
         {
-            return httpContext.Response.WriteAsJsonAsync(JsonSerializer.Serialize(new {
-                
+            context.Response.ContentType = "application/json; charset=utf-8";
+
+            return context.Response.WriteAsJsonAsync(JsonSerializer.Serialize(new {
+                Status = report.Status.ToString(),
+                Report = report.Entries.Select(entery => new
+                {
+                    Status = entery.Value.Status,
+                    Exception = entery.Value.Exception,
+                    Duration = entery.Value.Duration,
+                    Description = entery.Value.Description,
+                    Data = entery.Value.Data
+                })
             }, JsonSettings));
         }
     }
