@@ -1,4 +1,4 @@
-﻿namespace Core.Models.Health.Request
+﻿namespace Library.Request
 {
     internal class HealthCheckRequestReport
     {

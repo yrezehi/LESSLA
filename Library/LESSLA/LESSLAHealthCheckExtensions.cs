@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -37,7 +38,7 @@ namespace Library.LESSLA
         {
             app.MapHealthChecks(DEFAULT_HEALTH_CHECK_ENDPOINT, HealthSettings)
                 .RequireHost(WHITELISTED_HOST)
-                .RequireAuthorization();
+                    .RequireAuthorization();
         }
 
         public static Task HealthResponse(HttpContext context, HealthReport report)
