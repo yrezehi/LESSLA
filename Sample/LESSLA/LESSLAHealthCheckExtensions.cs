@@ -48,9 +48,9 @@ namespace Sample.Lessla
                 Status = report.Status.ToString(),
                 Report = report.Entries.Select(entery => new
                 {
-                    Status = entery.Value.Status,
-                    Exception = entery.Value.Exception,
-                    Duration = entery.Value.Duration,
+                    Status = entery.Value.Status.ToString(),
+                    Exception = entery.Value.Exception?.Message ?? "No Exception Message Was Provided",
+                    Duration = entery.Value.Duration.ToString(),
                     Description = entery.Value.Description,
                     Data = entery.Value.Data
                 })
