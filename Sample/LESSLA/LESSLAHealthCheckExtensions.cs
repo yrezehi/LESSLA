@@ -14,5 +14,10 @@
                 builder.Services.AddHealthChecks().AddCheck<LESSLAHealthCheck>("LESSLA");
             }
         }
+
+        public static Task HealthResponse(this HttpContext httpContext)
+        {
+            return httpContext.Response.WriteAsync("");
+        }
     }
 }

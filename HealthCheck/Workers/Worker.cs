@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Core.Models;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace HealthCheck.Workers
@@ -10,5 +11,10 @@ namespace HealthCheck.Workers
 
         public Worker(ILogger<Worker> logger) =>
             (Logger, HttpClient) = (logger, new HttpClient());
+
+        private HttpResponseMessage SendHealthCheck(Application application)
+        {
+            return null;
+        }
     }
 }
