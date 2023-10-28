@@ -10,6 +10,16 @@
 
 <br/>
 
+## Overview
+
+<h1 align="center">
+  <br>
+  <img src="overview.png" width="800">
+  <br>
+</h1>
+
+<br/>
+
 ## Deployment Checklist
 
 - Deploy Server Instance
