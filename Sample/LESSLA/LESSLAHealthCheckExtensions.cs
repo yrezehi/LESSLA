@@ -1,11 +1,19 @@
-﻿namespace Sample.Lessla
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+
+namespace Sample.Lessla
 {
     public static class LESSLAHealthCheckExtensions
     {
+        private static string DEFAULT_HEALTH_CHECK_ENDPOINT = "/Health";
         private static string CONFIGURATION_ROOT_HEALTH_CHECK_PATH = "Lessla.HealthCheck";
 
-        private static string CONFIGURATION_HEALTH_CHECK_CONNECTION_STRINGS_KEY = "ConnectionStrings";
-        private static string CONFIGURATION_HEALTH_CHECK_EXTERNAL_ENDPOINTS_KEY = "ExternalEndpoints";
+        private static JsonSerializerOptions JsonSettings => new()
+        {
+            WriteIndented = true,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            DefaultIgnoreCondition = JsonIgnoreCondition.Never
+        };
 
         public static void RegisterLESSLA(this WebApplicationBuilder builder)
         {
@@ -15,9 +23,16 @@
             }
         }
 
+        public static void MapLESSLA(this WebApplication app)
+        {
+            app.MapHealthChecks(DEFAULT_HEALTH_CHECK_ENDPOINT);
+        }
+
         public static Task HealthResponse(this HttpContext httpContext)
         {
-            return httpContext.Response.WriteAsync("");
+            return httpContext.Response.WriteAsJsonAsync(JsonSerializer.Serialize(new {
+                
+            }, JsonSettings));
         }
     }
 }
