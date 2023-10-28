@@ -6,6 +6,8 @@ namespace Core.Services
 {
     public class HealthService : ServiceBase<HealthCheckRegistry>
     {
-        public HealthService(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public HealthService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+
+
     }
 }

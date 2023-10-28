@@ -3,13 +3,13 @@ using Microsoft.Extensions.Logging;
 
 namespace HealthCheck.Workers
 {
-    public class Worker : BackgroundService
+    public class BackgroundWorker : BackgroundService
     {
         public HttpClient HttpClient;
-        public ILogger<Worker> Logger;
+        public ILogger<BackgroundWorker> Logger;
 
-        public Worker(ILogger<Worker> logger) =>
-            (Logger) = (logger);
+        public BackgroundWorker(ILogger<BackgroundWorker> logger) =>
+            (Logger, HttpClient) = (logger, new HttpClient());
 
         protected override async Task ExecuteAsync(CancellationToken cancellationToken)
         {
