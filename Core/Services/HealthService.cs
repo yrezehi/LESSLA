@@ -1,4 +1,4 @@
-﻿using Core.Models;
+﻿using Core.Models.Health;
 using Core.Repositories.Abstracts.Interfaces;
 using Core.Services.Abstract;
 
