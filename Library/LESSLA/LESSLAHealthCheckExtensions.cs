@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -17,6 +18,7 @@ namespace Library.LESSLA
         private static string CONFIGURATION_ROOT_HEALTH_CHECK_PATH = "Lessla.HealthCheck";
         private static string CONFIGURATION_ROOT_HEALTH_CHECK_CONNECTION_STRING_PATH = "Lessla.HealthCheck.ConnectionString";
 
+
         private static JsonSerializerOptions JsonSettings => new()
         {
             WriteIndented = true,
@@ -29,17 +31,25 @@ namespace Library.LESSLA
             ResponseWriter = HealthResponse
         };
 
-        public static void RegisterLESSLA(this WebApplicationBuilder builder)
+        public static void RegisterLESSLA<T>(this WebApplicationBuilder builder) where T : DbContext
         {
             if (builder.Configuration.GetSection(CONFIGURATION_ROOT_HEALTH_CHECK_PATH).Exists())
             {
                 builder.Services.AddHealthChecks()
                     .AddCheck<LESSLAHealthCheck>("LESSLA")
-                    .AddSqlServer(builder.Configuration.GetConnectionString("Default")!);
+                        .AddDbContextCheck<T>();
             }
         }
 
-        public static void MapLESSLA(this WebApplication app)
+        public static void RegisterLESSLA(this WebApplicationBuilder builder)
+        {
+            if (builder.Configuration.GetSection(CONFIGURATION_ROOT_HEALTH_CHECK_PATH).Exists())
+            {
+                builder.Services.AddHealthChecks();
+            }
+        }
+
+        public static void MapLESSLA<T>(this WebApplication app) where T : DbContext
         {
             app.MapHealthChecks(DEFAULT_HEALTH_CHECK_ENDPOINT, HealthSettings)
                 .RequireHost(WHITELISTED_HOST)
