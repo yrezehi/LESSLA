@@ -15,6 +15,7 @@ namespace Library.LESSLA
         private static string WHITELISTED_HOST = "*:9111";
 
         private static string CONFIGURATION_ROOT_HEALTH_CHECK_PATH = "Lessla.HealthCheck";
+        private static string CONFIGURATION_ROOT_HEALTH_CHECK_CONNECTION_STRING_PATH = "Lessla.HealthCheck.ConnectionString";
 
         private static JsonSerializerOptions JsonSettings => new()
         {
@@ -33,7 +34,8 @@ namespace Library.LESSLA
             if (builder.Configuration.GetSection(CONFIGURATION_ROOT_HEALTH_CHECK_PATH).Exists())
             {
                 builder.Services.AddHealthChecks()
-                    .AddCheck<LESSLAHealthCheck>("LESSLA");
+                    .AddCheck<LESSLAHealthCheck>("LESSLA")
+                    .AddSqlServer(builder.Configuration.GetConnectionString("Default")!);
             }
         }
 
