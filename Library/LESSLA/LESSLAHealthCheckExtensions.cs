@@ -19,8 +19,8 @@ namespace Library.LESSLA
         private static JsonSerializerOptions JsonSettings => new()
         {
             WriteIndented = true,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            DefaultIgnoreCondition = JsonIgnoreCondition.Never
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
 
         private static HealthCheckOptions HealthSettings => new()
