@@ -17,7 +17,9 @@ namespace Library.LESSLA
             IList<string> services = new List<string>();
             IList<string> connections = new List<string>();
 
-            IEnumerable<Task<bool>> concurrentResponses = services.Select(IsHeadRequestReachable);
+            Dictionary<string, object> result = new();
+
+            /*IEnumerable<Task<bool>> concurrentResponses = services.Select(IsHeadRequestReachable);
 
             if (await AnyUnreachableRequest(concurrentResponses))
             {
@@ -29,7 +31,7 @@ namespace Library.LESSLA
             if (await AnyUnreachableDatabase(concurrentConnections))
             {
                 return HealthCheckResult.Unhealthy();
-            }
+            }*/
 
             return HealthCheckResult.Healthy();
         }
@@ -41,28 +43,21 @@ namespace Library.LESSLA
             return responses.ToList().Exists(response => !response);
         }
 
-        private async Task<bool> IsDatabaseReachable(string connectionString)
+        private async Task<(string, bool)> IsDBReachable(string connectionString)
         {
             try
             {
                 using var Connection = new SqlConnection(connectionString).OpenAsync();
-                return true;
+                return (connectionString, true);
             }
-            catch (Exception _) { return false; }
+            catch (Exception _) { return (connectionString, false); }
         }
 
-        private async Task<bool> AnyUnreachableRequest(IEnumerable<Task<bool>> concurrentResponses)
-        {
-            var responses = await Task.WhenAll(concurrentResponses);
-
-            return responses.ToList().Exists(response => !response);
-        }
-
-        private async Task<bool> IsHeadRequestReachable(string url)
+        private async Task<(string, bool)> IsURLReachable(string url)
         {
             HttpResponseMessage response = await HttpClient.SendAsync(new HttpRequestMessage(HttpMethod.Head, url));
 
-            return response.IsSuccessStatusCode;
+            return (url, response.IsSuccessStatusCode);
         }
     }
 }

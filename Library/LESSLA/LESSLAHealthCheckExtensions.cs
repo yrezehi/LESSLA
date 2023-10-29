@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -37,6 +38,15 @@ namespace Library.LESSLA
             }
         }
 
+        public static void RegisterLESSLA<TDBContext>(this WebApplicationBuilder builder) where TDBContext : DbContext
+        {
+            if (builder.Configuration.GetSection(CONFIGURATION_ROOT_HEALTH_CHECK_PATH).Exists())
+            {
+                builder.Services.AddHealthChecks()
+                    .AddCheck<LESSLAHealthCheck>("LESSLA");
+            }
+        }
+
         public static void MapLESSLA(this WebApplication app)
         {
             app.MapHealthChecks(DEFAULT_HEALTH_CHECK_ENDPOINT, HealthSettings)
@@ -60,6 +70,11 @@ namespace Library.LESSLA
                     entery.Value.Data
                 })
             }, JsonSettings));
+        }
+
+        public static AppendconcurrentResponses()
+        {
+
         }
     }
 }
