@@ -16,6 +16,8 @@ namespace Library.LESSLA
         private static string WHITELISTED_HOST = "*:9111";
 
         private static string CONFIGURATION_ROOT_HEALTH_CHECK_PATH = "Lessla.HealthCheck";
+        private static string CONFIGURATION_ROOT_HEALTH_CHECK_CONNECTION_STRING_PATH = "Lessla.HealthCheck.ConnectionString";
+
 
         private static JsonSerializerOptions JsonSettings => new()
         {
@@ -29,12 +31,21 @@ namespace Library.LESSLA
             ResponseWriter = HealthResponse
         };
 
-        public static void RegisterLESSLA(this WebApplicationBuilder builder)
+        public static void RegisterLESSLA<T>(this WebApplicationBuilder builder) where T : DbContext
         {
             if (builder.Configuration.GetSection(CONFIGURATION_ROOT_HEALTH_CHECK_PATH).Exists())
             {
                 builder.Services.AddHealthChecks()
-                    .AddCheck<LESSLAHealthCheck>("LESSLA");
+                    .AddCheck<LESSLAHealthCheck>("LESSLA")
+                        .AddDbContextCheck<T>();
+            }
+        }
+
+        public static void RegisterLESSLA(this WebApplicationBuilder builder)
+        {
+            if (builder.Configuration.GetSection(CONFIGURATION_ROOT_HEALTH_CHECK_PATH).Exists())
+            {
+                builder.Services.AddHealthChecks();
             }
         }
 
@@ -72,7 +83,7 @@ namespace Library.LESSLA
             }, JsonSettings));
         }
 
-        public static AppendconcurrentResponses()
+        public static void AppendconcurrentResponses()
         {
 
         }

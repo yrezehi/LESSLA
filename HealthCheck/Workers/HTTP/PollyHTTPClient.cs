@@ -26,5 +26,7 @@ namespace HealthCheck.Workers.HTTP
 
         private void OnRetry(DelegateResult<HttpResponseMessage> result, TimeSpan span, int retryCount, Context context) =>
             Logger.LogWarning($"Retrey: #{retryCount} with reason: {result.Exception.Message}");
+
+
     }
 }
