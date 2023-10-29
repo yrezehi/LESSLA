@@ -12,6 +12,8 @@ namespace Library.LESSLA
 {
     public static class LESSLAHealthCheckExtensions
     {
+        private static string DEFAULT_CHECK_NAME = "DEFAULT";
+
         private static string DEFAULT_HEALTH_CHECK_ENDPOINT = "/Health";
         private static string WHITELISTED_HOST = "*:9111";
 
@@ -36,7 +38,7 @@ namespace Library.LESSLA
             if (builder.Configuration.GetSection(CONFIGURATION_ROOT_HEALTH_CHECK_PATH).Exists())
             {
                 builder.Services.AddHealthChecks()
-                    .AddCheck<LESSLAHealthCheck>("LESSLA")
+                    .AddCheck<LESSLAHealthCheck>(DEFAULT_CHECK_NAME)
                         .AddDbContextCheck<T>();
             }
         }
@@ -45,16 +47,8 @@ namespace Library.LESSLA
         {
             if (builder.Configuration.GetSection(CONFIGURATION_ROOT_HEALTH_CHECK_PATH).Exists())
             {
-                builder.Services.AddHealthChecks();
-            }
-        }
-
-        public static void RegisterLESSLA<TDBContext>(this WebApplicationBuilder builder) where TDBContext : DbContext
-        {
-            if (builder.Configuration.GetSection(CONFIGURATION_ROOT_HEALTH_CHECK_PATH).Exists())
-            {
                 builder.Services.AddHealthChecks()
-                    .AddCheck<LESSLAHealthCheck>("LESSLA");
+                    .AddCheck<LESSLAHealthCheck>(DEFAULT_CHECK_NAME);
             }
         }
 
@@ -81,11 +75,6 @@ namespace Library.LESSLA
                     entery.Value.Data
                 })
             }, JsonSettings));
-        }
-
-        public static void AppendconcurrentResponses()
-        {
-
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Library.LESSLA
 {
@@ -14,33 +16,20 @@ namespace Library.LESSLA
 
         public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
         {
-            IList<string> services = new List<string>();
-            IList<string> connections = new List<string>();
+            IList<string> Services = new List<string>();
+            IList<string> Connections = new List<string>();
 
             Dictionary<string, object> result = new();
 
-            /*IEnumerable<Task<bool>> concurrentResponses = services.Select(IsHeadRequestReachable);
+            IEnumerable<Task<(string, bool)>> concurrentResponses = Services.Select(IsURLReachable);
 
-            if (await AnyUnreachableRequest(concurrentResponses))
-            {
-                return HealthCheckResult.Unhealthy();
-            }
-
-            IEnumerable<Task<bool>> concurrentConnections = connections.Select(IsDatabaseReachable);
-
-            if (await AnyUnreachableDatabase(concurrentConnections))
-            {
-                return HealthCheckResult.Unhealthy();
-            }*/
-
-            return HealthCheckResult.Healthy();
-        }
-
-        private async Task<bool> AnyUnreachableDatabase(IEnumerable<Task<bool>> concurrentResponses)
-        {
             var responses = await Task.WhenAll(concurrentResponses);
 
-            return responses.ToList().Exists(response => !response);
+            responses.ToList().ForEach(response => {
+                result.Add(response.Item1, response.Item2);
+            });
+
+            return new HealthCheckResult(HealthStatus.Healthy, data: result);
         }
 
         private async Task<(string, bool)> IsDBReachable(string connectionString)
