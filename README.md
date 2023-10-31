@@ -20,6 +20,13 @@
 
 <br/>
 
+## Features
+
+There are few neat futures of LESSLA and you might think it's the definition of `ReInVeNtInG tHe wHeEL` might be yes, but I took into account the cabibility to monitor mutiple applications with least amount of LOC possible and neat insightful logs.
+
+- Log aggregation
+- Health check
+
 ## Deployment Checklist
 
 - Deploy Server Instance
