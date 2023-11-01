@@ -50,40 +50,9 @@ namespace Server.Controllers
             });
 
         private static void RegisterHealthCheckApplication(this WebApplication application) =>
-            application.MapPost("/", ([FromBody] LogEventRequest[] events) =>
+            application.MapPost("/", ([FromBody] dynamic _) =>
             {
-                Parallel.ForEach(events, @event =>
-                {
-                    var instanceLogContext = Log.ForContext("Server", "ip");
 
-                    if (@event.Properties.TryGetValue("Application", out var application))
-                    {
-                        instanceLogContext = instanceLogContext.ForContext("Application", application);
-                    }
-
-                    if (@event.Properties.TryGetValue("RequestId", out var requestId))
-                    {
-                        instanceLogContext = instanceLogContext.ForContext("RequestId", requestId);
-                    }
-
-                    if (@event.Properties.TryGetValue("RequestPath", out var requestPath))
-                    {
-                        instanceLogContext = instanceLogContext.ForContext("RequestPath", requestPath);
-                    }
-
-                    if (@event.Properties.TryGetValue("ConnectionId", out var connectionId))
-                    {
-                        instanceLogContext = instanceLogContext.ForContext("ConnectionId", connectionId);
-                    }
-
-                    if (@event.Exception != null)
-                    {
-                        instanceLogContext = instanceLogContext.ForContext("Details", @event.Exception);
-
-                        instanceLogContext.Error(@event.RenderedMessage, @event.Exception);
-                    }
-
-                });
             });
     }
 }

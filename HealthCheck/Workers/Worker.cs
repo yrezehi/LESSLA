@@ -1,4 +1,4 @@
-﻿using Core.Models;
+﻿using Core.Models.Health.Responses;
 using Microsoft.Extensions.Logging;
 
 namespace HealthCheck.Workers
@@ -11,7 +11,7 @@ namespace HealthCheck.Workers
         public Worker(ILogger<Worker> logger) =>
             (Logger, HttpClient) = (logger, new HttpClient());
 
-        private HttpResponseMessage SendHealthCheck(Application application)
+        private async Task<HealthCheckResponse> SendHealthCheck(string endpoint)
         {
             return null;
         }
