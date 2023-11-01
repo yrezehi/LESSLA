@@ -1,5 +1,4 @@
 ﻿using Core.Models;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace HealthCheck.Workers
@@ -16,5 +15,7 @@ namespace HealthCheck.Workers
         {
             return null;
         }
+
+
     }
 }
