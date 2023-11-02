@@ -1,6 +1,6 @@
-﻿namespace Library.Request
+﻿namespace Core.Models.Health.Responses
 {
-    internal class HealthCheckRequestReport
+    public class HealthCheckReportResponse
     {
         public IReadOnlyDictionary<string, object>? Data { get; set; }
         public string Status { get; set; } = string.Empty;

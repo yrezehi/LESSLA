@@ -6,15 +6,20 @@ namespace Server.Controllers
 {
     public static class ControllerRegistry
     {
-        public static void RegisterControllers(this WebApplication application) =>
+        public static void RegisterControllers(this WebApplication application)
+        {
             application.Index();
+            application.RegisterHealthCheckApplication();
+        }
 
         private static void Index(this WebApplication application) =>
-            application.MapPost("/", ([FromBody] LogEventRequest[] events) => {
-                Parallel.ForEach(events, @event => {
+            application.MapPost("/", ([FromBody] LogEventRequest[] events) =>
+            {
+                Parallel.ForEach(events, @event =>
+                {
                     var instanceLogContext = Log.ForContext("Server", "ip");
 
-                    if(@event.Properties.TryGetValue("Application", out var application))
+                    if (@event.Properties.TryGetValue("Application", out var application))
                     {
                         instanceLogContext = instanceLogContext.ForContext("Application", application);
                     }
@@ -42,6 +47,12 @@ namespace Server.Controllers
                     }
 
                 });
+            });
+
+        private static void RegisterHealthCheckApplication(this WebApplication application) =>
+            application.MapPost("/", ([FromBody] dynamic _) =>
+            {
+
             });
     }
 }

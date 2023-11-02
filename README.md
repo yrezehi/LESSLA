@@ -20,6 +20,13 @@
 
 <br/>
 
+## Features
+
+There are few neat futures of LESSLA and you might think it's the definition of `ReInVeNtInG tHe wHeEL` might be yes, but I took into account the cabibility to monitor mutiple applications with least amount of LOC possible and neat insightful logs.
+
+- Log aggregation
+- Health check
+
 ## Deployment Checklist
 
 - Deploy Server Instance
@@ -68,21 +75,27 @@ And put below in `appsettings.json`
 <br/>
 
 ```json
-"Serilog": {
+  "Serilog": {
     "Using": [ "Serilog.Sinks.Http", "Serilog.Exceptions" ],
     "MinimumLevel": "Error",
     "WriteTo": [
       {
-        "Name": "Http",
+        "Name": "DurableHttpUsingFileSizeRolledBuffers",
         "Args": {
-          "requestUri": "http://Log-Server-URL",
-          "queueLimitBytes": null
+          "requestUri": "http***********"
         }
       }
     ],
     "Enrich": [ "FromLogContext", "WithExceptionDetails" ],
     "Properties": {
-      "Application": "YouApplicationName"
+      "Application": "Sample"
+    }
+  },
+  "Lessla": {
+    "HealthCheck": {
+      "endpoints": [
+        "http***********"
+      ]
     }
   }
 ```
