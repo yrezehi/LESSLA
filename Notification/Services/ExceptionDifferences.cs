@@ -26,12 +26,9 @@ namespace Notification.Services
                     if (IsSimilar(targetEvent.Exception, @event.Exception))
                     {
                         exceptions.AppendExceptionEvent(targetEvent);
-                        //exceptionOccurrences[@event.Exception] = exceptionOccurrences.ContainsKey(@event.Exception) ? exceptionOccurrences[@event.Exception] + 1 : 1;
-                        //IncreamentAndAddEvent();
                     }
                 }
             }
-
             return exceptions;
         }
 
