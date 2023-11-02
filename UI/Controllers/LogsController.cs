@@ -9,7 +9,6 @@ namespace UI.Controllers
     [Route("[controller]")]
     public class LogsController : BaseController<EventLogsService, EventLog>
     {
-
         private readonly SSEProvider SSEProvider;
 
         public LogsController(EventLogsService Service, SSEProvider sseProvider) : base(Service) => 
