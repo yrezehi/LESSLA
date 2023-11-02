@@ -9,6 +9,7 @@ namespace Core.Services
     public class InsightfulAnalysisService : ServiceBase<EventLog>
     {
         public InsightfulAnalysisService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+
         public async Task<string> ErrorsComparedToLastWeekInsight(int errorCount) =>
             $"{await ErrorsComparedTo(-14, -7, errorCount)}% errors than the week before!";
 
@@ -21,12 +22,8 @@ namespace Core.Services
         private async Task<int> ErrorsBetween(int start, int end) =>
             await Count(log => log.TimeStamp <= DateTime.Now.AddDays(start) && log.TimeStamp >= DateTime.Now.AddDays(end));
 
-        private async Task<IEnumerable<EventLog>> SimilarLogs(EventLog log) {
-            var relatedLogs = this.Find(@log => @log.Application != null && @log.Application.Equals(log.Application));
-
-            relatedLogs
-            return relatedLogs;
-        }
+        public async Task<IEnumerable<EventLog>> SimilarLogs(EventLog log) =>
+            this.Find(@log => @log.Application != null && @log.Application.Equals(log.Application) && log.IsSimilarTo(@log));
 
         public async Task<BriefDTO> Brief()
         {
