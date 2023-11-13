@@ -17,6 +17,6 @@ namespace Core.Models
             (Username, Email) = (username, User.StripUsername(username));
 
         private static string StripUsername(string email) =>
-            email.Split('@')[0];
+            email.Contains('@') ? email.Split('@')[0] : email;
     }
 }
