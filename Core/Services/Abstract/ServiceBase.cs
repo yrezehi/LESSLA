@@ -4,9 +4,9 @@ using System.Reflection;
 using Core.Services.Abstract.Interfaces;
 using Core.Repositories.Abstracts.Interfaces;
 using Core.Models.Abstracts.Interfaces;
-using Core.Models.Abstracts.DTO;
 using Core.Repositories.Extensions;
 using Core.Utils;
+using Core.Models.DTO;
 
 namespace Core.Services.Abstract
 {

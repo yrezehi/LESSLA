@@ -1,4 +1,4 @@
-﻿namespace Core.Models.Abstracts.DTO
+﻿namespace Core.Models.DTO
 {
     public class CredentialsDTO
     {

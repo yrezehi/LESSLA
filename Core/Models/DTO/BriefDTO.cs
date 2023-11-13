@@ -1,4 +1,4 @@
-﻿namespace Core.Models.Abstracts.DTO
+﻿namespace Core.Models.DTO
 {
     public class BriefDTO
     {
@@ -10,8 +10,8 @@
         public int IssueCount { get; private set; } = 0;
 
         public BriefDTO(int errorCount = 0, int warningCount = 0) =>
-            (ErrorCount, WarningCount, IssueCount) 
-                = 
+            (ErrorCount, WarningCount, IssueCount)
+                =
             (errorCount, warningCount, errorCount + warningCount);
     }
 }
