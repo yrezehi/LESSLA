@@ -17,8 +17,8 @@ namespace Library.LESSLA
         private static string DEFAULT_HEALTH_CHECK_ENDPOINT = "/Health";
         private static string WHITELISTED_HOST = "*:9111";
 
-        private static string CONFIGURATION_ROOT_HEALTH_CHECK_PATH = "Lessla.HealthCheck";
-        private static string CONFIGURATION_ROOT_HEALTH_CHECK_CONNECTION_STRING_PATH = "Lessla.HealthCheck.ConnectionString";
+        private static string CONFIGURATION_ROOT_HEALTH_CHECK_PATH = "Lessla:HealthCheck";
+        private static string CONFIGURATION_ROOT_HEALTH_CHECK_CONNECTION_STRING_PATH = "Lessla:HealthCheck.ConnectionString";
 
 
         private static JsonSerializerOptions JsonSettings => new()
@@ -55,7 +55,7 @@ namespace Library.LESSLA
         public static void MapLESSLA(this WebApplication app)
         {
             app.MapHealthChecks(DEFAULT_HEALTH_CHECK_ENDPOINT, HealthSettings)
-                .RequireHost(WHITELISTED_HOST)
+                //.RequireHost(WHITELISTED_HOST)
                     .RequireAuthorization();
         }
 
