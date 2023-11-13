@@ -13,13 +13,13 @@ namespace Library.LESSLA
     public static class LESSLAHealthCheckExtensions
     {
         private static string DEFAULT_CHECK_NAME = "DEFAULT";
-
         private static string DEFAULT_HEALTH_CHECK_ENDPOINT = "/Health";
-        private static string WHITELISTED_HOST = "*:9111";
+        private static string CONFIGURATION_ROOT = "Lessla:HealthCheck";
 
-        private static string CONFIGURATION_ROOT_HEALTH_CHECK_PATH = "Lessla:HealthCheck";
-        private static string CONFIGURATION_ROOT_HEALTH_CHECK_CONNECTION_STRING_PATH = "Lessla:HealthCheck.ConnectionString";
+        private static string CONFIGURATION_APPLICATION_NAME = ":Application";
+        private static string CONFIGURATION_EXTERNAL_ENDPOINTS = ":ExternalEndpoints";
 
+        private IConfigurationSection LESSLAConfigurationSection;
 
         private static JsonSerializerOptions JsonSettings => new()
         {
@@ -35,7 +35,7 @@ namespace Library.LESSLA
 
         public static void RegisterLESSLA<T>(this WebApplicationBuilder builder) where T : DbContext
         {
-            if (builder.Configuration.GetSection(CONFIGURATION_ROOT_HEALTH_CHECK_PATH).Exists())
+            if (builder.Configuration.GetSection(CONFIGURATION_ROOT).Exists())
             {
                 builder.Services.AddHealthChecks()
                     .AddCheck<LESSLAHealthCheck>(DEFAULT_CHECK_NAME)
@@ -45,19 +45,15 @@ namespace Library.LESSLA
 
         public static void RegisterLESSLAHealthCheck(this WebApplicationBuilder builder)
         {
-            if (builder.Configuration.GetSection(CONFIGURATION_ROOT_HEALTH_CHECK_PATH).Exists())
+            if (builder.Configuration.GetSection(CONFIGURATION_ROOT).Exists())
             {
                 builder.Services.AddHealthChecks()
                     .AddCheck<LESSLAHealthCheck>(DEFAULT_CHECK_NAME);
             }
         }
 
-        public static void MapLESSLAHealthCheck(this WebApplication app)
-        {
+        public static void MapLESSLAHealthCheck(this WebApplication app) =>
             app.MapHealthChecks(DEFAULT_HEALTH_CHECK_ENDPOINT, HealthSettings);
-                //.RequireHost(WHITELISTED_HOST)
-                    //.RequireAuthorization();
-        }
 
         public static Task HealthResponse(HttpContext context, HealthReport report)
         {
@@ -75,6 +71,15 @@ namespace Library.LESSLA
                     entery.Value.Data
                 })
             }, JsonSettings));
+        }
+
+
+        private async static Task ReigsterRequest()
+        {
+            _ = new
+            {
+
+            };
         }
     }
 }

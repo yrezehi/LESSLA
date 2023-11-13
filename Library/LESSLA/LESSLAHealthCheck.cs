@@ -1,7 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace Library.LESSLA
 {
@@ -12,6 +9,7 @@ namespace Library.LESSLA
         public LESSLAHealthCheck() =>
             HttpClient = new HttpClient();
 
+        // sends check requests to all services registered in app settings
         public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
         {
             IList<string> Services = new List<string>();
@@ -27,6 +25,7 @@ namespace Library.LESSLA
             return new HealthCheckResult(HealthStatus.Healthy, data: result);
         }
 
+        // checks if url is reachable via head request
         private async Task<(string, bool)> IsURLReachable(string url)
         {
             HttpResponseMessage response = await HttpClient.SendAsync(new HttpRequestMessage(HttpMethod.Head, url));
