@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Hooks.Models.DTO
+namespace Core.Hooks.Models
 {
-    public class HookSubscribeRequestDTO
+    public class WebHookSubscriber
     {
         public string Email { get; set; }
-        public IEnumerable<WebHookEvent> Events { get; set; }
+        public DateTime RegisteredAt { get; set; }
     }
 }
