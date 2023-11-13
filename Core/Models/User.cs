@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Core.Authentication;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Models
 {
@@ -8,6 +9,7 @@ namespace Core.Models
         public int Id { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
+        public AuthenticationType AuthenticationType { get; set; }
 
         public virtual ICollection<Application> Applications { get; set; }
         
