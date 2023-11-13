@@ -6,10 +6,14 @@ namespace Core.Models
     [Table("users")]
     public class User
     {
+        [Column("id")]
         public int Id { get; set; }
+        [Column("username")]
         public string Username { get; set; }
+        [Column("email")]
         public string Email { get; set; }
-        public AuthenticationType AuthenticationType { get; set; }
+        [Column("authentication_type")]
+        public AuthenticationType AuthenticationType { get; set; } = AuthenticationType.ActiveDirectory;
 
         public virtual ICollection<Application> Applications { get; set; }
         

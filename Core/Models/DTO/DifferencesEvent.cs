@@ -1,6 +1,6 @@
 ﻿using Core.Models.Serilog;
 
-namespace Core.Models
+namespace Core.Models.DTO
 {
     public class DifferencesEvent
     {
