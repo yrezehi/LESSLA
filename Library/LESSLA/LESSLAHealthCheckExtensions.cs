@@ -43,7 +43,7 @@ namespace Library.LESSLA
             }
         }
 
-        public static void RegisterLESSLA(this WebApplicationBuilder builder)
+        public static void RegisterLESSLAHealthCheck(this WebApplicationBuilder builder)
         {
             if (builder.Configuration.GetSection(CONFIGURATION_ROOT_HEALTH_CHECK_PATH).Exists())
             {
@@ -52,11 +52,11 @@ namespace Library.LESSLA
             }
         }
 
-        public static void MapLESSLA(this WebApplication app)
+        public static void MapLESSLAHealthCheck(this WebApplication app)
         {
-            app.MapHealthChecks(DEFAULT_HEALTH_CHECK_ENDPOINT, HealthSettings)
+            app.MapHealthChecks(DEFAULT_HEALTH_CHECK_ENDPOINT, HealthSettings);
                 //.RequireHost(WHITELISTED_HOST)
-                    .RequireAuthorization();
+                    //.RequireAuthorization();
         }
 
         public static Task HealthResponse(HttpContext context, HealthReport report)

@@ -6,6 +6,6 @@
             application.Index();
 
         private static void Index(this WebApplication application) =>
-            application.MapGet("/", (_) => throw new NotImplementedException("Sample Not Implemented Exception!"));
+            application.MapGet("", (_) => throw new NotImplementedException("Sample Not Implemented Exception!"));
     }
 }
