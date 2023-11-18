@@ -1,6 +1,6 @@
 ﻿using System.Net.Mail;
 
-namespace Notification.Services
+namespace Notification.Target.Email
 {
     public class EmailSender
     {
