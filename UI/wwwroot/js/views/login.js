@@ -1,5 +1,5 @@
 ﻿(function () {
-    var canvas = document.getElementById('grass-canvas'),
+    var canvas = document.querySelector('.grass-canvas'),
         ctx = canvas.getContext('2d'),
         stack = [],
         w = window.innerWidth,
@@ -12,6 +12,7 @@
         })
         requestAnimationFrame(drawer);
     }
+
     var anim = function () {
         var x = 0, y = 0;
         var maxTall = Math.random() * (h / 4) + (h / 4);
@@ -47,71 +48,4 @@
     canvas.width = w;
     canvas.height = h;
     drawer();
-    var particles = [],
-        particleCount = 200;
-    Particle = function (x, y) {
-        this.x = x;
-        this.y = y;
-
-        this.radius = random(1, 5);
-
-        this.rgba = 'rgba(' + floor(random(240, 245)) + ',' + floor(random(219, 245)) + ',' + floor(random(140, 144)) + ',' + random(.2, .8) + ')';
-
-        this.vx = random(-.5, .5);
-        this.vy = random(-.5, .5);
-
-        this.draw = function (ctx) {
-            ctx.fillStyle = this.rgba;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, TWO_PI);
-            ctx.fill();
-
-            ctx.shadowBlur = random(15, 30);
-            ctx.shadowColor = "white";
-        };
-
-        this.update = function (ctx) {
-
-            this.x += this.vx;
-            this.y += this.vy;
-            if (this.x + this.radius > ctx.width) {
-                this.vx *= -1;
-                this.x = ctx.width - this.radius;
-            }
-            if (this.x - this.radius < 0) {
-                this.vx *= -1;
-                this.x = this.radius;
-            }
-            if (this.y + this.radius > ctx.height) {
-                this.vy *= -1;
-                this.y = ctx.height - this.radius;
-            }
-            if (this.y - this.radius < 0) {
-                this.vy *= -1;
-                this.y = this.radius;
-            }
-        }
-    };
-
-    var sketch = Sketch.create({
-        setup: function () {
-            var i = particleCount;
-            while (i--) {
-                var p = new Particle(random(0, this.width), random(0, this.height));
-                particles.push(p);
-            }
-        },
-        update: function () {
-            var i = particleCount;
-            while (i--) {
-                particles[i].update(this);
-            }
-        },
-        draw: function () {
-            var i = particleCount;
-            while (i--) {
-                particles[i].draw(this);
-            }
-        }
-    });
 })();
