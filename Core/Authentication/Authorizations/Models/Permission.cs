@@ -12,6 +12,5 @@ namespace Core.Authentication.Authorizations.Models
         VIEW_USERS,
         [Display(GroupName = "Users", Name = "Invite", Description = "Can manually add new accounts")]
         ADD_USERS,
-
     }
 }
