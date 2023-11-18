@@ -1,10 +1,12 @@
 ﻿using Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using UI.Models;
 
 namespace UI.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly EventLogsService Service;

@@ -9,6 +9,7 @@ builder.RegisterDatabase();
 builder.RegisterCache();
 builder.RegisterServices();
 builder.RegisterSSE();
+builder.RegisterSecurity();
 
 var app = builder.Build();
 

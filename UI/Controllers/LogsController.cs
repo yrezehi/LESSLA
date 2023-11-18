@@ -1,11 +1,13 @@
 ﻿using Core.Models.Serilog;
 using Core.Services;
 using Core.SSE;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UI.Controllers.Abstracts;
 
 namespace UI.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     public class LogsController : BaseController<EventLogsService, EventLog>
     {

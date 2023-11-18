@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace UI.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     public class WebHookController : Controller
     {
