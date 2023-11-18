@@ -45,7 +45,14 @@
         }
     };
     for (var x = 0; x < (w / 7); x++) { stack.push(anim()); }
+
     canvas.width = w;
     canvas.height = h;
+
+    window.addEventListener('resize', function () {
+        canvas.style.width = window.innerWidth;
+        canvas.height.height = window.innerHeight;
+    }, false);
+
     drawer();
 })();
