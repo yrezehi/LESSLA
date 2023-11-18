@@ -13,7 +13,7 @@ namespace UI.Controllers
             Service = service;
 
         public async Task<IActionResult> Index() =>
-            View(await Service.Brief());
+            View();
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error() =>

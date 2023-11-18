@@ -1,13 +1,12 @@
 ﻿using Notification.Models;
 using Notification.Services.HTMLBuilder;
-using SEQ;
-using SEQ.Models;
+
 
 namespace Notification.Services
 {
     public class ReportGenerator
     {
-        public readonly SeqClient _seqClient;
+        /*public readonly SeqClient _seqClient;
         public readonly ExceptionDifferences _exceptionDifferences;
         public readonly EmailSender _emailSender;
         public readonly ActiveDirectory _activeDirectory;
@@ -55,6 +54,6 @@ namespace Notification.Services
 
                 return table.RenderTable();
             }
-        }
+        }*/
     }
 }

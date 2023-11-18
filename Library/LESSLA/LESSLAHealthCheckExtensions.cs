@@ -19,7 +19,7 @@ namespace Library.LESSLA
         private static string CONFIGURATION_APPLICATION_NAME = ":Application";
         private static string CONFIGURATION_EXTERNAL_ENDPOINTS = ":ExternalEndpoints";
 
-        private IConfigurationSection LESSLAConfigurationSection;
+        private static readonly IConfigurationSection LESSLAConfigurationSection;
 
         private static JsonSerializerOptions JsonSettings => new()
         {

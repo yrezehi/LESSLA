@@ -1,13 +1,11 @@
 ﻿using F23.StringSimilarity;
-using Notification.Extension;
-using Notification.Models;
-using SEQ.Models;
+
 
 namespace Notification.Services
 {
     public class ExceptionDifferences
     {
-        public static readonly JaroWinkler DifferanceCalculator = new JaroWinkler();
+       /* public static readonly JaroWinkler DifferanceCalculator = new JaroWinkler();
 
         public static readonly double SIMILARITY_THRESHOLD = 0.80;
 
@@ -30,7 +28,7 @@ namespace Notification.Services
                 }
             }
             return exceptions;
-        }
+        }*/
 
     }
 }
