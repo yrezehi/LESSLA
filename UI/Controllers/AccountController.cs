@@ -1,4 +1,5 @@
-﻿using Core.Services;
+﻿using Core.Models.DTO;
+using Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UI.Controllers
@@ -14,5 +15,9 @@ namespace UI.Controllers
         [HttpGet("[action]")]
         public IActionResult Login() =>
             View();
+
+        [HttpPost("[action]")]
+        public IActionResult Authenticate(CredentialsDTO credentials) => 
+            Ok(Service.IsAuthenticated(credentials));
     }
 }

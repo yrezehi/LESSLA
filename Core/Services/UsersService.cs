@@ -1,5 +1,6 @@
 ﻿using Core.Authentication.LDAP;
 using Core.Models;
+using Core.Models.DTO;
 using Core.Repositories.Abstracts.Interfaces;
 using Core.Services.Abstract;
 
@@ -12,7 +13,7 @@ namespace Core.Services
         public UsersService(IUnitOfWork unitOfWork, LDAPAuthentication LDAPAuthenticationService) : base(unitOfWork) =>
             Authentication = LDAPAuthenticationService;
 
-        public bool IsAuthenticated(string identifier, string password) =>
-            Authentication.IsAuthenticated(identifier, password);
+        public bool IsAuthenticated(CredentialsDTO credentials) =>
+            Authentication.IsAuthenticated(credentials.Identifier, credentials.Password);
     }
 }
