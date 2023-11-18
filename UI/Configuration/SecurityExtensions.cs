@@ -5,8 +5,11 @@ namespace UI.Configuration
 {
     public static class SecurityExtensions
     {
-        public static void RegisterSecurity(this WebApplicationBuilder builder) {
+        public static void RegisterSecurity(this WebApplicationBuilder builder) =>
+            builder.RegisterAuthentication();   
 
+        public static void RegisterAuthentication(this WebApplicationBuilder builder)
+        {
             builder.Services.AddAuthentication(option =>
             {
                 option.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
