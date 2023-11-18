@@ -11,7 +11,7 @@ namespace Core.Models
         public string Name { get; set; }
         [Column("description")]
         public string Description { get; set; }
-        [Column("description")]
+        [Column("api_key")]
         public string APIKey { get; set; }
     }
 }

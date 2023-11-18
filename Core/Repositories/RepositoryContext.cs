@@ -11,6 +11,6 @@ namespace Core.Repositories
 
         public virtual DbSet<EventLog> EventLogs { get; set; }
         public virtual DbSet<Application> Applications { get; set; }
-        public virtual DbSet<WebHookSubscriber> WebHookSubscribers { get; set; }
+       // public virtual DbSet<WebHookSubscriber> WebHookSubscribers { get; set; }
     }
 }
