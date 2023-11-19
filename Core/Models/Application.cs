@@ -13,5 +13,9 @@ namespace Core.Models
         public string Description { get; set; }
         [Column("api_key")]
         public string APIKey { get; set; }
+        [Column("enable_health_check")]
+        public string EnableHealthCheack{ get; set; }
+        [Column("created_at")]
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }

@@ -1,17 +1,16 @@
-﻿using Core.Services;
+﻿using Core.Models.Health;
+using Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using UI.Controllers.Abstracts;
 
 namespace UI.Controllers
 {
     [Authorize]
     [Route("[controller]")]
-    public class HealthController : Controller
+    public class HealthController : BaseController<HealthService, HealthCheckRegistry>
     {
-        private readonly HealthService Service;
-
-        public HealthController(HealthService service) =>
-            Service = service;
+        public HealthController(HealthService Service) : base(Service) { }
 
         [HttpGet("[action]")]
         public IActionResult Index() =>

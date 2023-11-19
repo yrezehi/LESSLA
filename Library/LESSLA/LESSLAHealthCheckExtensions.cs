@@ -72,14 +72,5 @@ namespace Library.LESSLA
                 })
             }, JsonSettings));
         }
-
-
-        private async static Task ReigsterRequest()
-        {
-            _ = new
-            {
-
-            };
-        }
     }
 }
