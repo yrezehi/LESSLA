@@ -1,5 +1,4 @@
-﻿using Notification.Models;
-using Notification.Services.HTMLBuilder;
+﻿using Notification.Services.HTMLBuilder;
 
 
 namespace Notification.Services

@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Notification.Services.HTMLBuilder
+namespace Notification.Template.HTMLBuilder.Elements
 {
     public class HTMLRow : IDisposable
     {

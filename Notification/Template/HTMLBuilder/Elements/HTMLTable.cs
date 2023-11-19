@@ -1,11 +1,11 @@
 ﻿using System.Text;
 
-namespace Notification.Services.HTMLBuilder
+namespace Notification.Template.HTMLBuilder.Elements
 {
     public class HTMLTable : IDisposable
     {
         private StringBuilder HTMLStringBuilder;
-        
+
         public HTMLTable()
         {
             HTMLStringBuilder = new StringBuilder();
