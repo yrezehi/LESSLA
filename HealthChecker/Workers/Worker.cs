@@ -1,21 +1,19 @@
-﻿using Core.Models.Health.Responses;
-using Microsoft.Extensions.Logging;
-
-namespace HealthCheck.Workers
+namespace HealthChecker.Workers
 {
-    public class Worker
+    public class Worker : BackgroundService
     {
-        public HttpClient HttpClient;
-        public ILogger<Worker> Logger;
+        private readonly ILogger<Worker> Logger;
 
         public Worker(ILogger<Worker> logger) =>
-            (Logger, HttpClient) = (logger, new HttpClient());
+            Logger = logger;
 
-        private async Task<HealthCheckResponse> SendHealthCheck(string endpoint)
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            return null;
+            while (!stoppingToken.IsCancellationRequested)
+            {
+                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+                await Task.Delay(1000, stoppingToken);
+            }
         }
-
-
     }
 }
