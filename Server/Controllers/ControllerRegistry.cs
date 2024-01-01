@@ -42,10 +42,9 @@ namespace Server.Controllers
                     if (@event.Exception != null)
                     {
                         instanceLogContext = instanceLogContext.ForContext("Details", @event.Exception);
-
-                        instanceLogContext.Error(@event.RenderedMessage, @event.Exception);
                     }
-
+                    
+                    instanceLogContext.Error(@event.RenderedMessage, @event.Exception);
                 });
             });
 

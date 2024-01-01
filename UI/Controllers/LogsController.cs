@@ -7,7 +7,6 @@ using UI.Controllers.Abstracts;
 
 namespace UI.Controllers
 {
-    [Authorize]
     [Route("[controller]")]
     public class LogsController : BaseController<EventLogsService, EventLog>
     {

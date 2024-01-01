@@ -67,7 +67,6 @@ namespace Core.Services.Abstract
             if (!properties.Exists(property => properties.Exists(searchableProperty => searchableProperty.ToLower().Equals(propertyName.ToLower()))))
                 throw new ArgumentException($"Property is not allowed to be searched or does not exists!");
 
-
             ParameterExpression parameter = Expression.Parameter(typeof(T), "property");
             MemberExpression body = Expression.PropertyOrField(parameter, propertyName);
             MethodInfo containsMethod = typeof(string).GetMethod("Contains", new[] { typeof(string), typeof(StringComparison) })!;

@@ -6,7 +6,6 @@ using UI.Controllers.Abstracts;
 
 namespace UI.Controllers
 {
-    [Authorize]
     [Route("[controller]")]
     public class HealthController : BaseController<HealthService, HealthCheckRegistry>
     {
