@@ -1,12 +1,12 @@
 ﻿using Core.SSE;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
-namespace UI.Configuration
+namespace UI.Configurations
 {
     public static class SecurityExtensions
     {
         public static void RegisterSecurity(this WebApplicationBuilder builder) =>
-            builder.RegisterAuthentication();   
+            builder.RegisterAuthentication();
 
         public static void RegisterAuthentication(this WebApplicationBuilder builder)
         {

@@ -1,4 +1,4 @@
-﻿namespace HealthCheck
+﻿namespace HealthChecker.Configurations
 {
     public static class WorkerConfiguration
     {

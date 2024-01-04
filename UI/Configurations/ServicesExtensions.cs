@@ -2,7 +2,7 @@
 using Core.Services;
 using Core.Services.Health;
 
-namespace UI.Configuration
+namespace UI.Configurations
 {
     public static class ServicesExtensions
     {

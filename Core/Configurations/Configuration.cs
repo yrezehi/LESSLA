@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace Core.Configuration
+namespace Core.Configurations
 {
-    public class Configuration
+    public static class Configuration
     {
         private static IConfiguration? ConfigurationInstance;
 
@@ -35,5 +35,6 @@ namespace Core.Configuration
 
             return value!;
         }
+
     }
 }

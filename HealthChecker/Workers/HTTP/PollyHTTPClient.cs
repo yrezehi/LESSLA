@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Polly;
 
-namespace HealthCheck.Workers.HTTP
+namespace HealthChecker.Workers.HTTP
 {
     public class PollyHTTPClient
     {

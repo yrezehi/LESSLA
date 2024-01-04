@@ -1,7 +1,7 @@
 ﻿using Core.Cache.LRU;
 using Core.Cache.Providers;
 
-namespace UI.Configuration
+namespace UI.Configurations
 {
     public static class CacheExtensions
     {

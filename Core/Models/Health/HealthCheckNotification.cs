@@ -12,5 +12,11 @@ namespace Core.Models.Health
         public int Id { get; set; }
         [Column("email")]
         public string Email { get; set; }
+        
+        [Column("registry_id")]
+        [ForeignKey("HealthRegistry")]
+        public int RegistryId { get; set; }
+
+        public HealthCheckRegistry HealthRegistry { get; set; }
     }
 }

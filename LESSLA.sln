@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample", "Sample\Sample.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library", "Library\Library.csproj", "{0145DD7E-5DBC-4E1B-AD72-5CED050B7CBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthChecker", "HealthChecker\HealthChecker.csproj", "{6596258C-62C9-45E8-929F-3496C498D588}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthChecker", "HealthChecker\HealthChecker.csproj", "{6596258C-62C9-45E8-929F-3496C498D588}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

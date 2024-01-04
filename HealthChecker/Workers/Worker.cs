@@ -1,5 +1,5 @@
 using Core.Services.Health;
-using HealthCheck;
+using HealthChecker.Configurations;
 
 namespace HealthChecker.Workers
 {

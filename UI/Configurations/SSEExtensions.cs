@@ -1,10 +1,10 @@
 ﻿using Core.SSE;
 
-namespace UI.Configuration
+namespace UI.Configurations
 {
     public static class SSEExtensions
     {
         public static void RegisterSSE(this WebApplicationBuilder builder) =>
-            builder.Services.AddSingleton(typeof(SSEProvider), typeof(SSEProvider));       
+            builder.Services.AddSingleton(typeof(SSEProvider), typeof(SSEProvider));
     }
 }

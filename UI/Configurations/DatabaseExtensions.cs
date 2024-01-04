@@ -3,7 +3,7 @@ using Core.Repositories.Abstracts;
 using Core.Repositories.Abstracts.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace UI.Configuration
+namespace UI.Configurations
 {
     public static class DatabaseExtensions
     {
@@ -22,4 +22,3 @@ namespace UI.Configuration
             builder.Services.AddTransient<IUnitOfWork, UnitOfWork<RepositoryContext>>();
     }
 }
- 

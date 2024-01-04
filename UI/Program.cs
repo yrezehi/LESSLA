@@ -1,9 +1,11 @@
-using UI.Configuration;
+using UI.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+builder.RegisterConfiguration();
 
 builder.RegisterDatabase();
 builder.RegisterCache();
