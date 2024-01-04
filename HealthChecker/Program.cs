@@ -1,4 +1,4 @@
-using HealthChecker;
+using HealthChecker.Workers;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>

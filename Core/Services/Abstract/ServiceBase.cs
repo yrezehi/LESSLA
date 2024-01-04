@@ -10,7 +10,7 @@ using Core.Models.DTO;
 
 namespace Core.Services.Abstract
 {
-    public class ServiceBase<T> : IServiceBase<T> where T : class
+    public class ServiceBase<T> : IServiceBase<T> where T : class, IAsyncDisposable
     {
         public ServiceBase(IUnitOfWork unitOfWork) =>
             (DBSet, UnitOfWork) = (unitOfWork.Repository<T>().DBSet, unitOfWork);

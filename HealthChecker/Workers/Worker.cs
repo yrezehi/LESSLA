@@ -1,18 +1,30 @@
+using Core.Services;
+using HealthCheck;
+
 namespace HealthChecker.Workers
 {
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> Logger;
+        private readonly ServiceProvider ServiceProvider;
 
-        public Worker(ILogger<Worker> logger) =>
-            Logger = logger;
+        public Worker(ILogger<Worker> logger, ServiceProvider serviceProvider) =>
+            (Logger, ServiceProvider) = (logger, serviceProvider);
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await Task.Delay(1000, stoppingToken);
+                await using (var scope = ServiceProvider.CreateAsyncScope())
+                {
+                    Logger.LogInformation("[HEALTH CHECKING START]: {time}", DateTimeOffset.Now);
+                    HealthService service = scope.ServiceProvider.GetRequiredService<HealthService>();
+
+
+                    
+                    Logger.LogInformation("[HEALTH CHECKING FINISHED]: {time}", DateTimeOffset.Now);
+                    await Task.Delay(WorkerConfiguration.POLLING_INTERVAL_IN_MILLISECONDS, stoppingToken);
+                }
             }
         }
     }
