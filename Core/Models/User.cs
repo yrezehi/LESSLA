@@ -1,11 +1,14 @@
 ﻿using Core.Authentication;
+using Core.Models.Abstracts.Interfaces;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Models
 {
     [Table("users")]
-    public class User
+    public class User : IEntity
     {
+        [Key]
         [Column("id")]
         public int Id { get; set; }
         [Column("username")]
