@@ -1,5 +1,6 @@
 ﻿using Core.Authentication.LDAP;
 using Core.Services;
+using Core.Services.Health;
 
 namespace UI.Configuration
 {

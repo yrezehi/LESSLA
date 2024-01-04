@@ -1,5 +1,5 @@
 ﻿using Core.Models.Health;
-using Core.Services;
+using Core.Services.Health;
 
 namespace HealthChecker.Workers
 {
@@ -13,13 +13,13 @@ namespace HealthChecker.Workers
         public static HealthJob Create(HealthService service) =>
             new HealthJob(service);
         
-        public async HealthJob Start()
+        public async Task Start()
         {
             IEnumerable<HealthCheckRegistry> registries = await Service.GetAll();
 
             foreach (HealthCheckRegistry registry in registries)
             {
-
+                
             }
         }
     }

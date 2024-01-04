@@ -2,7 +2,7 @@
 using Core.Repositories.Abstracts.Interfaces;
 using Core.Services.Abstract;
 
-namespace Core.Services
+namespace Core.Services.Health
 {
     public class HealthService : ServiceBase<HealthCheckRegistry>
     {

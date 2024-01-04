@@ -1,5 +1,5 @@
 ﻿using Core.Models.Health;
-using Core.Services;
+using Core.Services.Health;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UI.Controllers.Abstracts;

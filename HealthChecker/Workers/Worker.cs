@@ -1,4 +1,4 @@
-using Core.Services;
+using Core.Services.Health;
 using HealthCheck;
 
 namespace HealthChecker.Workers
@@ -20,7 +20,7 @@ namespace HealthChecker.Workers
                     Logger.LogInformation("[HEALTH CHECKING START]: {time}", DateTimeOffset.Now);
                     HealthService service = scope.ServiceProvider.GetRequiredService<HealthService>();
 
-
+                    await HealthJob.Create(service).Start();
                     
                     Logger.LogInformation("[HEALTH CHECKING FINISHED]: {time}", DateTimeOffset.Now);
                     await Task.Delay(WorkerConfiguration.POLLING_INTERVAL_IN_MILLISECONDS, stoppingToken);
