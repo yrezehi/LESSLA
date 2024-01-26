@@ -9,13 +9,18 @@ namespace UI.Configurations
     {
         public static void RegisterDatabase(this WebApplicationBuilder builder)
         {
-            builder.RegisterContext();
+            builder.RegisterInMemoryContext();
             builder.RegisterUnitOfWork();
         }
 
         private static void RegisterContext(this WebApplicationBuilder builder) =>
             builder.Services.AddDbContext<RepositoryContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
+            );
+
+        private static void RegisterInMemoryContext(this WebApplicationBuilder builder) =>
+            builder.Services.AddDbContext<RepositoryContext>(options =>
+                options.UseInMemoryDatabase("Default")
             );
 
         private static void RegisterUnitOfWork(this WebApplicationBuilder builder) =>

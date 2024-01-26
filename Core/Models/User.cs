@@ -20,10 +20,19 @@ namespace Core.Models
 
         public virtual ICollection<Application> Applications { get; set; }
         
-        public User(string username) =>
-            (Username, Email) = (username, User.StripUsername(username));
+        public User(string email) =>
+            (Email, Username) = (email, User.StripUsername(email));
 
         private static string StripUsername(string email) =>
             email.Contains('@') ? email.Split('@')[0] : email;
+
+        public static User Create(string email) =>
+            new User(email);
+
+        public User WithId(int id)
+        {
+            Id = id;
+            return this;
+        }
     }
 }
