@@ -17,8 +17,20 @@ namespace Core.Models
         [Column("api_key")]
         public string APIKey { get; set; }
         [Column("enable_health_check")]
-        public string EnableHealthCheack{ get; set; }
+        public bool EnableHealthCheack { get; set; } = true;
         [Column("created_at")]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+        public Application(string name, string description) =>
+            (Name, Description) = (name, description);
+
+        public static Application Create(string name, string description) =>
+            new Application(name, description);
+
+        public Application WithId(int id)
+        {
+            Id = id;
+            return this;
+        }
     }
 }
