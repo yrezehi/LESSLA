@@ -36,7 +36,14 @@
 <body>
     <div class="wrapper-container relative max-h-screen overflow-hidden">
         <main role="main" class="max-h-screen">
-            @RenderBody()
+            <div class="star-field-effect">
+                <div class="star-field-effect-layer"></div>
+                <div class="star-field-effect-layer"></div>
+                <div class="star-field-effect-layer"></div>
+            </div>
+            <div class="z-10 h-[100%]">
+                @RenderBody()
+            </div>
         </main>
     </div>
 
