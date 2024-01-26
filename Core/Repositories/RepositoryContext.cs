@@ -14,6 +14,7 @@ namespace Core.Repositories
         public virtual DbSet<Application> Applications { get; set; }
         public virtual DbSet<HealthCheckLog> HealthCheckLogs { get; set; }
         public virtual DbSet<HealthCheckRegistry> HealthCheckRegistries { get; set; }
+        public virtual DbSet<HealthCheckNotification> HealthCheckNotifications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

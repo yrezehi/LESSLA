@@ -16,5 +16,17 @@ namespace Core.Models.Health
         public int MinutesInterval { get; set; } = 60;
         [Column("url")]
         public string URL { get; set; }
+
+        public HealthCheckRegistry(string applicationName, string url) =>
+            (ApplicationName, URL) = (applicationName, url);
+
+        public static HealthCheckRegistry Create(string applicationName, string url) =>
+            new HealthCheckRegistry(applicationName, url);
+
+        public HealthCheckRegistry WithId(int id)
+        {
+            Id = id;
+            return this;
+        }
     }
 }
