@@ -17,6 +17,8 @@ namespace Core.Models.Health
         [Column("url")]
         public string URL { get; set; }
 
+        public HealthCheckRegistry() { }
+
         public HealthCheckRegistry(string applicationName, string url) =>
             (ApplicationName, URL) = (applicationName, url);
 

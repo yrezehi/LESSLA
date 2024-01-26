@@ -18,9 +18,11 @@ namespace Core.Repositories
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<User>().HasData(User.Create("admin@admin.com").WithId(2));
+            builder.Entity<User>().HasData(User.Create("admin@admin.com").WithId(1));
 
-            builder.Entity<Application>().HasData(Application.Create("Sample", "Just a sample website").WithId(2));
+            builder.Entity<Application>().HasData(Application.Create("Sample", "Just a sample website").WithId(1).WithAPIKey("SECRET"));
+
+            builder.Entity<HealthCheckRegistry>().HasData(HealthCheckRegistry.Create("Sample", "http://google.com/").WithId(1));
         }
 
     }

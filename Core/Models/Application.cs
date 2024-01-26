@@ -21,6 +21,8 @@ namespace Core.Models
         [Column("created_at")]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
+        public Application() { }
+
         public Application(string name, string description) =>
             (Name, Description) = (name, description);
 
@@ -30,6 +32,12 @@ namespace Core.Models
         public Application WithId(int id)
         {
             Id = id;
+            return this;
+        }
+
+        public Application WithAPIKey(string key)
+        {
+            APIKey = key;
             return this;
         }
     }

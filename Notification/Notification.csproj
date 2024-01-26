@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="F23.StringSimilarity" Version="5.1.0" />
     <PackageReference Include="Seq.Api" Version="2023.4.0" />
     <PackageReference Include="System.DirectoryServices.AccountManagement" Version="7.0.1" />

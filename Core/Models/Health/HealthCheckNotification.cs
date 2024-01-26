@@ -18,5 +18,7 @@ namespace Core.Models.Health
         public int RegistryId { get; set; }
 
         public HealthCheckRegistry HealthRegistry { get; set; }
+
+        public HealthCheckNotification() { }
     }
 }

@@ -15,5 +15,7 @@ namespace Core.Models.Health
         public int ExecutionDuration { get; set; }
         [Column("is_healthy")]
         public bool IsHealthy { get; set; }
+
+        public HealthCheckLog() { }
     }
 }

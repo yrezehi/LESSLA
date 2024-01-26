@@ -14,5 +14,7 @@ namespace Core.Models.Serilog
         public string? RequestId { get; set; }
         public string? RequestPath { get; set; }
         public string? ConnectionId { get; set; }
+
+        public EventLog() { }
     }
 }

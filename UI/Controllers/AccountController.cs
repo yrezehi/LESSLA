@@ -16,6 +16,10 @@ namespace UI.Controllers
         public IActionResult Login() =>
             View();
 
+        [HttpGet("[action]")]
+        public IActionResult Logout() =>
+            RedirectToAction("Login");
+
         [HttpPost("[action]")]
         public IActionResult Authenticate(CredentialsDTO credentials) => 
             Ok(Service.IsAuthenticated(credentials));
