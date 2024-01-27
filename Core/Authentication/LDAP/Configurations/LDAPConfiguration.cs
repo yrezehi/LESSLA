@@ -1,6 +1,6 @@
 ﻿using System.DirectoryServices.AccountManagement;
 
-namespace Core.Authentication.LDAP.Configuration
+namespace Core.Authentication.LDAP.Configurations
 {
     public static class LDAPConfiguration
     {
