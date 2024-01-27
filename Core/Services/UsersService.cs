@@ -3,17 +3,32 @@ using Core.Models;
 using Core.Models.DTO;
 using Core.Repositories.Abstracts.Interfaces;
 using Core.Services.Abstract;
+using Core.Utils.Extenstions;
+using Microsoft.AspNetCore.Http;
 
 namespace Core.Services
 {
     public class UsersService : ServiceBase<User>
     {
         private readonly LDAPAuthentication Authentication;
+        private readonly IHttpContextAccessor HttpContextAccessor;
 
-        public UsersService(IUnitOfWork unitOfWork, LDAPAuthentication LDAPAuthenticationService) : base(unitOfWork) =>
-            Authentication = LDAPAuthenticationService;
+        public UsersService(IHttpContextAccessor httpContextAccessor, IUnitOfWork unitOfWork, LDAPAuthentication LDAPAuthenticationService) : base(unitOfWork) =>
+            (HttpContextAccessor, Authentication) = (httpContextAccessor, LDAPAuthenticationService);
 
-        public bool IsAuthenticated(CredentialsDTO credentials) =>
-            Authentication.IsAuthenticated(credentials.Identifier, credentials.Password);
+        public async Task IsAuthenticated(CredentialsDTO credentials)
+        {
+            if(Authentication.IsAuthenticated(credentials.Identifier, credentials.Password))
+            {
+                User? user = await FindOneOrDefault(entity => entity.Email == credentials.Identifier);
+
+                if(user != null)
+                {
+                    await HttpContextAccessor.SignIn(user);
+                }
+            }
+
+            throw new ArgumentException("");
+        }
     }
 }

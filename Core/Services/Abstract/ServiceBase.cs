@@ -23,6 +23,9 @@ namespace Core.Services.Abstract
         public virtual IEnumerable<T> Find(Expression<Func<T, bool>> expression) =>
             DBSet.Where(expression);
 
+        public virtual async Task<T?> FindOneOrDefault(Expression<Func<T, bool>> expression) =>
+            await DBSet.FirstOrDefaultAsync(expression);
+
         public virtual bool Any(Expression<Func<T, bool>> expression) =>
             DBSet.Any(expression);
 
