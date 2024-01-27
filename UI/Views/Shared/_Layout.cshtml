@@ -43,7 +43,7 @@
                             <img class="aspect-w-16 aspect-h-9" src="~/imgs/logo_plain.png" />
                         </h1>
                     </div>
-                    <div class="py-4 pl-4">
+                    <div class="py-4 pl-4 uppercase">
                         <ul class="space-y-1">
                             <li>
                                 <a href="@Url.Action("Index", "Home")" class="flex justify-start items-center font-bold text-sm py-3 px-4 @(ViewContext.HttpContext.Request.Path.ToString().Equals(Url.Action("Index", "Home")) ? "bg-slate-900 rounded-l-md text-white" : "bg-white hover:bg-slate-50 rounded-l-md")">
@@ -53,14 +53,14 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="@Url.Action("Index", "Logs")" class="flex justify-start items-center font-bold text-sm text-gray-900 py-3 px-4 @(ViewContext.HttpContext.Request.Path.ToString().Equals(Url.Action("Index", "Logs")) ? "bg-slate-900 rounded-l-md text-white" : "bg-white hover:bg-slate-50 rounded-l-md")">
+                                <a href="@Url.Action("Index", "Logs")" class="flex justify-start items-center font-bold text-sm py-3 px-4 @(ViewContext.HttpContext.Request.Path.ToString().Equals(Url.Action("Index", "Logs")) ? "bg-slate-900 rounded-l-md text-white" : "bg-white hover:bg-slate-50 rounded-l-md")">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="text-lg mr-4" viewBox="0 0 16 16">
                                         <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z" />
                                     </svg>History
                                 </a>
                             </li>
                             <li>
-                                <a href="@Url.Action("Index", "Health")" class="flex justify-start items-center font-bold text-sm text-gray-900 py-3 px-4 @(ViewContext.HttpContext.Request.Path.ToString().Equals(Url.Action("Index", "Health")) ? "bg-slate-900 rounded-l-md text-white" : "bg-white hover:bg-slate-50 rounded-l-md")">
+                                <a href="@Url.Action("Index", "Health")" class="flex justify-start items-center font-bold text-sm py-3 px-4 @(ViewContext.HttpContext.Request.Path.ToString().Equals(Url.Action("Index", "Health")) ? "bg-slate-900 rounded-l-md text-white" : "bg-white hover:bg-slate-50 rounded-l-md")">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="text-lg mr-4" viewBox="0 0 18 20">
                                         <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2ZM7 2h4v3H7V2Zm5.7 8.289-3.975 3.857a1 1 0 0 1-1.393 0L5.3 12.182a1.002 1.002 0 1 1 1.4-1.436l1.328 1.289 3.28-3.181a1 1 0 1 1 1.392 1.435Z" />
                                     </svg>
@@ -72,7 +72,6 @@
                                     <svg class="text-lg mr-4" width="1em" height="1em" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 16">
                                         <path d="M0 .984v14.032a1 1 0 0 0 1.506.845l12.006-7.016a.974.974 0 0 0 0-1.69L1.506.139A1 1 0 0 0 0 .984Z" />
                                     </svg>Live
-                             
                                 </a>
                             </li>
                             <li>
@@ -80,6 +79,24 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="text-lg mr-4" viewBox="0 0 16 16">
                                         <path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z" />
                                     </svg>Report
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="cursor-not-allowed flex justify-start items-center bg-white hover:bg-slate-50 rounded-l-md font-bold text-sm text-gray-900 py-3 px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="text-lg mr-4" viewBox="0 0 22 21">
+                                        <path fill-rule="evenodd" d="M5 7.8C6.7 6.3 9.2 5 12 5s5.3 1.3 7 2.8a12.7 12.7 0 0 1 2.7 3.2c.2.2.3.6.3 1s-.1.8-.3 1a2 2 0 0 1-.6 1 12.7 12.7 0 0 1-9.1 5c-2.8 0-5.3-1.3-7-2.8A12.7 12.7 0 0 1 2.3 13c-.2-.2-.3-.6-.3-1s.1-.8.3-1c.1-.4.3-.7.6-1 .5-.7 1.2-1.5 2.1-2.2Zm7 7.2a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
+                                    </svg>Watchlist
+                                </a>
+                            </li>
+                        </ul>
+                        <hr class="my-4 mr-4">
+                        <ul class="space-y-1">
+                            <li>
+                                <a href="@Url.Action("Index", "Home")" class="flex justify-start items-center font-bold text-sm py-3 px-4 @(ViewContext.HttpContext.Request.Path.ToString().Equals(Url.Action("Index", "Home")) ? "bg-slate-900 rounded-l-md text-white" : "bg-white hover:bg-slate-50 rounded-l-md")">
+                                    <svg width="1em" height="1em" class="text-lg mr-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 23 23">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13v-2a1 1 0 0 0-1-1h-.8l-.7-1.7.6-.5a1 1 0 0 0 0-1.5L17.7 5a1 1 0 0 0-1.5 0l-.5.6-1.7-.7V4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v.8l-1.7.7-.5-.6a1 1 0 0 0-1.5 0L5 6.3a1 1 0 0 0 0 1.5l.6.5-.7 1.7H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h.8l.7 1.7-.6.5a1 1 0 0 0 0 1.5L6.3 19a1 1 0 0 0 1.5 0l.5-.6 1.7.7v.8a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-.8l1.7-.7.5.6a1 1 0 0 0 1.5 0l1.4-1.4a1 1 0 0 0 0-1.5l-.6-.5.7-1.7h.8a1 1 0 0 0 1-1Z" />
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                    </svg>Health
                                 </a>
                             </li>
                         </ul>
