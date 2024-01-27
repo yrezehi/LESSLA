@@ -23,5 +23,9 @@ namespace UI.Controllers
         [HttpPost("[action]")]
         public IActionResult Authenticate(CredentialsDTO credentials) => 
             Ok(Service.IsAuthenticated(credentials));
+
+        [HttpGet("[action]")]
+        public IActionResult AccessDenied() =>
+            View();
     }
 }

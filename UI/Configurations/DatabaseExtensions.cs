@@ -25,5 +25,12 @@ namespace UI.Configurations
 
         private static void RegisterUnitOfWork(this WebApplicationBuilder builder) =>
             builder.Services.AddTransient<IUnitOfWork, UnitOfWork<RepositoryContext>>();
+
+        public static void PopulateRDBMSSeed(this WebApplication application)
+        {
+            using (var scope = application.Services.CreateScope())
+            using (var context = scope.ServiceProvider.GetService<RepositoryContext>())
+                context!.Database.EnsureCreated();
+        }
     }
 }

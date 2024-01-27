@@ -1,12 +1,23 @@
 @font-face {
-    src: url('../fonts/AROneSans.ttf') format('truetype');
+    src: url('../fonts/AROneSans/AROneSans.ttf') format('truetype');
     font-family: 'AROneSans';
+    font-display: swap;
+}
+
+@font-face {
+    src: url('../fonts/SpaceCrusaders/SpaceCrusaders.otf');
+    src: url('../fonts/SpaceCrusaders/SpaceCrusaders.ttf') format('truetype'); /* Legacy iOS */
+    font-family: 'SpaceCrusaders';
     font-display: swap;
 }
 
 * {
     font-family: 'AROneSans';
     line-height: normal !important;
+}
+
+.space-crusaders-font {
+    font-family: 'SpaceCrusaders' !important;
 }
 
 html {
