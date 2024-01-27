@@ -17,6 +17,8 @@ namespace Core.Models
         public string Email { get; set; }
         [Column("authentication_type")]
         public AuthenticationType AuthenticationType { get; set; } = AuthenticationType.ActiveDirectory;
+        [Column("role")]
+        public int Role { get; set; }
 
         public virtual ICollection<Application> Applications { get; set; }
         
