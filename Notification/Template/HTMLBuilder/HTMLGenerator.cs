@@ -1,12 +1,8 @@
-﻿using Core.Utils;
-using Notification.Template.HTMLBuilder.Elements;
-using System.Reflection;
-
-namespace Notification.Template.HTMLBuilder
+﻿namespace Notification.Template.HTMLBuilder
 {
     public static class HTMLGenerator
     {
-        public static string Generate<T>(IEnumerable<T> objectProperties)
+        /*public static string Generate<T>(IEnumerable<T> objectProperties)
         {
             IEnumerable<PropertyInfo> properties = ReflectionUtil.GetObjectProperties(typeof(T));
 
@@ -31,6 +27,6 @@ namespace Notification.Template.HTMLBuilder
                 return table;
             }
 
-        }
+        }*/
     }
 }

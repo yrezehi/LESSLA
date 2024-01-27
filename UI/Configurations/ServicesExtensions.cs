@@ -1,6 +1,7 @@
 ﻿using Core.Authentication.LDAP;
 using Core.Services;
 using Core.Services.Health;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace UI.Configurations
 {
@@ -8,6 +9,8 @@ namespace UI.Configurations
     {
         public static void RegisterServices(this WebApplicationBuilder builder)
         {
+            builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             builder.Services.AddTransient(typeof(ApplicationsService), typeof(ApplicationsService));
             builder.Services.AddTransient(typeof(EventLogsService), typeof(EventLogsService));
             builder.Services.AddTransient(typeof(HealthService), typeof(HealthService));

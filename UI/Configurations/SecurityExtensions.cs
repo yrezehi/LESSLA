@@ -21,7 +21,7 @@ namespace UI.Configurations
                 options.Cookie.HttpOnly = true;
                 options.SlidingExpiration = true;
                 options.LoginPath = "/Account/Login";
-                options.AccessDeniedPath = "/AccessDenied";
+                options.AccessDeniedPath = "/Account/AccessDenied";
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
             });
         }
