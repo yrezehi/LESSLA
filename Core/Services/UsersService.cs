@@ -16,7 +16,7 @@ namespace Core.Services
         public UsersService(IHttpContextAccessor httpContextAccessor, IUnitOfWork unitOfWork, LDAPAuthentication LDAPAuthenticationService) : base(unitOfWork) =>
             (HttpContextAccessor, Authentication) = (httpContextAccessor, LDAPAuthenticationService);
 
-        public async Task IsAuthenticated(CredentialsDTO credentials)
+        public async Task<bool> IsAuthenticated(CredentialsDTO credentials)
         {
             if(Authentication.IsAuthenticated(credentials.Identifier, credentials.Password))
             {
@@ -25,10 +25,11 @@ namespace Core.Services
                 if(user != null)
                 {
                     await HttpContextAccessor.SignIn(user);
+                    return true;
                 }
             }
 
-            throw new ArgumentException("");
+            return false;
         }
     }
 }

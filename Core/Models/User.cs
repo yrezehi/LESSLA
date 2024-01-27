@@ -1,5 +1,7 @@
 ﻿using Core.Authentication;
 using Core.Models.Abstracts.Interfaces;
+using Core.Models.Enums;
+using Core.Utils.Extenstions;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -18,7 +20,7 @@ namespace Core.Models
         [Column("authentication_type")]
         public AuthenticationType AuthenticationType { get; set; } = AuthenticationType.ActiveDirectory;
         [Column("role")]
-        public int Role { get; set; }
+        public int Role { get; set; } = UserRole.User.GetId();
 
         public virtual ICollection<Application> Applications { get; set; }
         

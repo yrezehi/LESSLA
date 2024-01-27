@@ -21,8 +21,15 @@ namespace UI.Controllers
             RedirectToAction("Login");
 
         [HttpPost("[action]")]
-        public IActionResult Authenticate(CredentialsDTO credentials) => 
-            Ok(Service.IsAuthenticated(credentials));
+        public async Task<IActionResult> Authenticate(CredentialsDTO credentials) {
+
+            if(await Service.IsAuthenticated(credentials))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("Login", "Account");
+        }
 
         [HttpGet("[action]")]
         public IActionResult AccessDenied() =>
