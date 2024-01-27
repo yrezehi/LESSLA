@@ -1,7 +1,5 @@
 ﻿using Core.Authentication.LDAP.Configurations;
 using Core.Configurations;
-using System;
-using System.Collections.Generic;
 using System.DirectoryServices.AccountManagement;
 using System.Runtime.InteropServices;
 

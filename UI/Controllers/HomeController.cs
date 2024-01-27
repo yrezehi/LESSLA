@@ -6,6 +6,7 @@ using UI.Models;
 
 namespace UI.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly EventLogsService Service;
