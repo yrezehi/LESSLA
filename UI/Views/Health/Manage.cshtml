@@ -45,79 +45,21 @@
                         <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
                             <div class="flex items-center">
                                 <span class="mr-5 bg-red-400 rounded-md roun text-white py-1 px-2">
-                                    @item.Level
+                                    @item.ApplicationName
                                 </span>
                             </div>
                         </td>
                         <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
-                            @if (item.Application != null)
-                            {
-                                @item.Application
-                            }
-                        </td>
-                        <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
                             <div class="flex items-center">
-                                @item.Message?.Substring(0, item.Message.Length < 50 ? item.Message.Length : 50).PadRight(55, '.')
+                                <span class="mr-5 bg-red-400 rounded-md roun text-white py-1 px-2">
+                                    @item.MinutesInterval
+                                </span>
                             </div>
                         </td>
                         <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
                             <div class="flex items-center">
-                                <div class="sm:flex hidden flex-col mr-2">
-                                    @item.TimeStamp.ToString("dd.MM.yyyy")
-                                    <div class="text-gray-400 text-xs">@item.TimeStamp.ToString("h:mm tt")</div>
-                                </div>
-                                <button data-animation-button="@item.Id" class="w-8 h-8 inline-flex items-center justify-center text-gray-400 ml-auto">
-                                    <svg class="w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1" />
-                                    </svg>
-                                </button>
+                                @item.URL
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1" colspan="100%">
-                            <table class="w-full text-sm text-left text-gray-500">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div data-animation-context="@item.Id" class="relative" style="max-height: 0; overflow: hidden; ">
-                                                <div class="flex align-center">
-                                                    <div class="flex-auto w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                                        Request ID
-                                                    </div>
-                                                    <div class="flex-auto w-5/6 px-6 py-4">
-                                                        @item.RequestId
-                                                    </div>
-                                                </div>
-                                                <div class="flex align-center">
-                                                    <div class="flex-auto w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                                        Endpoint
-                                                    </div>
-                                                    <div class="flex-auto w-5/6 px-6 py-4">
-                                                        @item.RequestPath
-                                                    </div>
-                                                </div>
-                                                <div class="flex align-center">
-                                                    <div class="flex-auto w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                                        Connection ID
-                                                    </div>
-                                                    <div class="flex-auto w-5/6 px-6 py-4">
-                                                        @item.ConnectionId
-                                                    </div>
-                                                </div>
-                                                <div class="flex align-center">
-                                                    <div class="flex-auto w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                                        Details
-                                                    </div>
-                                                    <div class="flex-auto w-5/6 px-6 py-4">
-                                                        @item.Details
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </td>
                     </tr>
                 }
@@ -125,11 +67,3 @@
         </table>
     </div>
 </div>
-
-@section Scripts {
-    <script>
-        document.querySelectorAll("[data-animation-button]").forEach(function (element) {
-            animation.toggleHeight(`[data-animation-button=\"${element.dataset.animationButton}\"]`, `[data-animation-context=\"${element.dataset.animationButton}\"]`);
-        });
-    </script>
-}

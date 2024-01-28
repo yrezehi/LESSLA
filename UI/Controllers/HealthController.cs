@@ -15,5 +15,9 @@ namespace UI.Controllers
         [HttpGet("[action]")]
         public IActionResult Index() =>
             View();
+
+        [HttpGet("[action]")]
+        public IActionResult Manage() =>
+            View();
     }
 }
