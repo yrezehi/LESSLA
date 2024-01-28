@@ -8,7 +8,7 @@ namespace UI.Controllers
 {
     [Authorize]
     [Route("[controller]")]
-    public class HealthController : BaseController<HealthService, HealthCheckRegistry>
+    public class HealthController : BaseController<HealthService, HealthCheckApplication>
     {
         public HealthController(HealthService Service) : base(Service) { }
 
@@ -17,7 +17,7 @@ namespace UI.Controllers
             View();
 
         [HttpGet("[action]")]
-        public IActionResult Manage() =>
-            View();
+        public async Task<IActionResult> Manage(int page = 0) =>
+            View(await Service.Paginate(page));
     }
 }

@@ -4,7 +4,7 @@ using Core.Services.Abstract;
 
 namespace Core.Services.Health
 {
-    public class HealthService : ServiceBase<HealthCheckRegistry>
+    public class HealthService : ServiceBase<HealthCheckApplication>
     {
         public HealthService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
     }
