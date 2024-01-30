@@ -141,6 +141,8 @@
     <script src="~/js/animation.js" asp-append-version="true"></script>
     <script src="~/js/partial-view.js" asp-append-version="true"></script>
 
+    @await Html.PartialAsync("_GenericModal.cshtml")
+
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 
