@@ -161,6 +161,32 @@ namespace Core.Services.Abstract
             throw new ArgumentException(nameof(T));
         }
 
+        public async Task<T> UpdateNecessary(T entityToUpdate, int id)
+        {
+            var entityToBeUpdated = await DBSet.AsNoTracking().FirstOrDefaultAsync(entity => ((IEntity)entity).Id == id);
+
+            if (entityToBeUpdated != null)
+            {
+                foreach (var property in ReflectionUtil.GetObjectProperties(entityToUpdate.GetType()))
+                {
+                    var propertyValue = ReflectionUtil.GetValueOf(entityToUpdate, property.Name);
+
+                    if (!ReflectionUtil.IsNullOrDefault(propertyValue))
+                    {
+                        ReflectionUtil.SetValueOf(entityToBeUpdated, property.Name, propertyValue);
+                    }
+                }
+
+                DBSet.Update(entityToBeUpdated);
+
+                await UnitOfWork.CompletedAsync();
+
+                return entityToBeUpdated;
+            }
+
+            throw new ArgumentException("Entity Not Found");
+        }
+
         public async Task<T> Update(T updatedEntity)
         {
             var entityToUpdate = await DBSet.AsNoTracking().FirstOrDefaultAsync(entity => ((IEntity)updatedEntity).Id == ((IEntity)entity).Id);

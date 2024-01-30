@@ -21,6 +21,8 @@ namespace Core.Services.Abstract.Interfaces
 
         Task<IEnumerable<T>> SearchByProperty<TValue>(string propertyName, TValue value, int? page);
 
+        Task<T> UpdateNecessary(T entityToUpdate, int id);
+
         Task<T?> NullableFindById(int id);
 
         Task<T> Delete(int id);
