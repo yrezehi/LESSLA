@@ -21,5 +21,9 @@ namespace UI.Controllers.Abstracts
         [HttpGet("api/[action]")]
         public virtual async Task<IActionResult> Search(string property, string value, int? page) =>
             Ok(await Service.SearchByProperty<string>(property, value, page));
+
+        [HttpGet("[action]")]
+        public virtual async Task<IActionResult> ModalView(string viewName, int id) =>
+            PartialView(viewName, await Service.FindById(id));
     }
 }
