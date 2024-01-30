@@ -18,6 +18,22 @@ namespace UI.Controllers.Abstracts
         public virtual async Task<IActionResult> GetAll(int? page) =>
             Ok(await Service.GetAll(page));
 
+        [HttpPost("submit/form")]
+        public virtual async Task<IActionResult> Form([FromForm] T entity)
+        {
+            await Service.Create(entity);
+
+            return Redirect(Request.Headers["Referer"].FirstOrDefault() ?? "/");
+        }
+
+        [HttpPost("submit/update/form")]
+        public virtual async Task<IActionResult> UpdateForm([FromForm] T entity, int id)
+        {
+            await Service.UpdateNecessary(entity, id);
+
+            return Redirect(Request.Headers["Referer"].FirstOrDefault() ?? "/");
+        }
+
         [HttpGet("api/[action]")]
         public virtual async Task<IActionResult> Search(string property, string value, int? page) =>
             Ok(await Service.SearchByProperty<string>(property, value, page));
