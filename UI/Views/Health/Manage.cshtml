@@ -4,7 +4,7 @@
     ViewData["Title"] = "Logs Page";
 }
 
-<div class="w-[100%] h-[100%] bg-gradient-to-r bg-gradient-to-r from-slate-900 to-slate-800 p-8 text-white">
+<div class="w-[100%] h-[100%] p-8 text-white z-10">
     <h2 class="text-2xl font-bold mb-4 uppercase space-crusaders-font">Manage Health</h2>
     <hr class="my-6">
     <div class="sm:p-7 p-4">
@@ -75,11 +75,4 @@
     </div>
 </div>
 
-@section Scripts
-    {
-    <script>
-        [...document.querySelectorAll("[data-identifier]")].forEach(function (triggerElement) {
-            partialView.modal(`api/Health/ModalView?viewName=Compo/_UpdateEmployee&id=${triggerElement.dataset.identifier}`, triggerElement, "#update-modal");
-        });
-    </script>
-}
+@await Html.PartialAsync("Components/Modals/Create/_CreateApplication")
