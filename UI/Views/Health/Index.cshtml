@@ -1,8 +1,10 @@
-﻿@{
+﻿@model HealthCheckLogDashboard
+
+@{
     ViewData["Title"] = "Health Page";
 }
 
-<div class="w-[100%] h-[100%] bg-gradient-to-r bg-gradient-to-r from-slate-900 to-slate-800 p-8 text-white">
+<div class="w-[100%] h-[100%] p-8 text-white">
     <h2 class="text-2xl font-bold mb-4 uppercase space-crusaders-font">Health Checks</h2>
     <hr class="my-6 bg-gray-400">
     <div class="sm:p-7 p-4">
@@ -13,7 +15,7 @@
                         Applications Registered
                     </h2>
                     <div class="flex flex-row justify-between mt-[14px]">
-                        <p class="text-3xl font-light font-mono text-gray-700 hover:text-gray-900 transition-all duration-200">53</p>
+                        <p class="text-3xl font-light font-mono text-gray-700 hover:text-gray-900 transition-all duration-200">@Model.RegistredApplications</p>
                     </div>
                 </div>
             </div>
@@ -23,7 +25,7 @@
                         Failed Checks Today
                     </h2>
                     <div class="flex flex-row justify-between mt-[14px]">
-                        <p class="text-3xl font-light font-mono text-gray-700 hover:text-gray-900 transition-all duration-200">22</p>
+                        <p class="text-3xl font-light font-mono text-gray-700 hover:text-gray-900 transition-all duration-200">@Model.FailedChecksToday</p>
                     </div>
                 </div>
             </div>
@@ -33,7 +35,7 @@
                         Downtime
                     </h2>
                     <div class="flex flex-row justify-between mt-[14px]">
-                        <p class="text-3xl font-light font-mono text-gray-700 hover:text-gray-900 transition-all duration-200">35m</p>
+                        <p class="text-3xl font-light font-mono text-gray-700 hover:text-gray-900 transition-all duration-200">@(Model.Downtime)m</p>
                     </div>
                 </div>
             </div>

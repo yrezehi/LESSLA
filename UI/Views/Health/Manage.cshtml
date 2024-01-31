@@ -65,7 +65,16 @@
                         </td>
                         <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
                             <div class="flex items-center">
-                                @item.URL
+                                <span class="mr-5 rounded-md roun text-white py-1 px-2">
+                                    @item.URL
+                                </span>
+                            </div>
+                        </td>
+                        <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
+                            <div class="flex items-center">
+                                <span class="mr-5 rounded-md roun text-white py-1 px-2">
+                                    @(item.Enabled ? "Yes" : "No")
+                                </span>
                             </div>
                         </td>
                     </tr>
