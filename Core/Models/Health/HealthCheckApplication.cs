@@ -16,6 +16,8 @@ namespace Core.Models.Health
         public int MinutesInterval { get; set; } = 60;
         [Column("url")]
         public string URL { get; set; }
+        [Column("enabled")]
+        public bool Enabled { get; set; } = false;
 
         public HealthCheckApplication() { }
 
