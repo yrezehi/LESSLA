@@ -18,6 +18,8 @@ namespace Core.Models.Health
         [Column("is_healthy")]
         public bool IsHealthy { get; set; }
 
+        public HealthCheckLog() { }
+
         public HealthCheckLog(int applicationId, bool isHealth) =>
             (ApplicationId, IsHealthy, ExecutionTime, ExecutionDuration) = (applicationId, isHealth, DateTime.Now, 0);
 

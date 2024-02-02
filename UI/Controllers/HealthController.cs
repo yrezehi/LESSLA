@@ -10,11 +10,14 @@ namespace UI.Controllers
     [Route("[controller]")]
     public class HealthController : BaseController<HealthService, HealthCheckApplication>
     {
-        public HealthController(HealthService Service) : base(Service) { }
+        private HealthLogService HealthLogService;
+
+        public HealthController(HealthService Service, HealthLogService healthLogService) : base(Service) =>
+            (HealthLogService) = (healthLogService);
 
         [HttpGet("[action]")]
-        public IActionResult Index() =>
-            View();
+        public async Task<IActionResult> Index() =>
+            View(await HealthLogService.Dashboard());
 
         [HttpGet("[action]")]
         public async Task<IActionResult> Manage(int page = 0) =>

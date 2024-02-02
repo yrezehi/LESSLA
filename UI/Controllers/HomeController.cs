@@ -14,7 +14,7 @@ namespace UI.Controllers
         public HomeController(EventLogsService service) =>
             Service = service;
 
-        public async Task<IActionResult> Index() =>
+        public IActionResult Index() =>
             View();
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
