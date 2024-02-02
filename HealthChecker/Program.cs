@@ -21,6 +21,10 @@ IHost host = Host.CreateDefaultBuilder(args)
             options.UseInMemoryDatabase("Default")
         );
 
+        using (var scope = services.BuildServiceProvider().CreateScope())
+        using (var context = scope.ServiceProvider.GetService<RepositoryContext>())
+            context!.Database.EnsureCreated();
+
         services.AddTransient<IUnitOfWork, UnitOfWork<RepositoryContext>>();
 
         services.AddTransient(typeof(HealthLogService), typeof(HealthLogService));

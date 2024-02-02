@@ -15,7 +15,7 @@ namespace Core.Repositories
         public virtual DbSet<HealthCheckLog> HealthCheckLogs { get; set; }
         public virtual DbSet<HealthCheckRegistry> HealthCheckRegistries { get; set; }
         public virtual DbSet<HealthCheckNotification> HealthCheckNotifications { get; set; }
-        public virtual DbSet<HealthCheckApplication> HealthCheckApplication { get; set; }
+        public virtual DbSet<HealthCheckApplication> HealthCheckApplications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -23,7 +23,7 @@ namespace Core.Repositories
 
             builder.Entity<Application>().HasData(Application.Create("Sample", "Just a sample website").WithId(1).WithAPIKey("SECRET"));
 
-            builder.Entity<HealthCheckRegistry>().HasData(HealthCheckRegistry.Create("Sample", "http://google.com/").WithId(1));
+            builder.Entity<HealthCheckApplication>().HasData(HealthCheckApplication.Create("Google", "https://google.com/").WithId(1));
         }
 
     }
