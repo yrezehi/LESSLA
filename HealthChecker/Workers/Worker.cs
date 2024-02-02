@@ -1,4 +1,6 @@
+using Core.Models.Health;
 using Core.Services.Health;
+using Core.Utils;
 using HealthChecker.Configurations;
 
 namespace HealthChecker.Workers
@@ -6,9 +8,9 @@ namespace HealthChecker.Workers
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> Logger;
-        private readonly ServiceProvider ServiceProvider;
+        private readonly IServiceProvider ServiceProvider;
 
-        public Worker(ILogger<Worker> logger, ServiceProvider serviceProvider) =>
+        public Worker(ILogger<Worker> logger, IServiceProvider serviceProvider) =>
             (Logger, ServiceProvider) = (logger, serviceProvider);
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -18,9 +20,17 @@ namespace HealthChecker.Workers
                 await using (var scope = ServiceProvider.CreateAsyncScope())
                 {
                     Logger.LogInformation("[HEALTH CHECKING START]: {time}", DateTimeOffset.Now);
-                    HealthService service = scope.ServiceProvider.GetRequiredService<HealthService>();
+                    HealthService applicationService = scope.ServiceProvider.GetRequiredService<HealthService>();
+                    HealthLogService logService = scope.ServiceProvider.GetRequiredService<HealthLogService>();
 
-                    var applications = await service.GetAll();
+                    var applications = await applicationService.GetAll();
+
+                    foreach(var application in applications)
+                    {
+                        var isReachable = HTTPUtils.IsPingable(application.URL);
+
+                        await logService.Create(HealthCheckLog.Create(application.Id, isReachable));
+                    }
 
                     Console.WriteLine(applications.Select(application => application.ApplicationName));
                     
