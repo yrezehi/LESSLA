@@ -19,7 +19,8 @@ namespace HealthChecker.Workers
             {
                 await using (var scope = ServiceProvider.CreateAsyncScope())
                 {
-                    Logger.LogInformation("[HEALTH CHECKING START]: {time}", DateTimeOffset.Now);
+                    Logger.LogInformation("[INFO]: JOB STARTED AT {time}", DateTimeOffset.Now.ToString("HH:mm:ss"));
+
                     HealthService applicationService = scope.ServiceProvider.GetRequiredService<HealthService>();
                     HealthLogService logService = scope.ServiceProvider.GetRequiredService<HealthLogService>();
 
@@ -32,9 +33,7 @@ namespace HealthChecker.Workers
                         await logService.Create(HealthCheckLog.Create(application.Id, isReachable));
                     }
 
-                    Console.WriteLine(applications.Select(application => application.ApplicationName));
-                    
-                    Logger.LogInformation("[HEALTH CHECKING FINISHED]: {time}", DateTimeOffset.Now);
+                    Logger.LogInformation("[INFO]: JOB ENDED AT {time}", DateTimeOffset.Now.ToString("HH:mm:ss"));
                     await Task.Delay(WorkerConfiguration.POLLING_INTERVAL_IN_MILLISECONDS, stoppingToken);
                 }
             }
