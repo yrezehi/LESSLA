@@ -28,7 +28,7 @@ namespace HealthChecker.Workers
 
                     foreach(var application in applications)
                     {
-                        var isReachable = HTTPUtils.IsPingable(application.URL);
+                        var isReachable = await HTTPUtils.IsReachable(application.URL);
 
                         await logService.Create(HealthCheckLog.Create(application.Id, isReachable));
                     }

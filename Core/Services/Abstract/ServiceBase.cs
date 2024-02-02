@@ -16,7 +16,7 @@ namespace Core.Services.Abstract
             (DBSet, UnitOfWork) = (unitOfWork.Repository<T>().DBSet, unitOfWork);
 
         protected internal IUnitOfWork UnitOfWork { get; set; }
-        protected DbSet<T> DBSet { get; set; }
+        public DbSet<T> DBSet { get; set; }
 
         private static int DEFAULT_PAGE_SIZE = 10;
 
