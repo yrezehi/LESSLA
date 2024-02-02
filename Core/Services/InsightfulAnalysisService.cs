@@ -10,11 +10,12 @@ namespace Core.Services
     {
         public InsightfulAnalysisService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        public async Task<string> ErrorsComparedToLastWeekInsight(int errorCount) =>
-            $"{await ErrorsComparedTo(-14, -7, errorCount)}% errors than the week before!";
 
-        public async Task<string> ErrorsComparedToLastDayInsight(int errorCount) =>
-            $"{await ErrorsComparedTo(-1, 0, errorCount)}% errors than the day before!";
+        public async Task<int> ErrorsComparedToLastWeekInsight(int errorCount) =>
+            await ErrorsComparedTo(-14, -7, errorCount);
+
+        public async Task<int> ErrorsComparedToLastDayInsight(int errorCount) =>
+            await ErrorsComparedTo(-1, 0, errorCount);
 
         private async Task<int> ErrorsComparedTo(int start, int end, int errorCount) =>
             MathExtenstions.PercentageBetween(errorCount, await ErrorsBetween(start, end));
@@ -22,33 +23,17 @@ namespace Core.Services
         private async Task<int> ErrorsBetween(int start, int end) =>
             await Count(log => log.TimeStamp <= DateTime.Now.AddDays(start) && log.TimeStamp >= DateTime.Now.AddDays(end));
 
-        public async Task<IEnumerable<EventLog>> SimilarLogs(EventLog log) =>
+        public IEnumerable<EventLog> SimilarLogs(EventLog log) =>
             this.Find(@log => @log.Application != null && @log.Application.Equals(log.Application) && log.IsSimilarTo(@log));
 
         public async Task<BriefDTO> Brief()
         {
-            BriefDTO briefDTO = new(
-                errorCount: await this.Count(log => log.Level.Equals("Error"))
-            );
+            BriefDTO brief = new(errorsCount: await this.Count(log => log.Level.Equals("Error")));
 
-            if (briefDTO.ErrorCount > 0)
-            {
-                int lastWeekErrorsCount = await this.Count(log => log.TimeStamp <= DateTime.Now.AddDays(-7) && log.TimeStamp >= DateTime.Now.AddDays(-14));
+            brief.WithLastDayPercent(await ErrorsComparedToLastDayInsight(brief.ErrorsCount));
+            brief.WithLastWeekPercent(await ErrorsComparedToLastWeekInsight(brief.ErrorsCount));
 
-                if (lastWeekErrorsCount > 0)
-                {
-                    if (briefDTO.ErrorCount > lastWeekErrorsCount)
-                    {
-                        briefDTO.ErrorBrief = $"{MathExtenstions.PercentageBetween(briefDTO.ErrorCount, lastWeekErrorsCount)}% More errors than the week before!";
-                    }
-                    else
-                    {
-                        briefDTO.ErrorBrief = $"{MathExtenstions.PercentageBetween(briefDTO.ErrorCount, lastWeekErrorsCount)}% Less errors than a week before!";
-                    }
-                }
-            }
-
-            return briefDTO;
+            return brief;
         }
     }
 }

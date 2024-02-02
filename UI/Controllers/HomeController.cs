@@ -9,13 +9,14 @@ namespace UI.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly EventLogsService Service;
+        private readonly EventLogsService LogsService;
+        private readonly InsightfulAnalysisService AnalysisService;
 
-        public HomeController(EventLogsService service) =>
-            Service = service;
+        public HomeController(InsightfulAnalysisService analysisService, EventLogsService logsService) =>
+            (AnalysisService, LogsService) = (analysisService, logsService);
 
-        public IActionResult Index() =>
-            View();
+        public async Task<IActionResult> Index() =>
+            View(await AnalysisService.Brief());
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error() =>

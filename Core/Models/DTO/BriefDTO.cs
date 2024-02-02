@@ -2,16 +2,24 @@
 {
     public class BriefDTO
     {
-        public int ErrorCount { get; set; } = 0;
-        public string ErrorBrief { get; set; } = "No Past Data Available";
+        public int ErrorsCount { get; set; } = 0;
+        
+        public int ErrorsComparedToLastWeekInsight { get; set; } = 0;
+        public int ErrorsComparedToLastDayInsight { get; set; } = 0;
 
-        public int WarningCount { get; set; } = 0;
+        public BriefDTO(int errorsCount = 0) =>
+            (ErrorsCount) = (errorsCount);
 
-        public int IssueCount { get; private set; } = 0;
+        public BriefDTO WithLastWeekPercent(int percent)
+        {
+            ErrorsComparedToLastWeekInsight = percent;
+            return this;
+        }
 
-        public BriefDTO(int errorCount = 0, int warningCount = 0) =>
-            (ErrorCount, WarningCount, IssueCount)
-                =
-            (errorCount, warningCount, errorCount + warningCount);
+        public BriefDTO WithLastDayPercent(int percent)
+        {
+            ErrorsComparedToLastDayInsight = percent;
+            return this;
+        }
     }
 }
