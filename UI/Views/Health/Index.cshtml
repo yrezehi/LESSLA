@@ -66,6 +66,39 @@
                     </tr>
                 </thead>
                 <tbody class="text-gray-600">
+                    @foreach (var item in Model.Logs.Items)
+                    {
+                        <tr>
+                            <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
+                                <div class="flex items-center">
+                                    <span class="mr-5 rounded-md roun text-white py-1 px-2">
+                                        @item.ApplicationId
+                                    </span>
+                                </div>
+                            </td>
+                            <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
+                                <div class="flex items-center">
+                                    <span class="mr-5 rounded-md roun text-white py-1 px-2">
+                                        @item.IsHealthy
+                                    </span>
+                                </div>
+                            </td>
+                            <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
+                                <div class="flex items-center">
+                                    <span class="mr-5 rounded-md roun text-white py-1 px-2">
+                                        @item.ExecutionDuration
+                                    </span>
+                                </div>
+                            </td>
+                            <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
+                                <div class="flex items-center">
+                                    <span class="mr-5 rounded-md roun text-white py-1 px-2">
+                                        @item.ExecutionTime
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>

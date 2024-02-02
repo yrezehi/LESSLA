@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Models.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ namespace Core.Models.Health
         public int RegistredApplications { get; set; } = 0;
         public int FailedChecksToday { get; set; } = 0;
         public int Downtime { get; set; } = 0;
+
+        public PaginateDTO<HealthCheckLog> Logs { get; set; } = new PaginateDTO<HealthCheckLog>();
 
         public static HealthCheckLogDashboard Create() =>
             new();
@@ -30,6 +33,12 @@ namespace Core.Models.Health
         public HealthCheckLogDashboard WithDowntime(int count)
         {
             Downtime = count;
+            return this;
+        }
+
+        public HealthCheckLogDashboard WithLogs(PaginateDTO<HealthCheckLog> logs)
+        {
+            Logs = logs;
             return this;
         }
     }

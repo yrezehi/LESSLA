@@ -20,7 +20,9 @@ namespace HealthChecker.Workers
                     Logger.LogInformation("[HEALTH CHECKING START]: {time}", DateTimeOffset.Now);
                     HealthService service = scope.ServiceProvider.GetRequiredService<HealthService>();
 
-                    await HealthJob.Create(service).Start();
+                    var applications = await service.GetAll();
+
+                    Console.WriteLine(applications.Select(application => application.ApplicationName));
                     
                     Logger.LogInformation("[HEALTH CHECKING FINISHED]: {time}", DateTimeOffset.Now);
                     await Task.Delay(WorkerConfiguration.POLLING_INTERVAL_IN_MILLISECONDS, stoppingToken);
