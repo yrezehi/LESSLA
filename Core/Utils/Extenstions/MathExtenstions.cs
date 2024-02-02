@@ -3,6 +3,6 @@
     public static class MathExtenstions
     {
         public static int PercentageBetween(int number1, int number2) =>
-            (number1 / number2) * 100;
+            (number1 / number2 == 0 ? 1 : number2) * 100;
     }
 }

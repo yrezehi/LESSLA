@@ -16,6 +16,7 @@ namespace UI.Configurations
             builder.Services.AddTransient(typeof(HealthService), typeof(HealthService));
             builder.Services.AddTransient(typeof(HealthLogService), typeof(HealthLogService));
             builder.Services.AddTransient(typeof(UsersService), typeof(UsersService));
+            builder.Services.AddTransient(typeof(InsightfulAnalysisService), typeof(InsightfulAnalysisService));
 
             builder.Services.AddTransient(typeof(LDAPAuthentication), typeof(LDAPAuthentication));
         }
