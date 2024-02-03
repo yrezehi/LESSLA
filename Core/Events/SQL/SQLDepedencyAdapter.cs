@@ -1,23 +1,32 @@
-﻿using System.Xml.Linq;
+﻿using Core.Configurations;
+using Core.Models.Serilog;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 using static Core.Events.SQL.SQLDepedency;
 
 namespace Core.Events.SQL
 {
-    public class SQLDepedencyAdapter<T> : IDisposable where T : class
+    public class SQLDepedencyAdapter: IDisposable
     {
         public readonly SQLDepedency Listener;
+
+        private Action<EventLog> OnInsert;
 
         private readonly static string DATABASE_NAME = "lessla";
         private readonly static string DATABASE_TABLE_NAME = "logs";
 
-        public SQLDepedencyAdapter(string connectionString)
+        public SQLDepedencyAdapter()
         {
-            Listener = new SQLDepedency(connectionString, DATABASE_NAME, DATABASE_TABLE_NAME);
+            Listener = new SQLDepedency(Configuration.GetValue<string>("ConnectionStrings:Default"), DATABASE_NAME, DATABASE_TABLE_NAME);
+            Listener.Start();
+        }
 
+        public SQLDepedencyAdapter ListenChanges(Action<EventLog> onInsert)
+        {
+            OnInsert = onInsert;
             Listener.TableChanged += HandleChange;
 
-            Listener.Start();
+            return this;
         }
 
         private void HandleChange(object? _, TableChangedEventArgs @event) { 
@@ -39,8 +48,8 @@ namespace Core.Events.SQL
             }
         }
 
-        private T? CastRow(XElement element) =>
-            (T) new XmlSerializer(element.GetType()).Deserialize(element.CreateReader())!;
+        private EventLog? CastRow(XElement element) =>
+            (EventLog) new XmlSerializer(element.GetType()).Deserialize(element.CreateReader())!;
 
         public void Dispose() =>
             Listener.Stop();

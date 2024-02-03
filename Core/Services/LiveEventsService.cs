@@ -11,12 +11,15 @@ namespace Core.Services
 {
     public class LiveEventsService
     {
-        public SQLDepedencyAdapter<EventLog> Adapter { get; set; }
+        public SQLDepedencyAdapter Adapter { get; set; }
         private CircularQueue<EventLog> LogQueue { get; set; }
 
         private const int QUEUE_LIMIT = 20;
 
-        public LiveEventsService(SQLDepedencyAdapter<EventLog> adapter) =>
-            (Adapter, LogQueue) = (adapter, new CircularQueue<EventLog>(QUEUE_LIMIT));
+        public LiveEventsService(SQLDepedencyAdapter adapter) =>
+            (Adapter, LogQueue) = (adapter.ListenChanges(OnInsert), new CircularQueue<EventLog>(QUEUE_LIMIT));
+
+        public void OnInsert(EventLog eventLog) =>
+            LogQueue.Enqueue(eventLog);
     }
 }
