@@ -17,7 +17,7 @@ namespace UI.Controllers
             SSEProvider = sseProvider;
 
         public async Task<IActionResult> Index(int page = 0) =>
-            View(await Service.History(page));
+            View(await Service.Paginate(page));
 
         [HttpGet("[action]")]
         public IActionResult Live() =>

@@ -6,11 +6,8 @@ namespace Server.Controllers
 {
     public static class ControllerRegistry
     {
-        public static void RegisterControllers(this WebApplication application)
-        {
+        public static void RegisterControllers(this WebApplication application) =>
             application.Index();
-            application.RegisterHealthCheckApplication();
-        }
 
         private static void Index(this WebApplication application) =>
             application.MapPost("/", ([FromBody] LogEventRequest[] events) =>
@@ -46,12 +43,6 @@ namespace Server.Controllers
                     
                     instanceLogContext.Error(@event.RenderedMessage);
                 });
-            });
-
-        private static void RegisterHealthCheckApplication(this WebApplication application) =>
-            application.MapPost("/", ([FromBody] dynamic _) =>
-            {
-
             });
     }
 }

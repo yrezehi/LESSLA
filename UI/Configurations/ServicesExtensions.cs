@@ -1,4 +1,5 @@
 ﻿using Core.Authentication.LDAP;
+using Core.Events.SQL;
 using Core.Services;
 using Core.Services.Health;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -10,6 +11,9 @@ namespace UI.Configurations
         public static void RegisterServices(this WebApplicationBuilder builder)
         {
             builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            builder.Services.AddSingleton(typeof(SQLDepedencyAdapter<>), typeof(SQLDepedencyAdapter<>));
+            builder.Services.AddSingleton(typeof(LiveEventsService), typeof(LiveEventsService));
 
             builder.Services.AddTransient(typeof(ApplicationsService), typeof(ApplicationsService));
             builder.Services.AddTransient(typeof(EventLogsService), typeof(EventLogsService));
