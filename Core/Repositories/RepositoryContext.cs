@@ -24,6 +24,10 @@ namespace Core.Repositories
             builder.Entity<Application>().HasData(Application.Create("Sample", "Just a sample website").WithId(1).WithAPIKey("SECRET"));
 
             builder.Entity<HealthCheckApplication>().HasData(HealthCheckApplication.Create("Google", "http://www.google.com").WithId(1));
+
+            builder.Entity<HealthCheckApplication>().HasData(HealthCheckApplication.Create("Google", "http://www.google.com").WithId(1));
+
+            builder.Entity<EventLog>().HasData(EventLog);
         }
 
     }

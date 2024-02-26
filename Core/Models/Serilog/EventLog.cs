@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Core.Models.Health;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Models.Serilog
 {
@@ -15,6 +16,22 @@ namespace Core.Models.Serilog
         public string? RequestPath { get; set; }
         public string? ConnectionId { get; set; }
 
-        public EventLog() { }
+        public EventLog(string message, string application, string details, string requestId, string requestPath, string connectionId) {
+            Message = message;
+            Application = application;
+            Details = details;
+            RequestId = requestId;
+            RequestPath = requestPath;
+            ConnectionId = connectionId;
+        }
+
+        public static EventLog Create(string message, string application, string details, string requestId, string requestPath, string connectionId) =>
+            new EventLog(message, application, details, requestId, requestPath, connectionId);
+
+        public EventLog WithId(int id)
+        {
+            Id = id;
+            return this;
+        }
     }
 }
