@@ -113,8 +113,8 @@ And put below in `appsettings.json`
 
 - [x] Durable logger on client and server sides
 - [ ] Notification center
-- [ ] Logger insights for dashboard
-- [ ] Health check center
+- [x] Logger insights for dashboard
+- [x] Health check center
 - [ ] LLama integration
 
 <br/>
