@@ -25,9 +25,9 @@ namespace Core.Repositories
 
             builder.Entity<HealthCheckApplication>().HasData(HealthCheckApplication.Create("Google", "http://www.google.com").WithId(1));
 
-            builder.Entity<HealthCheckApplication>().HasData(HealthCheckApplication.Create("Google", "http://www.google.com").WithId(1));
+            builder.Entity<HealthCheckApplication>().HasData(HealthCheckApplication.Create("Google", "http://www.google.com").WithId(2));
 
-            builder.Entity<EventLog>().HasData(EventLog);
+            builder.Entity<EventLog>().HasData(EventLog.Create("Error on validation", "Sample", "No valid transaction", "234234lejfw", "/getall", "weporwpeojrwpeor").WithId(1));
         }
 
     }
